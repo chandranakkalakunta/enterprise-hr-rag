@@ -1,0 +1,169 @@
+#!/bin/bash
+# ============================================================
+# Script: 03_networking.sh
+# Purpose: Create VPC, subnets, firewall rules, Cloud NAT
+# Usage: ./scripts/03_networking.sh --env=dev
+# ============================================================
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/../config/common.env"
+
+# ── Parse arguments ────────────────────────────────────────
+ENVIRONMENT=""
+for arg in "$@"; do
+    case $arg in
+        --env=*) ENVIRONMENT="${arg#*=}" ;;
+    esac
+done
+
+if [ -z "$ENVIRONMENT" ]; then
+    echo -e "${YELLOW}Enter environment (dev/prod):${NC}"
+    read -r ENVIRONMENT
+fi
+
+source "${SCRIPT_DIR}/../config/${ENVIRONMENT}.env"
+
+echo "=================================================="
+echo " Enterprise HR RAG Platform - Networking Setup"
+echo " Environment: ${ENVIRONMENT}"
+echo " Project: ${PROJECT_ID}"
+echo "=================================================="
+
+VPC_NAME="hr-rag-vpc"
+SUBNET_APP="hr-rag-app-subnet"
+SUBNET_DATA="hr-rag-data-subnet"
+ROUTER_NAME="hr-rag-router"
+NAT_NAME="hr-rag-nat"
+
+# ── Create VPC ─────────────────────────────────────────────
+log_step "Creating VPC network"
+if gcloud compute networks describe "${VPC_NAME}" \
+    --project="${PROJECT_ID}" &>/dev/null; then
+    log_warn "VPC ${VPC_NAME} already exists"
+else
+    gcloud compute networks create "${VPC_NAME}" \
+        --project="${PROJECT_ID}" \
+        --subnet-mode=custom \
+        --bgp-routing-mode=regional
+    log_success "VPC created: ${VPC_NAME}"
+fi
+
+# ── Create subnets ─────────────────────────────────────────
+log_step "Creating subnets"
+
+# App subnet
+if gcloud compute networks subnets describe "${SUBNET_APP}" \
+    --region="${REGION}" \
+    --project="${PROJECT_ID}" &>/dev/null; then
+    log_warn "Subnet ${SUBNET_APP} already exists"
+else
+    gcloud compute networks subnets create "${SUBNET_APP}" \
+        --project="${PROJECT_ID}" \
+        --network="${VPC_NAME}" \
+        --region="${REGION}" \
+        --range="10.1.0.0/24" \
+        --enable-private-ip-google-access
+    log_success "App subnet created: 10.1.0.0/24"
+fi
+
+# Data subnet
+if gcloud compute networks subnets describe "${SUBNET_DATA}" \
+    --region="${REGION}" \
+    --project="${PROJECT_ID}" &>/dev/null; then
+    log_warn "Subnet ${SUBNET_DATA} already exists"
+else
+    gcloud compute networks subnets create "${SUBNET_DATA}" \
+        --project="${PROJECT_ID}" \
+        --network="${VPC_NAME}" \
+        --region="${REGION}" \
+        --range="10.2.0.0/24" \
+        --enable-private-ip-google-access
+    log_success "Data subnet created: 10.2.0.0/24"
+fi
+
+# ── Create firewall rules ──────────────────────────────────
+log_step "Creating firewall rules"
+
+# Allow internal traffic
+if gcloud compute firewall-rules describe \
+    "hr-rag-allow-internal" \
+    --project="${PROJECT_ID}" &>/dev/null; then
+    log_warn "Firewall rule hr-rag-allow-internal already exists"
+else
+    gcloud compute firewall-rules create "hr-rag-allow-internal" \
+        --project="${PROJECT_ID}" \
+        --network="${VPC_NAME}" \
+        --allow=tcp,udp,icmp \
+        --source-ranges="10.0.0.0/8" \
+        --description="Allow internal traffic"
+    log_success "Internal firewall rule created"
+fi
+
+# Allow health checks from Google
+if gcloud compute firewall-rules describe \
+    "hr-rag-allow-health-checks" \
+    --project="${PROJECT_ID}" &>/dev/null; then
+    log_warn "Health check firewall rule already exists"
+else
+    gcloud compute firewall-rules create "hr-rag-allow-health-checks" \
+        --project="${PROJECT_ID}" \
+        --network="${VPC_NAME}" \
+        --allow=tcp \
+        --source-ranges="130.211.0.0/22,35.191.0.0/16" \
+        --description="Allow Google health checks"
+    log_success "Health check firewall rule created"
+fi
+
+# ── Create Cloud Router ────────────────────────────────────
+log_step "Creating Cloud Router"
+if gcloud compute routers describe "${ROUTER_NAME}" \
+    --region="${REGION}" \
+    --project="${PROJECT_ID}" &>/dev/null; then
+    log_warn "Router ${ROUTER_NAME} already exists"
+else
+    gcloud compute routers create "${ROUTER_NAME}" \
+        --project="${PROJECT_ID}" \
+        --network="${VPC_NAME}" \
+        --region="${REGION}"
+    log_success "Cloud Router created: ${ROUTER_NAME}"
+fi
+
+# ── Create Cloud NAT ───────────────────────────────────────
+log_step "Creating Cloud NAT"
+if gcloud compute routers nats describe "${NAT_NAME}" \
+    --router="${ROUTER_NAME}" \
+    --region="${REGION}" \
+    --project="${PROJECT_ID}" &>/dev/null; then
+    log_warn "NAT ${NAT_NAME} already exists"
+else
+    gcloud compute routers nats create "${NAT_NAME}" \
+        --project="${PROJECT_ID}" \
+        --router="${ROUTER_NAME}" \
+        --region="${REGION}" \
+        --auto-allocate-nat-external-ips \
+        --nat-all-subnet-ip-ranges
+    log_success "Cloud NAT created: ${NAT_NAME}"
+fi
+
+# ── Save to config ─────────────────────────────────────────
+cat >> "${SCRIPT_DIR}/../config/${ENVIRONMENT}.env" << ENVEOF
+
+# Networking (auto-generated by 03_networking.sh)
+export VPC_NAME="${VPC_NAME}"
+export SUBNET_APP="${SUBNET_APP}"
+export SUBNET_DATA="${SUBNET_DATA}"
+ENVEOF
+
+echo ""
+echo "=================================================="
+log_success "Networking setup complete!"
+echo ""
+echo "  VPC: ${VPC_NAME}"
+echo "  App Subnet: 10.1.0.0/24"
+echo "  Data Subnet: 10.2.0.0/24"
+echo "  Router: ${ROUTER_NAME}"
+echo "  NAT: ${NAT_NAME}"
+echo ""
+echo "Next step: ./scripts/04_security.sh --env=${ENVIRONMENT}"
+echo "=================================================="
