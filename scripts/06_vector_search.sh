@@ -80,13 +80,31 @@ if [ -n "${EXISTING_INDEX}" ]; then
 else
     log_info "Creating index (please wait 20-30 minutes)..."
 
+    # Create index config file
+    cat > /tmp/index_config.json << IDXEOF
+{
+  "config": {
+    "dimensions": ${VECTOR_DIMENSIONS},
+    "approximateNeighborsCount": 10,
+    "distanceMeasureType": "${VECTOR_DISTANCE}",
+    "algorithm_config": {
+      "treeAhConfig": {
+        "leafNodeEmbeddingCount": 500,
+        "fractionLeafNodesToSearch": 0.05
+      }
+    }
+  }
+}
+IDXEOF
+
     INDEX_ID=$(gcloud ai indexes create \
         --region="${REGION}" \
         --project="${PROJECT_ID}" \
         --display-name="${INDEX_NAME}" \
         --description="HR RAG Platform vector index" \
-        --metadata-file=/tmp/index_metadata.json \
+        --metadata-file=/tmp/index_config.json \
         --format="value(name)" 2>/dev/null)
+    rm -f /tmp/index_config.json
 
     if [ -z "${INDEX_ID}" ]; then
         log_warn "Index creation initiated asynchronously"
@@ -125,7 +143,6 @@ fi
 export VECTOR_INDEX_ID="${INDEX_ID:-pending}"
 export VECTOR_ENDPOINT_ID="${ENDPOINT_ID:-pending}"
 export DEPLOYED_INDEX_ID="${DEPLOYED_INDEX_ID}"
-ENVEOF
 
 echo ""
 echo "=================================================="
