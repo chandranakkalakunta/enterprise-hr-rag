@@ -49,18 +49,26 @@ log_info "Index: ${INDEX_ID}"
 log_info "Endpoint: ${ENDPOINT_ID}"
 
 # Check index is ready
-# Check index is ready (state can be ACTIVE or empty when ready)
+# Check index is ready
+# GCP quirk: state field is empty when ready, populated when creating
 INDEX_STATE=$(gcloud ai indexes describe "${INDEX_ID}" \
     --region="${REGION}" \
     --project="${PROJECT_ID}" \
     --format="value(state)" 2>/dev/null)
 
-log_info "Index state: '${INDEX_STATE}'"
+INDEX_STATS=$(gcloud ai indexes describe "${INDEX_ID}" \
+    --region="${REGION}" \
+    --project="${PROJECT_ID}" \
+    --format="value(indexStats)" 2>/dev/null)
 
-# Index is ready if state is ACTIVE or empty (GCP quirk!)
-if [ "${INDEX_STATE}" = "CREATING" ]; then
+log_info "Index state: '${INDEX_STATE}'"
+log_info "Index stats: '${INDEX_STATS}'"
+
+# Index is NOT ready only if explicitly CREATING
+if echo "${INDEX_STATE}" | grep -qi "creating"; then
     log_error "Index still creating! Wait and try again!"
 fi
+log_success "Index appears ready - proceeding with deployment!" 
 
 log_step "Deploying index to endpoint..."
 

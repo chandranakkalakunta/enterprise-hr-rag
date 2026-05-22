@@ -56,6 +56,13 @@ ARTIFACTS_BUCKET="${PROJECT_ID}-artifacts"
 AUDIT_BUCKET="${PROJECT_ID}-audit-logs"
 
 create_bucket "${DOCS_BUCKET}"      "HR policy documents"
+
+# Enable versioning on documents bucket
+gcloud storage buckets update "gs://${DOCS_BUCKET}" \
+    --versioning \
+    --project="${PROJECT_ID}" 2>/dev/null && \
+    log_success "Versioning enabled on documents bucket" || \
+    log_warn "Could not enable versioning"
 create_bucket "${PROCESSED_BUCKET}" "Processed chunks"
 create_bucket "${ARTIFACTS_BUCKET}" "Models and artifacts"
 create_bucket "${AUDIT_BUCKET}"     "Audit logs (7-year retention)"
