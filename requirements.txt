@@ -1,0 +1,23 @@
+# Enterprise HR RAG Platform - Requirements
+# Compatible versions tested on Python 3.11+
+
+# ── Core ───────────────────────────────────────────────────
+streamlit>=1.40.0
+python-dotenv>=1.0.0
+
+# ── Google AI ──────────────────────────────────────────────
+google-genai>=2.0.0
+google-cloud-secret-manager>=2.20.0
+google-cloud-storage>=2.10.0
+google-cloud-bigquery>=3.0.0
+google-cloud-firestore>=2.16.0
+google-cloud-aiplatform>=1.60.0
+
+# ── RAG ────────────────────────────────────────────────────
+rank-bm25>=0.2.2
+
+# ── Evaluation ─────────────────────────────────────────────
+pandas>=2.0.0
+
+# ── Utilities ──────────────────────────────────────────────
+functions-framework>=3.0.0

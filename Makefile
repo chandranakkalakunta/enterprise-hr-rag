@@ -41,6 +41,9 @@ help:
 	@echo ""
 
 # ── Setup ──────────────────────────────────────────────────
+setup-env:
+	@./scripts/setup_environment.sh
+
 setup-dev:
 	@echo "Setting up dev environment..."
 	@./setup_all.sh --env=dev --skip-org
