@@ -60,6 +60,9 @@ deploy-prod:
 ingest:
 	@./scripts/upload_documents.sh --env=dev --dir=./data/documents
 
+ingest-pipeline:
+	@./scripts/ingest_documents.sh --env=dev
+
 check-index:
 	@gcloud ai indexes list \
 		--region=asia-south1 \
