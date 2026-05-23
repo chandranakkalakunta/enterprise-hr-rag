@@ -78,7 +78,7 @@ deploy-index:
 # ── Quality ────────────────────────────────────────────────
 evaluate:
 	@echo "Running RAGAS evaluation..."
-	@python3 src/evaluation/ragas_evaluator.py
+	@./venv/bin/python3 src/evaluation/ragas_evaluator.py
 
 test:
 	@echo "Running tests..."

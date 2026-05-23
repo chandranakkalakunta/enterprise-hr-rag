@@ -1,0 +1,122 @@
+[
+  {
+    "question": "How many annual leave days do employees get?",
+    "answer": "Employees are entitled to 21 days of annual leave per year.",
+    "source_document": "01_leave_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How many sick leave days are provided?",
+    "answer": "Employees get 10 days of sick leave per year.",
+    "source_document": "01_leave_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the maternity leave entitlement?",
+    "answer": "Female employees are entitled to 26 weeks of paid maternity leave.",
+    "source_document": "01_leave_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How many days of paternity leave do employees get?",
+    "answer": "Employees get 5 days of paternity leave.",
+    "source_document": "01_leave_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How many casual leave days are allowed per year?",
+    "answer": "Employees are allowed 7 days of casual leave per year.",
+    "source_document": "01_leave_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How many days can employees work from home per week?",
+    "answer": "Employees can work from home up to 2 days per week with manager approval.",
+    "source_document": "04_remote_work_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What are the core working hours for remote work?",
+    "answer": "Core working hours are 10am to 4pm IST for remote workers.",
+    "source_document": "04_remote_work_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the annual training budget per employee?",
+    "answer": "Each employee receives an annual training budget of INR 50,000.",
+    "source_document": "08_training_development",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How many study leave days are provided per year?",
+    "answer": "Employees get 5 days of study leave per year for certifications.",
+    "source_document": "08_training_development",
+    "difficulty": "easy"
+  },
+  {
+    "question": "Within how many days must travel expenses be submitted?",
+    "answer": "Travel expenses must be submitted within 7 calendar days of travel.",
+    "source_document": "07_travel_expense_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How long does grievance resolution take?",
+    "answer": "Grievances must be resolved within 30 days of formal complaint.",
+    "source_document": "09_grievance_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What is the probation period for new employees?",
+    "answer": "New employees have a probation period of 6 months.",
+    "source_document": "02_onboarding_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What happens if performance rating is below expectations?",
+    "answer": "Employees with below expectation ratings are placed on a Performance Improvement Plan for 90 days.",
+    "source_document": "05_performance_management",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What is the password policy for IT security?",
+    "answer": "Passwords must be complex with minimum 8 characters and changed every 90 days.",
+    "source_document": "10_it_security_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Can employees take leave during probation period?",
+    "answer": "During probation, employees can only take emergency leave. Annual leave accrual begins after probation.",
+    "source_document": "01_leave_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What certifications does the company support financially?",
+    "answer": "The company supports GCP, AWS, and Azure certifications through the training budget.",
+    "source_document": "08_training_development",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What is the reimbursement timeline for travel expenses?",
+    "answer": "Travel expense reimbursements are processed within 15 days of submission.",
+    "source_document": "07_travel_expense_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What are the data classification levels?",
+    "answer": "Data is classified as Public, Internal, Confidential, and Secret.",
+    "source_document": "10_it_security_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What is the POSH committee?",
+    "answer": "POSH stands for Prevention of Sexual Harassment. The committee handles harassment complaints and investigations.",
+    "source_document": "09_grievance_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "How is the performance rating calculated?",
+    "answer": "Performance rating is based on goal achievement, competency assessment, and manager evaluation on a 1-5 scale.",
+    "source_document": "05_performance_management",
+    "difficulty": "hard"
+  }
+]
