@@ -52,7 +52,8 @@ cat > /tmp/index_metadata.json << IDXEOF
         "fractionLeafNodesToSearch": 0.05
       }
     }
-  }
+  },
+  "indexUpdateMethod": "STREAM_UPDATE"
 }
 IDXEOF
 
@@ -104,7 +105,8 @@ else
         "fractionLeafNodesToSearch": 0.05
       }
     }
-  }
+  },
+  "indexUpdateMethod": "STREAM_UPDATE"
 }
 IDXEOF
 

@@ -113,11 +113,16 @@ class IngestionPipeline:
             embedded_chunks = self.embedder.embed_chunks(chunks)
             logger.info(f"Generated {len(embedded_chunks)} embeddings")
 
-            # Step 4: Update Vector Search (skip if not available)
-            logger.info("Step 4: Skipping Vector Search (index still creating)")
-            # TODO: Enable after index is ready
-            # if self.vector_search:
-            #     self.vector_search.upsert_embeddings(embedded_chunks)
+            # Step 4: Update Vector Search
+            if self.vector_search:
+                logger.info("Step 4: Updating Vector Search...")
+                success = self.vector_search.upsert_embeddings(embedded_chunks)
+                if success:
+                    logger.info("Vector Search updated!")
+                else:
+                    logger.warning("Vector Search update failed - continuing")
+            else:
+                logger.warning("Step 4: Vector Search not available")
 
             # Step 5: Update BM25 index
             logger.info("Step 5: Updating BM25 index...")
