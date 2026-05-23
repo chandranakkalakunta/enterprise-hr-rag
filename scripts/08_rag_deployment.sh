@@ -23,37 +23,24 @@ fi
 
 source "${SCRIPT_DIR}/../config/${ENVIRONMENT}.env"
 
+IMAGE_NAME="${REGISTRY_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REGISTRY_NAME}/hr-rag-engine"
+
 echo "=================================================="
 echo " Enterprise HR RAG Platform - RAG Deployment"
 echo " Environment: ${ENVIRONMENT}"
 echo " Project: ${PROJECT_ID}"
+echo " Image: ${IMAGE_NAME}"
 echo "=================================================="
 
-IMAGE_NAME="asia-south1-docker.pkg.dev/${PROJECT_ID}/${REGISTRY_NAME}/hr-rag-engine"
-
 # ── Build Docker image ─────────────────────────────────────
-log_step "Building Docker image"
+log_step "Authenticating Docker to Artifact Registry"
+gcloud auth configure-docker "${REGISTRY_LOCATION}-docker.pkg.dev" --quiet
+log_success "Docker authenticated!"
 
-# Check Dockerfile exists
-if [ ! -f "${SCRIPT_DIR}/../Dockerfile" ]; then
-    log_warn "Dockerfile not found! Creating basic one..."
-    cat > "${SCRIPT_DIR}/../Dockerfile" << 'DOCKEREOF'
-FROM python:3.11-slim
-WORKDIR /app
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends gcc && \
-    rm -rf /var/lib/apt/lists/*
-COPY requirements.txt .
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
-COPY src/ ./src/
-EXPOSE 8080
-CMD ["streamlit", "run", "src/ui/app.py", \
-     "--server.port=8080", \
-     "--server.address=0.0.0.0", \
-     "--server.headless=true"]
-DOCKEREOF
-fi
+gcloud auth configure-docker "${REGISTRY_LOCATION}-docker.pkg.dev" --quiet
+log_success "Docker authenticated!"
+
+log_step "Building Docker image" 
 
 docker buildx build \
     --platform linux/amd64 \
@@ -66,17 +53,19 @@ log_success "Docker image built and pushed!"
 # ── Get correct digest ─────────────────────────────────────
 log_step "Getting image digest"
 
+
 DIGEST=$(gcloud container images list-tags \
     "${IMAGE_NAME}" \
     --project="${PROJECT_ID}" \
     --sort-by="~timestamp" \
     --limit=1 \
-    --format="value(digest)" 2>/dev/null)
+    --format="json" 2>/dev/null | python3 -c \
+    "import json,sys; d=json.load(sys.stdin); print(d[0]['digest']) if d else print('')")
 
-FULL_IMAGE="${IMAGE_NAME}@sha256:${DIGEST}"
-log_info "Image: ${FULL_IMAGE}"
+FULL_IMAGE="${IMAGE_NAME}@${DIGEST}"
+log_info "Digest: ${DIGEST:0:23}..."
 
-# ── Sign image with KMS ────────────────────────────────────
+# ── Sign image ─────────────────────────────────────────────
 log_step "Signing image with KMS (Binary Authorization)"
 
 gcloud beta container binauthz attestations sign-and-create \
@@ -102,7 +91,7 @@ gcloud run deploy "${RAG_ENGINE_NAME}" \
     --project="${PROJECT_ID}" \
     --service-account="${RAG_SA}" \
     --update-secrets="GEMINI_API_KEY=gemini-api-key:latest" \
-    --set-env-vars="PROJECT_ID=${PROJECT_ID},ENVIRONMENT=${ENVIRONMENT},REGION=${REGION}" \
+    --set-env-vars="PROJECT_ID=${PROJECT_ID},ENVIRONMENT=${ENVIRONMENT},REGION=${REGION},DOCS_BUCKET=${DOCS_BUCKET}" \
     --memory="${MEMORY}" \
     --cpu="${CPU}" \
     --min-instances="${MIN_INSTANCES}" \
@@ -115,20 +104,16 @@ gcloud run deploy "${RAG_ENGINE_NAME}" \
 SERVICE_URL=$(gcloud run services describe "${RAG_ENGINE_NAME}" \
     --region="${REGION}" \
     --project="${PROJECT_ID}" \
-    --format="value(status.url)")
+    --format="value(status.url)" 2>/dev/null)
 
-log_success "RAG Engine deployed: ${SERVICE_URL}"
+log_success "Deployed: ${SERVICE_URL}"
 
 echo ""
 echo "=================================================="
 log_success "RAG deployment complete!"
 echo ""
-echo "  Service: ${RAG_ENGINE_NAME}"
 echo "  URL: ${SERVICE_URL}"
-echo "  Environment: ${ENVIRONMENT}"
 echo ""
-echo "Test it:"
-echo "  curl ${SERVICE_URL}/health"
-echo ""
-echo "Next step: ./scripts/09_monitoring.sh --env=${ENVIRONMENT}"
+echo "Test:"
+echo "  curl ${SERVICE_URL}/_stcore/health"
 echo "=================================================="

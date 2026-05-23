@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.env
+*.egg-info/
+
+# Git
+.git/
+.gitignore
+
+# Dev files
+tests/
+*.md
+!data/ground_truth/*.json
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Temp
+/tmp/
+*.tmp
+*.pkl
+
+# Large files
+data/documents/

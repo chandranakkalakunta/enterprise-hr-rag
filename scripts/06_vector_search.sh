@@ -65,6 +65,17 @@ echo '{"id": "init", "embedding": [0.0]}' | \
     log_warn "Could not create init file"
 
 # ── Create Vector Search Index ─────────────────────────────
+
+# Helper: Check if index is ready
+check_index_ready() {
+    local IDX=$1
+    local SHARDS=$(gcloud ai indexes describe "${IDX}" \
+        --region="${REGION}" \
+        --project="${PROJECT_ID}" \
+        --format="value(indexStats.shardsCount)" 2>/dev/null)
+    [ -n "${SHARDS}" ] && [ "${SHARDS}" -gt 0 ] 2>/dev/null
+}
+
 log_step "Creating Vector Search index (takes 20-30 minutes...)"
 
 # Check if index already exists

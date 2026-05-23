@@ -49,26 +49,20 @@ log_info "Index: ${INDEX_ID}"
 log_info "Endpoint: ${ENDPOINT_ID}"
 
 # Check index is ready
-# Check index is ready
-# GCP quirk: state field is empty when ready, populated when creating
-INDEX_STATE=$(gcloud ai indexes describe "${INDEX_ID}" \
+# Check index is ready using shardsCount
+# GCP quirk: state is empty when ready!
+# Real indicator: indexStats.shardsCount > 0
+SHARDS=$(gcloud ai indexes describe "${INDEX_ID}" \
     --region="${REGION}" \
     --project="${PROJECT_ID}" \
-    --format="value(state)" 2>/dev/null)
+    --format="value(indexStats.shardsCount)" 2>/dev/null)
 
-INDEX_STATS=$(gcloud ai indexes describe "${INDEX_ID}" \
-    --region="${REGION}" \
-    --project="${PROJECT_ID}" \
-    --format="value(indexStats)" 2>/dev/null)
+log_info "Index shardsCount: '${SHARDS}'"
 
-log_info "Index state: '${INDEX_STATE}'"
-log_info "Index stats: '${INDEX_STATS}'"
-
-# Index is NOT ready only if explicitly CREATING
-if echo "${INDEX_STATE}" | grep -qi "creating"; then
-    log_error "Index still creating! Wait and try again!"
+if [ -z "${SHARDS}" ] || [ "${SHARDS}" -eq 0 ] 2>/dev/null; then
+    log_error "Index not ready yet! shardsCount=0. Wait and try again!"
 fi
-log_success "Index appears ready - proceeding with deployment!" 
+log_success "Index is READY! shardsCount=${SHARDS}" 
 
 log_step "Deploying index to endpoint..."
 
