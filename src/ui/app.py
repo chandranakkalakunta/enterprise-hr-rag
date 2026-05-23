@@ -54,7 +54,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Initialize RAG Engine ──────────────────────────────────
-@st.cache_resource
+@st.cache_resource(ttl=3600)
 def get_rag_engine():
     """Initialize RAG engine (cached for performance)."""
     from rag_engine import RAGEngine
@@ -164,6 +164,7 @@ if query or st.session_state.get("pending_query"):
     # Generate response
     with st.chat_message("assistant"):
         with st.spinner("Searching HR policies..."):
+            result = {}
             try:
                 engine = get_rag_engine()
                 result = engine.query(query)
@@ -174,6 +175,7 @@ if query or st.session_state.get("pending_query"):
                 answer = f"Sorry, I encountered an error: {e}"
                 sources = []
                 chunks_used = 0
+                result = {}
 
         st.markdown(answer)
 
@@ -189,10 +191,10 @@ if query or st.session_state.get("pending_query"):
         with st.expander("🔍 Retrieval Details"):
             st.markdown(f"Chunks used: **{chunks_used}**")
             st.markdown(f"Sources: **{len(sources)}**")
-            if result.get("chunks"):
-                for i, chunk in enumerate(result["chunks"][:3]):
-                    st.markdown(f"**Chunk {i+1}** [{chunk['document_id']}]")
-                    st.markdown(f"> {chunk['text'][:150]}...")
+            chunks_detail = result.get("chunks", []) if isinstance(result, dict) else []
+            for i, chunk in enumerate(chunks_detail[:3]):
+                st.markdown(f"**Chunk {i+1}** [{chunk.get('document_id','?')}]")
+                st.markdown(f"> {chunk.get('text','')[:150]}...")
 
     # Save to history
     st.session_state.messages.append({

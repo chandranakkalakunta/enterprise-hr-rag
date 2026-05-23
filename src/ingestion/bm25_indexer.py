@@ -87,6 +87,16 @@ class BM25Indexer:
 
             # Rebuild BM25 index
             tokenized = [self._tokenize(text) for text in self.chunk_texts]
+            # Filter out empty tokenized texts to avoid division by zero
+            valid_pairs = [(t, i) for i, t in enumerate(tokenized) if len(t) > 0]
+            if not valid_pairs:
+                logger.warning("No valid tokens found!")
+                return False
+            tokenized = [p[0] for p in valid_pairs]
+            valid_indices = [p[1] for p in valid_pairs]
+            self.chunk_ids = [self.chunk_ids[i] for i in valid_indices]
+            self.chunk_texts = [self.chunk_texts[i] for i in valid_indices]
+            self.chunk_metadata = [self.chunk_metadata[i] for i in valid_indices]
             self.bm25 = BM25Okapi(tokenized)
 
             # Save to disk

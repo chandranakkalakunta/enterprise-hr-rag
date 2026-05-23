@@ -39,19 +39,59 @@ class HybridRetriever:
         self.top_k_final = top_k_final
         self.alpha = alpha  # 0=sparse only, 1=dense only
 
-        # BM25 retriever
+        # Firestore for chunk text lookup
+        self.firestore = FirestoreClient(project_id=project_id)
+
+        # BM25 retriever - build from Firestore on startup
         self.bm25 = BM25Indexer(
             index_path=f"/tmp/bm25_index_{environment}.pkl"
         )
-
-        # Firestore for chunk text lookup
-        self.firestore = FirestoreClient(project_id=project_id)
+        self._build_bm25_from_firestore()
 
         # Vector Search (optional)
         self.vector_search = None
         self.embedder = None
 
         logger.info("Hybrid retriever initialized!")
+
+    def _build_bm25_from_firestore(self):
+        """Build BM25 index from Firestore chunks on startup."""
+        import sys, os
+        sys.path.insert(0, os.path.dirname(__file__).replace("retrieval", "ingestion"))
+        from document_processor import DocumentChunk
+        from datetime import datetime, timezone
+
+        try:
+            if self.bm25.bm25 is not None:
+                logger.info("BM25 index already exists - skipping rebuild")
+                return
+
+            logger.info("Building BM25 index from Firestore...")
+            chunks_data = self.firestore.get_all_chunks()
+
+            if not chunks_data:
+                logger.warning("No chunks in Firestore!")
+                return
+
+            chunks = []
+            for c in chunks_data:
+                chunk = DocumentChunk(
+                    chunk_id=c.get("chunk_id", ""),
+                    document_id=c.get("document_id", ""),
+                    filename=c.get("filename", ""),
+                    text=c.get("text", c.get("chunk_text", "")),
+                    chunk_index=c.get("chunk_index", 0),
+                    word_count=c.get("word_count", 0),
+                    char_count=len(c.get("chunk_text", "")),
+                    created_at=datetime.now(timezone.utc).isoformat()
+                )
+                chunks.append(chunk)
+
+            self.bm25.build_index(chunks)
+            logger.info(f"BM25 built from Firestore: {len(chunks)} chunks")
+
+        except Exception as e:
+            logger.error(f"Failed to build BM25 from Firestore: {e}")
 
     def setup_vector_search(
         self,
@@ -198,7 +238,7 @@ class HybridRetriever:
                 chunk_data = all_chunks[chunk_id]
                 enriched.append({
                     "chunk_id": chunk_id,
-                    "text": chunk_data.get("chunk_text", result.get("text", "")),
+                    "text": chunk_data.get("text", chunk_data.get("chunk_text", result.get("text", ""))),
                     "document_id": chunk_data.get("document_id", ""),
                     "filename": chunk_data.get("filename", ""),
                     "chunk_index": chunk_data.get("chunk_index", 0),

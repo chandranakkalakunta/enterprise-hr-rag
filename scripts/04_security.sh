@@ -92,6 +92,7 @@ grant_role "$RAG_SA" "roles/spanner.databaseUser"
 grant_role "$RAG_SA" "roles/storage.objectViewer"
 grant_role "$RAG_SA" "roles/logging.logWriter"
 grant_role "$RAG_SA" "roles/cloudtrace.agent"
+grant_role "$RAG_SA" "roles/datastore.user"
 grant_role "$RAG_SA" "roles/monitoring.metricWriter"
 
 # Ingestion SA

@@ -37,7 +37,6 @@ log_step "Authenticating Docker to Artifact Registry"
 gcloud auth configure-docker "${REGISTRY_LOCATION}-docker.pkg.dev" --quiet
 log_success "Docker authenticated!"
 
-gcloud auth configure-docker "${REGISTRY_LOCATION}-docker.pkg.dev" --quiet
 log_success "Docker authenticated!"
 
 log_step "Building Docker image" 
