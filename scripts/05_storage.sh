@@ -109,6 +109,26 @@ create_bq_dataset() {
 create_bq_dataset "hr_rag_metrics"   "RAG evaluation metrics and RAGAS scores"
 create_bq_dataset "hr_rag_analytics" "Usage analytics and query logs"
 
+# Grant RAG SA write access to BigQuery datasets
+log_step "Granting BigQuery dataset access to service accounts"
+python3 - << PYEOF2
+from google.cloud import bigquery
+client = bigquery.Client(project="${PROJECT_ID}")
+sa = "${RAG_SA}"
+for ds_id in ["hr_rag_metrics", "hr_rag_analytics"]:
+    ds = client.get_dataset(f"${PROJECT_ID}.{ds_id}")
+    entries = list(ds.access_entries)
+    if not any(e.entity_id == sa for e in entries):
+        entries.append(bigquery.AccessEntry(role="WRITER", entity_type="userByEmail", entity_id=sa))
+        ds.access_entries = entries
+        client.update_dataset(ds, ["access_entries"])
+        print(f"WRITER granted: {ds_id}")
+    else:
+        print(f"Already exists: {ds_id}")
+PYEOF2
+log_success "BigQuery dataset access configured"
+
+
 # Create tables
 log_step "Creating BigQuery tables"
 
