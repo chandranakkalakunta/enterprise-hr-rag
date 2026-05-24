@@ -112,38 +112,26 @@ create_bq_dataset "hr_rag_analytics" "Usage analytics and query logs"
 # Create tables
 log_step "Creating BigQuery tables"
 
-# Query logs table
+# Query logs table - PII free, anonymized!
 bq mk --force \
     --project_id="${PROJECT_ID}" \
     --table \
+    --time_partitioning_field=timestamp \
+    --time_partitioning_type=DAY \
+    --description="HR RAG query logs - fully anonymized no PII" \
     "hr_rag_metrics.query_logs" \
-    "query_id:STRING,
-     timestamp:TIMESTAMP,
-     question:STRING,
-     answer:STRING,
-     latency_ms:INTEGER,
-     chunks_retrieved:INTEGER,
-     model_used:STRING,
-     success:BOOLEAN" 2>/dev/null && \
-    log_success "Table created: query_logs" || \
+    "query_id:STRING,timestamp:TIMESTAMP,hashed_user_id:STRING,department:STRING,intent:STRING,question_category:STRING,chunks_retrieved:INTEGER,latency_ms:INTEGER,model_used:STRING,success:BOOLEAN,environment:STRING,session_id:STRING" 2>/dev/null && \
+    log_success "Table created: query_logs (PII-free schema)" || \
     log_warn "Table query_logs may already exist"
 
-# Evaluation results table
+# Evaluation results table - no PII
 bq mk --force \
     --project_id="${PROJECT_ID}" \
     --table \
+    --description="RAGAS evaluation results - no PII" \
     "hr_rag_metrics.evaluation_results" \
-    "eval_id:STRING,
-     timestamp:TIMESTAMP,
-     faithfulness:FLOAT,
-     answer_relevancy:FLOAT,
-     context_precision:FLOAT,
-     context_recall:FLOAT,
-     overall_score:FLOAT,
-     num_questions:INTEGER,
-     config_chunk_size:INTEGER,
-     config_top_k:INTEGER" 2>/dev/null && \
-    log_success "Table created: evaluation_results" || \
+    "eval_id:STRING,timestamp:TIMESTAMP,avg_relevancy_score:FLOAT,source_accuracy:FLOAT,total_questions:INTEGER,easy_score:FLOAT,medium_score:FLOAT,hard_score:FLOAT,overall_score:FLOAT,config_chunk_size:INTEGER,config_top_k:INTEGER,environment:STRING,notes:STRING" 2>/dev/null && \
+    log_success "Table created: evaluation_results (no PII)" || \
     log_warn "Table evaluation_results may already exist"
 
 # ── Create Firestore ───────────────────────────────────────
