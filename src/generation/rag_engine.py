@@ -41,6 +41,25 @@ class RAGEngine:
             top_k_final=5
         )
 
+        # Enable Vector Search
+        endpoint_id = os.environ.get(
+            'VECTOR_ENDPOINT_ID',
+            'projects/946703664996/locations/asia-south1/indexEndpoints/2379105667995664384'
+        )
+        deployed_index_id = os.environ.get('DEPLOYED_INDEX_ID', 'hr_rag_deployed_index')
+        region = os.environ.get('REGION', 'asia-south1')
+
+        try:
+            self.retriever.setup_vector_search(
+                index_endpoint_id=endpoint_id,
+                deployed_index_id=deployed_index_id,
+                gemini_api_key=gemini_api_key,
+                region=region
+            )
+            logger.info("Vector Search enabled in RAG engine!")
+        except Exception as e:
+            logger.warning(f"Vector Search not available: {e}")
+
         logger.info(f"RAG Engine initialized: {model}")
 
     def build_prompt(self, query: str, chunks: list[dict]) -> str:

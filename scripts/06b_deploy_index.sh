@@ -76,6 +76,25 @@ gcloud ai index-endpoints deploy-index "${ENDPOINT_ID}" \
     --max-replica-count=2
 
 log_success "Index deployed to endpoint!"
+
+# ── Wait for deployment to complete ──────────────────────────
+log_step "Waiting for index deployment to complete..."
+OPERATION_ID=$(echo "${OPERATION_NAME}" | rev | cut -d/ -f1 | rev)
+
+for attempt in $(seq 1 20); do
+    DONE=$(gcloud ai operations describe "${OPERATION_ID}" \
+        --index-endpoint="${ENDPOINT_ID}" \
+        --region="${REGION}" \
+        --project="${PROJECT_ID}" \
+        --format="value(done)" 2>/dev/null)
+    if [ "${DONE}" = "True" ]; then
+        log_success "Index deployment complete!"
+        break
+    fi
+    log_info "Attempt ${attempt}/20 - still deploying... (30s)"
+    sleep 30
+done
+
 echo ""
 echo "=================================================="
 log_success "Vector Search fully operational!"
