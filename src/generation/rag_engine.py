@@ -148,6 +148,25 @@ ANSWER:"""
         }
 
         logger.info(f"Answer generated using {len(chunks)} chunks")
+
+        # Log to BigQuery (anonymized - no PII!)
+        try:
+            import sys
+            analytics_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../analytics")
+            sys.path.insert(0, analytics_path)
+            from analytics_logger import AnalyticsLogger
+            al = AnalyticsLogger(project_id=self.project_id, environment=self.environment)
+            al.log_query(
+                question=question,
+                intent=result.get("intent", "policy"),
+                chunks_retrieved=len(chunks),
+                latency_ms=0,
+                model_used=self.model,
+                success=True
+            )
+        except Exception as e:
+            logger.warning(f"Analytics logging failed: {e}")
+
         return result
 
     def query_stream(self, question: str):
