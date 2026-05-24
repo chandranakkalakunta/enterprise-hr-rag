@@ -56,6 +56,9 @@ class PersonalRAG:
         Process a personal query.
         Returns personalized answer with context.
         """
+        import time
+        start_time = time.time()
+
         # Get employee profile
         employee = self.db.get_employee_by_email(employee_email)
         if not employee:
@@ -106,6 +109,27 @@ class PersonalRAG:
         except Exception as e:
             logger.error(f"Generation failed: {e}")
             answer = f"Sorry, I could not generate an answer. Error: {e}"
+
+        # Log analytics (anonymized - no PII!)
+        try:
+            import sys
+            analytics_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../analytics")
+            sys.path.insert(0, analytics_path)
+            from analytics_logger import AnalyticsLogger, hash_user_id
+            al = AnalyticsLogger(project_id=self.project_id)
+            latency_ms = int((time.time() - start_time) * 1000)
+            al.log_query(
+                question=question,
+                intent=intent,
+                employee_email=employee_email,
+                department=employee.get("department"),
+                chunks_retrieved=0,
+                latency_ms=latency_ms,
+                model_used=self.model,
+                success=True
+            )
+        except Exception as e:
+            logger.warning(f"Analytics logging failed: {e}")
 
         return {
             "answer": answer,
