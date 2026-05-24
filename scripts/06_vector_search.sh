@@ -52,8 +52,7 @@ cat > /tmp/index_metadata.json << IDXEOF
         "fractionLeafNodesToSearch": 0.05
       }
     }
-  },
-  "indexUpdateMethod": "STREAM_UPDATE"
+  }
 }
 IDXEOF
 
@@ -105,8 +104,7 @@ else
         "fractionLeafNodesToSearch": 0.05
       }
     }
-  },
-  "indexUpdateMethod": "STREAM_UPDATE"
+  }
 }
 IDXEOF
 
@@ -116,6 +114,7 @@ IDXEOF
         --display-name="${INDEX_NAME}" \
         --description="HR RAG Platform vector index" \
         --metadata-file=/tmp/index_config.json \
+        --index-update-method=stream-update \
         --format="value(name)" 2>/dev/null)
     rm -f /tmp/index_config.json
 
