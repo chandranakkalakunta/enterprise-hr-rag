@@ -99,6 +99,8 @@ ANSWER:"""
         Returns answer with citations and metadata.
         """
         logger.info(f"Processing query: {question[:50]}...")
+        import time
+        start_time = time.time()
 
         # Step 1: Retrieve relevant chunks
         chunks = self.retriever.retrieve(question)
@@ -156,11 +158,12 @@ ANSWER:"""
             sys.path.insert(0, analytics_path)
             from analytics_logger import AnalyticsLogger
             al = AnalyticsLogger(project_id=self.project_id, environment=self.environment)
+            latency_ms = int((time.time() - start_time) * 1000)
             al.log_query(
                 question=question,
                 intent=result.get("intent", "policy"),
                 chunks_retrieved=len(chunks),
-                latency_ms=0,
+                latency_ms=latency_ms,
                 model_used=self.model,
                 success=True
             )
