@@ -21,3 +21,8 @@ pandas>=2.0.0
 
 # ── Utilities ──────────────────────────────────────────────
 functions-framework>=3.0.0
+
+# ── Phase 2: Database ──────────────────────────────────────
+sqlalchemy>=2.0.0
+pg8000>=1.30.0
+cloud-sql-python-connector[pg8000]>=1.4.0
