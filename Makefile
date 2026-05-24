@@ -63,6 +63,9 @@ deploy-prod:
 ingest:
 	@./scripts/upload_documents.sh --env=dev --dir=./data/documents
 
+upload:
+	@./scripts/upload_documents.sh --env=dev --dir=./data/documents
+
 ingest-pipeline:
 	@./scripts/ingest_documents.sh --env=dev
 

@@ -88,6 +88,22 @@ class FirestoreClient:
         )
         return [doc.to_dict() for doc in docs]
 
+    def get_document_chunks(self, document_id: str) -> list:
+        """Get all chunks for a specific document."""
+        chunks = (
+            self.db.collection("chunks")
+            .where(filter=self.FF("document_id", "==", document_id))
+            .stream()
+        )
+        result = []
+        for c in chunks:
+            data = c.to_dict()
+            text = data.get("text", data.get("chunk_text", ""))
+            data["text"] = text
+            data["chunk_text"] = text
+            result.append(data)
+        return result
+
     def get_all_chunks(self) -> list:
         return [c.to_dict() for c in self.db.collection("chunks").stream()]
 

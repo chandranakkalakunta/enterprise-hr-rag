@@ -1,157 +1,183 @@
-# TechCorp India Code of Conduct
+# ChandraAILabs Code of Conduct
 
-## 1. Introduction & Our Commitment
+## 1. Introduction and Purpose
 
-Welcome to TechCorp India! This Code of Conduct ("Code") outlines the ethical principles and professional standards that guide our actions and decisions at TechCorp India. It reflects our commitment to maintaining a respectful, inclusive, and high-performing work environment, fostering trust with our clients, partners, and the community.
+At ChandraAILabs, we are committed to pioneering innovative AI/ML solutions while fostering a workplace that is ethical, respectful, inclusive, and professional. This Code of Conduct outlines the standards of behavior and ethical principles expected from every individual associated with our company.
 
-This Code is a living document, and while it cannot cover every possible situation, it provides a framework for making sound judgments and upholding our values. By adhering to this Code, we collectively contribute to TechCorp India's success and reputation.
+This Code applies to all employees (full-time, part-time, contractual), interns, consultants, vendors, and any individual acting on behalf of ChandraAILabs, both inside and outside the workplace. Adherence to this Code is a condition of employment and engagement with ChandraAILabs.
 
-## 2. Scope & Applicability
+**Our Core Values:** Integrity, Respect, Collaboration, Innovation, and Accountability.
 
-This Code applies to all employees (full-time, part-time, temporary), contractors, consultants, interns, and directors of TechCorp India. It applies to all company-related activities, whether conducted on company premises, at client sites, during company-sponsored events, or through digital channels. While some principles apply to off-duty conduct, particularly if it impacts the company's reputation or the work environment.
+## 2. Professional Behavior and Ethics
 
-## 3. Core Values
+ChandraAILabs expects all individuals to conduct themselves professionally and ethically at all times.
 
-At TechCorp India, our actions are guided by:
-*   **Integrity:** Always acting with honesty, transparency, and strong moral principles.
-*   **Respect:** Valuing diversity, treating everyone with dignity, and fostering an inclusive environment.
-*   **Excellence:** Striving for high-quality work, innovation, and continuous improvement.
-*   **Accountability:** Taking responsibility for our actions and commitments.
-*   **Collaboration:** Working together effectively, sharing knowledge, and supporting each other's success.
-*   **Client Focus:** Understanding and exceeding our clients' expectations.
+### 2.1. Respect and Inclusivity
+*   Treat all colleagues, clients, partners, and stakeholders with dignity, courtesy, and respect, regardless of their background, role, or personal characteristics.
+*   Embrace diversity and foster an inclusive environment where everyone feels valued and has equal opportunities.
+*   Engage in constructive communication, listen actively, and provide respectful feedback.
 
-## 4. Professional Behavior & Workplace Etiquette
+### 2.2. Integrity and Honesty
+*   Act with honesty, transparency, and integrity in all business dealings and interactions.
+*   Never misrepresent facts, make false statements, or engage in deceptive practices.
+*   Uphold the highest ethical standards in all aspects of your work.
 
-All TechCorp India personnel are expected to conduct themselves professionally and courteously at all times.
+### 2.3. Compliance with Laws and Regulations
+*   Comply with all applicable local, national, and international laws, regulations, and company policies, including those related to data privacy, intellectual property, and labor practices in India.
 
-*   **Respect and Courtesy:** Treat colleagues, clients, partners, and visitors with respect, regardless of their position, background, or beliefs. Avoid gossip, rumors, and any form of demeaning communication.
-*   **Integrity and Honesty:** Be truthful in all business dealings and communications. Do not engage in deceptive practices or misrepresent facts.
-*   **Collaboration and Teamwork:** Foster a collaborative environment, offer assistance to colleagues, and contribute positively to team goals.
-*   **Punctuality and Attendance:** Adhere to agreed-upon work schedules, be punctual for meetings, and provide timely notification for any absences or delays.
-*   **Productivity and Efficiency:** Focus on work-related tasks during working hours. Minimize personal distractions.
-*   **Personal Hygiene:** Maintain good personal hygiene and cleanliness.
-*   **Substance Abuse:** The use, possession, distribution, or sale of illegal drugs or the abuse of legal drugs or alcohol on company premises or during work-related activities is strictly prohibited. Employees must not report to work under the influence of alcohol or drugs that impair their ability to perform their duties safely and effectively.
+### 2.4. Responsible Use of Company Resources
+*   Company assets, including equipment, software, networks, and confidential information, must be used responsibly and solely for legitimate company business.
+*   Avoid unauthorized use, theft, damage, or misuse of company property.
 
-## 5. Anti-Harassment & Discrimination Policy
+### 2.5. Health and Safety
+*   Prioritize personal safety and the safety of others.
+*   Adhere to all health and safety guidelines and procedures established by the company.
+*   Report any unsafe conditions or incidents promptly.
+*   No employee shall be under the influence of illegal drugs or alcohol while at work or conducting company business.
 
-TechCorp India is committed to providing a workplace free from harassment and discrimination. We have a zero-tolerance policy for any form of harassment or discrimination based on protected characteristics.
+### 2.6. Timeliness and Attendance
+*   Maintain reliable attendance and punctuality.
+*   Inform your manager promptly of any anticipated delays or absences.
+*   Manage your time effectively to meet deadlines and fulfill responsibilities.
 
-*   **Prohibited Grounds:** Discrimination or harassment based on race, color, religion, caste, national origin, age, gender, sexual orientation, gender identity or expression, marital status, pregnancy, disability, veteran status, or any other characteristic protected by law is strictly prohibited.
-*   **Definition of Harassment:** Harassment includes any unwelcome conduct that creates an intimidating, hostile, or offensive work environment. This can be verbal (e.g., slurs, derogatory comments, offensive jokes), visual (e.g., offensive images, gestures), physical (e.g., unwanted touching, assault), or psychological (e.g., intimidation, bullying).
-*   **Sexual Harassment:** Sexual harassment is specifically prohibited and will be dealt with in accordance with **The Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013** and the **Vishakha Guidelines** issued by the Supreme Court of India. This includes:
-    *   **Quid Pro Quo:** Unwelcome sexual advances, requests for sexual favors, or other verbal or physical conduct of a sexual nature where submission to or rejection of such conduct explicitly or implicitly affects an individual's employment, work performance, or opportunities.
-    *   **Hostile Work Environment:** Any unwelcome conduct of a sexual nature that unreasonably interferes with an individual's work performance or creates an intimidating, hostile, or offensive working environment.
-*   **Reporting Harassment/Discrimination:**
-    *   Any employee who experiences or witnesses harassment or discrimination must report it immediately to their manager, HR department, or a member of the Internal Complaints Committee (ICC) established as per Indian law.
-    *   All reports will be treated with seriousness and confidentiality to the extent possible, without impeding a thorough investigation.
-*   **Investigation:** TechCorp India will conduct a prompt, fair, and impartial investigation into all reported incidents.
-*   **Non-Retaliation:** Retaliation against any employee who reports harassment or discrimination in good faith, or participates in an investigation, is strictly prohibited and will result in disciplinary action.
+## 3. Anti-Harassment and Discrimination Policy
 
-## 6. Conflict of Interest
+ChandraAILabs is committed to providing a workplace free from harassment and discrimination. We have a zero-tolerance policy for any form of harassment or discrimination based on race, color, religion, sex, sexual orientation, gender identity or expression, national origin, age, disability, marital status, veteran status, or any other legally protected characteristic.
 
-A conflict of interest arises when an employee's personal interests (or those of their family members) could potentially influence, or appear to influence, their judgment or actions in performing their duties for TechCorp India.
+### 3.1. Definition of Harassment
+Harassment includes, but is not limited to, any unwelcome verbal, physical, visual, or psychological conduct that creates an intimidating, hostile, or offensive work environment. Examples include:
+*   **Verbal:** Slurs, jokes, derogatory comments, threats, spreading rumors.
+*   **Physical:** Assault, unwanted touching, impeding movement, offensive gestures.
+*   **Visual:** Displaying offensive images, posters, cartoons, or objects.
+*   **Sexual:** Unwanted sexual advances, requests for sexual favors, inappropriate comments about a person's body or appearance, stalking.
 
-*   **Avoidance:** Employees must avoid situations where their personal interests conflict with the company's interests.
-*   **Examples of Conflicts:**
-    *   Having a financial interest in a competitor, supplier, or client of TechCorp India.
-    *   Accepting inappropriate gifts, favors, or entertainment from external parties that could influence business decisions.
-    *   Using TechCorp India's property, information, or position for personal gain.
-    *   Engaging in outside employment or business activities that compete with TechCorp India or interfere with your responsibilities.
-    *   Hiring or supervising a family member without proper disclosure and approval.
-*   **Disclosure:** Any potential or actual conflict of interest must be immediately disclosed to your manager and HR department for review and appropriate action. Transparency is key.
+### 3.2. Scope
+This policy applies to all individuals in the workplace and extends to company-sponsored events, business trips, and online interactions related to ChandraAILabs.
 
-## 7. Confidentiality & Data Protection
+### 3.3. Reporting Harassment or Discrimination
+*   Any employee who experiences or witnesses harassment or discrimination must report it immediately to their Manager, Human Resources, or any member of senior leadership.
+*   All reports will be taken seriously, investigated promptly, and handled with confidentiality to the extent possible.
+*   ChandraAILabs strictly prohibits retaliation against anyone who reports harassment or discrimination in good faith or participates in an investigation.
 
-TechCorp India values its proprietary information, trade secrets, and the privacy of its employees and clients. All employees have a responsibility to protect confidential information.
+## 4. Confidentiality of AI Models, Data, and Proprietary Information
 
-*   **Confidential Information:** This includes, but is not limited to, client data, intellectual property, project details, business strategies, financial information, unreleased product designs, employee personal data, marketing plans, and internal communications.
-*   **Obligation:** Employees must not disclose, share, or use confidential information for any purpose other than authorized TechCorp India business, both during and after their employment.
-*   **Data Security:** Adhere to all TechCorp India's IT security policies and procedures, including password protection, secure handling of devices, and proper data storage.
-*   **Privacy:** Respect the privacy of colleagues and clients. Do not access or share personal information without proper authorization.
-*   **Company Property:** All data, documents, and materials created or received in the course of employment remain the property of TechCorp India.
+Given our focus on AI/ML, protecting our intellectual property, data, and models is paramount.
 
-## 8. Social Media & Public Communications
+### 4.1. Definition of Confidential Information
+Confidential Information includes, but is not limited to:
+*   **AI Models & Algorithms:** Source code, architecture, training methodologies, weights, hyperparameters, model performance metrics.
+*   **Data:** Training data, testing data, customer data, proprietary datasets, data collection methods, data preprocessing techniques.
+*   **Product Information:** Product designs, features, roadmaps, technical specifications, competitive analyses.
+*   **Business Information:** Financial data, marketing strategies, sales data, employee records, internal communications, trade secrets.
+*   **Client Information:** Any data, models, or information shared by clients under NDA or similar agreements.
 
-Social media and public communication platforms (e.g., LinkedIn, Facebook, Instagram, Twitter, blogs, forums, media interviews) can impact TechCorp India's reputation.
+### 4.2. Obligation to Protect
+*   All employees and associated parties are obligated to maintain the strictest confidentiality of all ChandraAILabs' proprietary and confidential information, including that of our clients.
+*   Confidential information must not be disclosed to unauthorized individuals, either internally or externally, nor used for personal gain or any purpose outside of legitimate company business.
+*   Access to confidential information should be on a "need-to-know" basis only.
 
-*   **Personal vs. Professional:** When posting on personal social media, remember that your online presence can reflect on TechCorp India.
-*   **Confidentiality:** Never disclose TechCorp India's confidential, proprietary, or sensitive information.
-*   **Respectful Conduct:** Do not post derogatory, discriminatory, harassing, or offensive comments about TechCorp India, its employees, clients, partners, or competitors.
-*   **Accuracy:** Ensure any information you share about TechCorp India is accurate and truthful. Avoid spreading misinformation.
-*   **Identifying Yourself:** If you identify yourself as a TechCorp India employee online, state that your views are your own and do not represent the company, unless you are specifically authorized to speak on behalf of the company.
-*   **Time Usage:** While limited personal use of social media during breaks is generally acceptable, it should not interfere with your work responsibilities or productivity.
+### 4.3. Data Handling and Security
+*   Adhere to all company data security policies, including password management, access controls, secure coding practices, and secure data storage/transfer protocols.
+*   Report any suspected data breaches, unauthorized access, or loss of confidential information immediately.
+*   Comply with relevant data privacy regulations (e.g., GDPR, India's DPDP Bill if applicable, or client-specific regulations).
 
-## 9. Dress Code
+### 4.4. Intellectual Property (IP) Ownership
+*   All intellectual property (including AI models, software, algorithms, data, and inventions) developed or conceived by employees during their employment with ChandraAILabs, or using company resources, belongs exclusively to ChandraAILabs.
 
-TechCorp India promotes a professional yet comfortable work environment. Your attire should be neat, clean, and appropriate for a corporate setting and interaction with clients.
+### 4.5. Post-Employment Obligations
+*   The obligation to protect ChandraAILabs' confidential information continues even after employment or engagement with the company terminates.
 
-*   **General Guideline:** Business casual is the preferred dress code for most days.
-*   **Acceptable Attire:**
-    *   **Men:** Collared shirts (polo or button-down), trousers (formal pants, chinos), neat denim (no rips or excessive fading). Traditional Indian attire like kurtas are welcome.
-    *   **Women:** Blouses, shirts, kurtis, sarees, salwaar kameez, skirts, trousers, dresses. Neat denim (no rips or excessive fading).
-*   **Unacceptable Attire:** Excessively casual wear such as shorts, flip-flops, athletic wear (unless for designated fitness activities), overly revealing clothing, t-shirts with offensive slogans or graphics.
-*   **Client Meetings/Events:** For external client meetings, presentations, or formal company events, a more formal business attire may be required, as communicated by your manager.
-*   **Hygiene:** Maintain good personal hygiene and neat grooming.
+## 5. Conflict of Interest
 
-## 10. Health, Safety & Environment
+A conflict of interest arises when an individual's personal interests or relationships interfere, or appear to interfere, with the best interests of ChandraAILabs.
 
-TechCorp India is committed to providing a safe, healthy, and environmentally responsible workplace.
+### 5.1. Examples of Conflicts
+*   **Outside Employment:** Working for or providing services to a competitor, client, or vendor of ChandraAILabs.
+*   **Financial Interests:** Holding a significant financial interest (e.g., stock ownership, partnership) in a competitor, client, or vendor.
+*   **Gifts and Entertainment:** Accepting gifts, favors, or entertainment of significant value from clients, vendors, or competitors that could influence business decisions. Modest gifts (nominal value, e.g., below INR 2,000) for courtesies or promotional purposes are generally acceptable. Anything exceeding this must be reported to your manager.
+*   **Personal Relationships:** Engaging in personal relationships that influence or could be perceived to influence professional judgment (e.g., supervising a family member or close friend).
+*   **Using Company Resources for Personal Gain:** Utilizing company time, assets, or confidential information for personal business or benefit.
 
-*   **Safety First:** Adhere to all company safety procedures and guidelines. Report any hazardous conditions, accidents, or injuries immediately.
-*   **Cleanliness:** Maintain a clean and organized workspace.
-*   **Environmental Responsibility:** Contribute to our sustainability efforts by conserving energy, reducing waste, and recycling wherever possible.
+### 5.2. Disclosure and Management
+*   Employees must disclose any potential or actual conflict of interest to their Manager and/or HR immediately.
+*   ChandraAILabs will review the disclosed conflict and determine appropriate actions, which may include divestment, recusal from decisions, or other remedial measures.
 
-## 11. Use of Company Resources
+## 6. Social Media Policy
 
-Company resources, including equipment, software, networks, internet access, email, and communication systems, are provided for business purposes.
+ChandraAILabs acknowledges the role of social media in modern communication but expects employees to use it responsibly and professionally.
 
-*   **Authorized Use:** Use company resources primarily for work-related activities. Limited and reasonable personal use is permitted, provided it does not interfere with work responsibilities, violate this Code, or incur significant costs to the company.
-*   **No Expectation of Privacy:** Employees should have no expectation of privacy when using company resources. TechCorp India reserves the right to monitor and access all data and communications on its systems, in accordance with applicable laws.
-*   **Prohibited Activities:** Do not use company resources for illegal activities, transmitting offensive/harassing content, or engaging in unauthorized software downloads.
+### 6.1. Professional Conduct
+*   Maintain a professional and respectful demeanor on social media, even when using personal accounts.
+*   Do not post anything that is defamatory, harassing, discriminatory, obscene, or threatening.
 
-## 12. Reporting Violations & Non-Retaliation
+### 6.2. Confidentiality
+*   Never disclose ChandraAILabs' confidential, proprietary, or client information on social media.
+*   Do not post about unreleased products, internal strategies, or any sensitive company data.
 
-*   **Duty to Report:** Every employee has a responsibility to report any actual or suspected violations of this Code, company policies, or applicable laws.
-*   **Reporting Channels:**
-    *   Your immediate manager or supervisor.
-    *   The Human Resources Department.
-    *   The Ethics Committee or designated Ethics Officer (if applicable).
-    *   A designated anonymous reporting hotline (if available).
-*   **Good Faith Reporting:** Reports should be made in good faith. False accusations made maliciously will be subject to disciplinary action.
-*   **Non-Retaliation:** TechCorp India strictly prohibits and will not tolerate any form of retaliation against an employee who reports a concern in good faith or cooperates with an investigation. Employees who engage in retaliation will face disciplinary action, up to and including termination.
+### 6.3. Representing ChandraAILabs
+*   When posting content related to ChandraAILabs, be accurate, respectful, and transparent.
+*   If expressing personal opinions on industry-related topics, make it clear that you are speaking for yourself and not on behalf of ChandraAILabs (e.g., "My views are my own and do not necessarily reflect those of ChandraAILabs.").
+*   Do not use ChandraAILabs' logos, trademarks, or copyrighted material on personal social media accounts without explicit written permission.
 
-## 13. Disciplinary Process
+### 6.4. Personal Use
+*   Personal social media use during working hours should be minimal and not interfere with work responsibilities or productivity.
 
-Violations of this Code will be taken seriously and may result in disciplinary action, up to and including termination of employment, and potential legal action.
+## 7. Dress Code
 
-*   **Investigation:** Upon receiving a report of a violation, TechCorp India will conduct a thorough, impartial, and confidential investigation. Employees are expected to cooperate fully with any internal investigations.
-*   **Fair Process:** Employees accused of a violation will be given an opportunity to present their side of the story.
-*   **Disciplinary Actions:** The nature and severity of disciplinary action will depend on various factors, including the seriousness of the violation, its impact, the employee's past record, and whether it was an isolated incident or part of a pattern. Possible actions include:
-    *   Verbal warning.
-    *   Written warning.
-    *   Performance Improvement Plan (PIP).
-    *   Suspension (with or without pay).
-    *   Demotion.
-    *   Termination of employment.
-    *   Referral to law enforcement authorities (if applicable).
-*   **Right to Appeal:** Employees may have the right to appeal disciplinary decisions through established company grievance procedures.
+ChandraAILabs maintains a professional yet comfortable work environment.
 
-## 14. Conclusion & Acknowledgement
+### 7.1. General Guidelines
+*   **Professional Appearance:** Dress in a manner that is neat, clean, and appropriate for a professional business setting.
+*   **Client Meetings/External Events:** When meeting clients, attending external conferences, or representing the company in formal settings, business formal or business casual attire is expected (e.g., collared shirts, blouses, trousers, skirts, blazers).
+*   **Office Attire:** For day-to-day office work, smart casual attire is generally acceptable (e.g., clean jeans, casual shirts, t-shirts without offensive graphics, traditional Indian wear like kurtas).
+*   **Footwear:** Footwear should be clean, comfortable, and professional. Avoid flip-flops or overly casual sandals.
 
-This Code of Conduct is a cornerstone of our culture at TechCorp India. Adhering to these principles ensures a positive, productive, and ethical environment for everyone.
+### 7.2. Unacceptable Attire
+*   Clothing that is overly revealing, dirty, torn, or contains offensive messages/graphics.
+*   Excessively casual clothing (e.g., beachwear, sleepwear).
+*   Any attire that could pose a safety hazard in the workplace.
 
-By joining TechCorp India, you agree to understand and abide by this Code of Conduct. If you have any questions or require clarification on any aspect of this Code, please do not hesitate to reach out to your manager or the HR department.
+### 7.3. Hygiene
+*   All employees are expected to maintain good personal hygiene.
+
+## 8. Disciplinary Process
+
+Violations of this Code of Conduct will be taken seriously and may result in disciplinary action, up to and including termination of employment or engagement.
+
+### 8.1. Reporting Violations
+*   Employees are encouraged to report any suspected violations of this Code to their Manager, Human Resources, or any member of senior leadership.
+*   Reports can be made anonymously if preferred, though providing contact information may assist in a more thorough investigation.
+
+### 8.2. Investigation
+*   All reported violations will be investigated promptly, thoroughly, and impartially.
+*   Confidentiality will be maintained to the extent possible, consistent with a fair and effective investigation.
+*   Employees are expected to cooperate fully with any internal investigations.
+
+### 8.3. Disciplinary Actions
+*   Disciplinary actions will be determined based on the severity of the violation, its impact, and prior disciplinary history. Actions may include:
+    *   Verbal warning
+    *   Written warning
+    *   Performance improvement plan
+    *   Suspension without pay
+    *   Demotion
+    *   Termination of employment or contract
+    *   Legal action, where appropriate
+
+### 8.4. Non-Retaliation
+*   ChandraAILabs strictly prohibits retaliation against anyone who reports a violation in good faith or participates in an investigation. Any act of retaliation will itself be considered a serious violation of this Code.
+
+## 9. Policy Review and Updates
+
+This Code of Conduct will be reviewed periodically and may be updated by ChandraAILabs management to reflect changes in laws, regulations, or company policies. All employees will be notified of significant changes. It is the responsibility of each employee to familiarize themselves with the most current version of this Code.
+
+## 10. Acknowledgment
+
+I acknowledge that I have read, understood, and agree to abide by the ChandraAILabs Code of Conduct. I understand that failure to comply with this Code may result in disciplinary action, up to and including termination of employment.
 
 ---
 
-**Employee Acknowledgement:**
+**Employee Name:** ______________________________
 
-I, [Employee Name], acknowledge that I have received, read, and understood the TechCorp India Code of Conduct. I agree to abide by the principles and policies outlined within this document and understand that violations may result in disciplinary action, up to and including termination of employment. I also understand that this Code may be updated periodically, and I am responsible for familiarizing myself with any revisions.
+**Employee Signature:** ______________________________
 
-**Employee Signature:** ____________________________
-
-**Employee Name:** ____________________________
-
-**Employee ID:** ____________________________
-
-**Date:** ____________________________
+**Date:** ______________________________

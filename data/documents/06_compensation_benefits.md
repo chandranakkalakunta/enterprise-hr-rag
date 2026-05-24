@@ -1,128 +1,133 @@
-# TechCorp India - Compensation Policy
+# ChandraAILabs Compensation Policy
 
 ---
 
-## 1. Policy Statement
+**Policy Number:** CL/HR/COMP/001
+**Version:** 1.0
+**Effective Date:** October 26, 2023
+**Review Date:** October 26, 2024
+**Approved By:** CEO & Head of HR
 
-TechCorp India is committed to providing a fair, competitive, and performance-driven compensation structure that attracts, motivates, and retains high-calibre talent. This policy outlines the principles and components of our compensation philosophy, ensuring transparency, equity, and compliance with all applicable Indian labour laws and regulations.
+---
 
-## 2. Purpose
+## 1. Policy Statement & Purpose
+
+ChandraAILabs is committed to attracting, retaining, and motivating high-performing talent critical to our success as a leading AI/ML product company. This Compensation Policy outlines a fair, competitive, transparent, and legally compliant framework for employee compensation and benefits.
 
 The purpose of this policy is to:
-*   Define a clear and consistent framework for employee compensation.
-*   Ensure that compensation practices are aligned with TechCorp India's business objectives and values.
-*   Promote internal equity and external competitiveness in the market.
-*   Recognize and reward employee contributions and performance.
-*   Ensure compliance with all statutory requirements related to compensation.
+*   Ensure internal equity and external competitiveness in the market, particularly within the AI/ML and tech sectors in Hyderabad.
+*   Reward employees for their contributions, performance, and commitment to ChandraAILabs' vision and goals.
+*   Provide a robust benefits package that supports employee well-being and long-term financial security.
+*   Comply with all relevant labor laws and regulations in India.
+*   Foster a culture of ownership and shared success, especially among early employees.
 
-## 3. Scope
+## 2. Scope
 
-This policy applies to all full-time regular employees of TechCorp India, unless specifically stated otherwise in individual employment contracts or separate agreements (e.g., for interns, consultants, or temporary staff).
+This policy applies to all full-time regular employees of ChandraAILabs. It does not apply to contractors, interns, or temporary staff unless explicitly stated otherwise in their engagement terms.
 
-## 4. General Principles
+## 3. Key Principles of Compensation
 
-*   **Market Competitiveness:** Compensation packages will be periodically benchmarked against relevant industry standards and market data to ensure TechCorp India remains competitive in attracting and retaining talent.
-*   **Performance-Driven:** A significant portion of compensation will be linked to individual, team, and company performance, encouraging a culture of high achievement.
-*   **Internal Equity:** Compensation will be managed to ensure fair pay for similar roles, responsibilities, skills, and experience levels within the organization.
-*   **Transparency (within limits):** While individual compensation details are confidential, the policy structure and components will be communicated clearly to employees.
-*   **Compliance:** All compensation practices will strictly adhere to Indian labour laws, tax regulations, and statutory requirements (e.g., PF, Gratuity).
-*   **Sustainability:** Compensation decisions will consider the long-term financial health and sustainability of TechCorp India.
+*   **Competitiveness:** Regularly benchmark compensation against industry standards and market rates for similar roles in Hyderabad and the broader tech landscape.
+*   **Performance-Driven:** Reward individual and company performance through variable pay components and annual increments.
+*   **Fairness & Equity:** Ensure internal equity by maintaining a consistent pay structure based on job roles, responsibilities, skills, experience, and performance, free from bias.
+*   **Transparency:** Communicate compensation philosophy and components clearly to employees, where appropriate.
+*   **Compliance:** Adhere strictly to all applicable labor laws, tax regulations, and statutory requirements in India.
+*   **Sustainability:** Ensure that compensation practices are financially sustainable for the company's long-term growth.
 
-## 5. Compensation Structure
+## 4. Components of Compensation
 
-TechCorp India operates on a Total Cost to Company (CTC) model. The CTC comprises various components, including fixed pay, variable pay, and statutory benefits.
+ChandraAILabs' compensation package comprises fixed pay, variable pay, statutory benefits, and additional employee benefits.
 
-### 5.1 Fixed Pay Components
+### 4.1. Fixed Compensation (Cost to Company - CTC)
 
-The fixed pay typically includes the following:
+The fixed compensation component forms the core of an employee's salary and is paid monthly. It typically includes:
 
-*   **a. Basic Salary:**
-    *   This forms the fundamental part of the salary structure, typically ranging between **40% to 50% of the gross monthly salary** (before PF/Gratuity deductions).
-    *   It is the base for calculating other allowances, Provident Fund (PF), and Gratuity.
+*   **Basic Salary:** This forms the foundation of the salary structure, typically ranging from **40% to 50% of the Gross Salary**. It is the base for calculating other allowances and statutory contributions like Provident Fund (PF) and Gratuity.
+*   **House Rent Allowance (HRA):** Provided to employees for their accommodation expenses. HRA is generally **40% to 50% of the Basic Salary** (e.g., 50% for employees in designated metro cities like Hyderabad, though legally Hyderabad falls under the 40% non-metro category, many companies offer 50% for competitiveness). It is subject to tax exemptions under Section 10(13A) of the Income Tax Act, 1961, based on rent paid.
+*   **Travel Allowance (TA) / Conveyance Allowance:** A fixed monthly allowance to cover daily commute expenses. This is typically a fixed amount (e.g., ₹1,600 per month) and is exempt from income tax up to ₹1,600 per month.
+*   **Special Allowance / Other Allowances:** This is a flexible component designed to balance the overall CTC, provide additional financial support, and optimize tax implications where legally permissible. This may include:
+    *   **Medical Allowance:** A fixed monthly amount (e.g., ₹1,250 per month). While not tax-exempt, it provides a regular financial support.
+    *   **Internet/Telephone Reimbursement:** For roles requiring significant use of personal internet or telephone for official purposes, a fixed monthly reimbursement may be provided, subject to policy.
+    *   **Children Education Allowance (CEA):** A small fixed allowance, exempt from tax up to ₹100 per child per month for a maximum of two children.
+*   **Statutory Contributions (Employer's Share):**
+    *   **Employee Provident Fund (EPF):** ChandraAILabs contributes **12% of the employee's Basic Salary (plus Dearness Allowance, if applicable)** to the employee's Provident Fund account, in addition to the employee's 12% contribution.
+    *   **Employee State Insurance (ESI):** For employees earning gross wages up to ₹21,000 per month, ChandraAILabs contributes **3.25% of the gross wages**. Employees contribute 0.75%.
+    *   **Gratuity (Provisioning):** As per the Payment of Gratuity Act, 1972, the company provisions for gratuity liability annually. Actual payment is made to eligible employees upon cessation of employment after completing 5 continuous years of service (refer to Section 4.5.3).
 
-*   **b. House Rent Allowance (HRA):**
-    *   Provided to employees to meet their house rent expenses.
-    *   Typically calculated as **40% of Basic Salary for non-metro cities and 50% of Basic Salary for metro cities**.
-    *   HRA is partially or fully exempt from income tax, subject to actual rent paid and other conditions as per Indian Income Tax Act.
+### 4.2. Annual Increment & Performance Review
 
-*   **c. Transport/Conveyance Allowance (TA):**
-    *   A fixed monthly allowance provided to cover commuting expenses.
-    *   The amount is specified in the employee's offer letter and is typically a fixed sum.
+*   **Annual Increment:** Salaries are reviewed annually based on individual performance, market adjustments, internal equity, and the company's financial health.
+*   **Performance Review Cycle:** The annual performance appraisal cycle typically runs from April 1st to March 31st. Increments are usually effective from April 1st of each year.
+*   **Criteria:** Increments are determined by a combination of factors including:
+    *   Individual performance against Key Result Areas (KRAs) and Key Performance Indicators (KPIs).
+    *   Demonstrated skills, competencies, and growth.
+    *   Contribution to team and company objectives.
+    *   Market salary benchmarks for the role.
+    *   Internal pay parity.
 
-*   **d. Special Allowance/Other Allowances:**
-    *   This component provides flexibility to structure the CTC to meet the target compensation and specific company objectives.
-    *   It is taxable as per income tax regulations.
-    *   May include components like education allowance, internet allowance, etc., depending on the role and organizational policy.
+### 4.3. Performance Bonus (Variable Pay)
 
-*   **e. Fixed Reimbursements (If applicable):**
-    *   Some roles may have specific reimbursements for mobile, internet, or professional development, which are part of the CTC but are paid against actual bills/receipts.
+*   **Purpose:** To reward employees for their contribution to company success and achieving individual/team goals.
+*   **Eligibility:** All regular employees are eligible for the performance bonus.
+*   **Structure:** The target performance bonus is typically expressed as a **percentage of the annual Basic Salary or Gross Salary**, ranging from **10% to 25%**, depending on the role and level.
+*   **Payout:** The performance bonus is typically paid out annually, after the completion of the financial year and performance appraisal cycle (e.g., in Q1 of the next financial year).
+*   **Criteria:** Payouts are linked to:
+    *   **Company Performance:** Achievement of overall company revenue, profitability, and strategic goals.
+    *   **Team Performance:** Achievement of departmental or team-specific objectives.
+    *   **Individual Performance:** Achievement of individual KRAs/KPIs as assessed during the annual performance review.
+*   **Discretion:** The final bonus payout is subject to the discretion of the management, based on a holistic review of all performance parameters and the company's financial results.
 
-### 5.2 Statutory Components (Employer Contribution)
+### 4.4. Employee Stock Ownership Plan (ESOP) for Early Employees
 
-These components are mandated by law and are part of the employee's CTC.
+*   **Purpose:** To foster a strong sense of ownership, align long-term interests, and reward early employees for their pivotal role in building ChandraAILabs. This benefit is a key retention tool for critical talent.
+*   **Eligibility:** ESOPs are offered to select early employees, key management personnel, and critical hires as determined by the Board of Directors, based on their strategic importance and contribution to the company's founding and growth phases.
+*   **Granting:** ESOP grants will be made as per the **ChandraAILabs ESOP Scheme**, which will detail the number of options, exercise price, and other terms.
+*   **Vesting Schedule:** ESOPs will typically follow a time-based vesting schedule (e.g., 4-year vesting with a 1-year cliff, meaning 25% vests after the first year, and the remaining 75% vests quarterly over the next three years).
+*   **Exercise:** Vested options can be exercised by the employee as per the ESOP scheme's terms and conditions.
+*   **Dilution:** The ESOP pool is managed to ensure reasonable dilution while maximizing employee motivation.
 
-*   **a. Provident Fund (PF - Employer Contribution):**
-    *   TechCorp India contributes **12% of the employee's Basic Salary** (or the statutory wage ceiling if applicable, currently INR 15,000 per month for PF contribution calculations, unless agreed to contribute on full basic).
-    *   This contribution is made to the Employee Provident Fund Organisation (EPFO) as per the Employees' Provident Funds and Miscellaneous Provisions Act, 1952.
-    *   An equivalent **12% of Basic Salary** (or statutory wage ceiling) is deducted from the employee's salary as their contribution.
+### 4.5. Employee Benefits
 
-*   **b. Gratuity (Employer Contribution):**
-    *   TechCorp India contributes towards Gratuity as per the Payment of Gratuity Act, 1972.
-    *   The contribution is generally calculated at **4.81% of the Basic Salary** on a monthly basis.
-    *   Gratuity is payable to an employee who has completed **five or more years of continuous service** with the company, upon termination, resignation, superannuation, death, or disablement. The calculation is 15 days of last drawn salary for every completed year of service.
+ChandraAILabs provides a range of benefits designed to support the health, well-being, and financial security of its employees and their families.
 
-## 6. Annual Increment
+#### 4.5.1. Health Insurance
 
-*   **Frequency:** Annual salary increments are typically reviewed and implemented once a year, usually effective from **April 1st** (start of the new fiscal year).
-*   **Criteria:** Increments are determined based on a comprehensive evaluation of:
-    *   Individual performance during the preceding performance cycle.
-    *   Market compensation trends for similar roles and industries.
-    *   Company's overall financial performance and budget.
-    *   Internal equity and role criticality.
-    *   Skill sets and contribution to strategic initiatives.
-*   **Process:** Increments are typically proposed by managers, reviewed by department heads, and approved by HR and senior management, following the annual performance appraisal cycle.
+*   **Coverage:** Comprehensive medical insurance coverage is provided for the **employee, spouse, and up to two dependent children**.
+    *   *Optional:* Employees may have the option to include their dependent parents by paying an additional premium (partially subsidized by the company or fully borne by the employee, depending on the scheme).
+*   **Sum Insured:** A standard sum insured of **₹3,00,000 to ₹5,00,000 (Three to Five Lakhs INR)** per family (floater basis) is provided, covering hospitalization expenses, pre and post-hospitalization costs, and other specified medical treatments.
+*   **Premium:** The premium for employee, spouse, and children is **fully paid by ChandraAILabs**.
+*   **Wellness Programs:** The company may periodically introduce wellness initiatives, health check-up camps, and tie-ups with health and fitness providers.
 
-## 7. Performance Bonus
+#### 4.5.2. Provident Fund (PF)
 
-*   **Eligibility:** All regular employees are eligible for a performance bonus, subject to their role and performance.
-*   **Structure:** The performance bonus is a variable pay component designed to reward employees for achieving individual and company objectives.
-    *   **Target Bonus:** Each eligible role will have a target bonus percentage (e.g., X% of annual Basic Salary or CTC) communicated at the beginning of the performance cycle.
-    *   **Evaluation:** The actual bonus payout will depend on:
-        *   Individual performance rating against Key Result Areas (KRAs) or Objectives and Key Results (OKRs).
-        *   Team/Departmental performance.
-        *   Overall company performance against pre-defined financial and strategic targets.
-*   **Payout:** Performance bonuses are typically paid out annually, after the completion of the performance appraisal cycle and financial year-end closing.
-*   **Discretion:** TechCorp India reserves the right to modify, suspend, or discontinue the performance bonus plan at its sole discretion, based on business conditions.
+*   **Mandatory Contribution:** As per the Employees' Provident Funds and Miscellaneous Provisions Act, 1952.
+*   **Employee Contribution:** **12% of Basic Salary (plus Dearness Allowance, if applicable)** is deducted from the employee's salary.
+*   **Employer Contribution:** ChandraAILabs contributes an equivalent **12% of Basic Salary (plus Dearness Allowance, if applicable)** to the employee's PF account.
+*   **Withdrawal:** Funds can be withdrawn as per EPFO rules (e.g., retirement, specific medical emergencies, house purchase, or on resignation after a waiting period).
 
-## 8. Health Insurance (Group Medical Policy)
+#### 4.5.3. Gratuity
 
-*   **Coverage:** TechCorp India provides a comprehensive Group Medical Policy (GMP) to all eligible employees.
-    *   **Employee + Family:** The policy typically covers the employee, their spouse, and up to two dependent children.
-    *   **Optional Parents Coverage:** Employees may have the option to include their dependent parents/parents-in-law under the same policy, with the premium for parents being borne by the employee (through payroll deduction) or at a subsidized rate.
-*   **Sum Insured:** The standard sum insured for employee and family will be communicated annually (e.g., INR 3 Lakhs to 5 Lakhs, subject to policy terms).
-*   **Premium:** The premium for the employee, spouse, and dependent children (up to two) is fully borne by TechCorp India.
-*   **Benefits:** Coverage generally includes hospitalization, pre- and post-hospitalization expenses, day-care procedures, and other benefits as per the policy terms and conditions.
+*   **Eligibility:** As per the Payment of Gratuity Act, 1972, employees are eligible for gratuity upon cessation of employment (resignation, retirement, death, disablement) after completing **5 continuous years of service** with ChandraAILabs.
+*   **Calculation:** Gratuity is calculated at **15 days of last drawn Basic Salary** for every completed year of service (or part thereof exceeding six months).
+    *   *Formula:* (Last Drawn Basic Salary / 26) * 15 * Number of Completed Years of Service.
 
-## 9. Employee Stock Option Plan (ESOP)
+#### 4.5.4. Other Benefits
 
-*   **Purpose:** The ESOP scheme is designed to align employee interests with the long-term growth and success of TechCorp India, fostering a sense of ownership and promoting long-term retention.
-*   **Eligibility:** ESOPs are granted to key employees and high performers, as determined by the Management and/or the Board of Directors, based on role criticality, performance, and strategic contribution.
-*   **Granting:** ESOP grants are made periodically, subject to approval by the Board of Directors and in accordance with the specific ESOP Scheme Document.
-*   **Vesting:** Options typically vest over a period of 3-5 years, often in a staggered manner (e.g., 25% each year or other specified schedules), contingent on continuous employment.
-*   **Exercise:** Once vested, employees can exercise their options to convert them into shares of TechCorp India, as per the terms and conditions outlined in the detailed ESOP Scheme Document.
-*   **Separate Scheme Document:** The detailed terms and conditions, including eligibility, vesting schedule, exercise period, exercise price, and tax implications, are governed by a separate, comprehensive TechCorp India ESOP Scheme Document, which employees will receive upon grant.
+*   **Leave Policy:** Comprehensive leave policy covering Earned Leave, Sick Leave, Casual Leave, Maternity Leave, Paternity Leave, and Bereavement Leave as per company policy and statutory norms.
+*   **Learning & Development:** Support for professional development through training programs, certifications, and workshops relevant to their role and company growth.
+*   **Employee Assistance Program (EAP):** Confidential counseling services for employees and their families to address personal and work-related issues (e.g., stress, mental health, financial advice).
+*   **Festival Gifts/Bonuses:** Discretionary gifts or bonuses may be provided during major festivals, based on company performance.
 
-## 10. Review and Amendments
+## 5. Administration and Review
 
-This policy will be reviewed periodically (typically annually) by the Human Resources department in consultation with senior management to ensure its continued relevance, effectiveness, and compliance with prevailing laws and market practices. Any amendments or updates to this policy will be communicated to all employees.
+*   **Confidentiality:** All compensation data and individual salary information are strictly confidential.
+*   **Compliance:** ChandraAILabs will ensure compliance with all Indian labor laws, minimum wage regulations, and tax requirements.
+*   **Policy Review:** This policy will be reviewed annually or as needed to ensure its continued effectiveness, competitiveness, and compliance with legal and market changes. Any amendments will be communicated to employees.
+*   **Dispute Resolution:** Any disputes or queries regarding compensation will be addressed by the Human Resources Department in consultation with the employee's manager and senior management.
 
-## 11. Confidentiality
+## 6. Disclaimer
 
-All compensation-related information is considered confidential. Employees are expected to maintain the confidentiality of their own compensation details and not to discuss them with other employees, except with authorized HR personnel or their direct manager.
-
-## 12. Contact
-
-For any questions or clarifications regarding this Compensation Policy, employees should contact the Human Resources Department.
+This policy provides a general framework. ChandraAILabs reserves the right to amend, modify, or revoke this policy, in whole or in part, at its sole discretion, with appropriate notice to employees. This policy does not constitute an employment contract.
 
 ---
-**Disclaimer:** This policy is a general guideline and may be subject to changes. In case of any conflict or discrepancy, TechCorp India's official records, employment contracts, and statutory provisions shall prevail. This document does not constitute a legal contract. It is advisable for TechCorp India to have this policy reviewed by legal counsel specializing in Indian labor law before implementation.
+**END OF POLICY**

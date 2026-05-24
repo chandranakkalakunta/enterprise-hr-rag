@@ -1,29 +1,28 @@
 """
-Streamlit UI — Enterprise HR RAG Platform
-Employee-facing chat interface for HR Q&A
+Streamlit UI - ChandraAILabs HR RAG Platform
+Employee-facing chat with Google OAuth + Personal RAG
 """
 import streamlit as st
 import os
 import sys
 import logging
-from datetime import datetime
 
 # Add paths
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../generation"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../retrieval"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../ingestion"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../database"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../auth"))
 
 logging.basicConfig(level=logging.WARNING)
 
-# ── Page Config ────────────────────────────────────────────
 st.set_page_config(
-    page_title="TechCorp HR Assistant",
+    page_title="ChandraAILabs HR Assistant",
     page_icon="🏢",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# ── Custom CSS ─────────────────────────────────────────────
 st.markdown("""
 <style>
     .main-header {
@@ -44,114 +43,179 @@ st.markdown("""
         margin: 2px;
         display: inline-block;
     }
-    .metric-card {
-        background: #F8F9FA;
+    .personal-badge {
+        background: #E8F8E8;
+        border: 1px solid #1E6B3C;
+        border-radius: 5px;
+        padding: 3px 8px;
+        font-size: 12px;
+        color: #1E6B3C;
+        margin: 2px;
+        display: inline-block;
+    }
+    .user-info {
+        background: #F0F7FF;
         border-radius: 8px;
-        padding: 15px;
-        text-align: center;
+        padding: 10px;
+        margin-bottom: 10px;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Initialize RAG Engine ──────────────────────────────────
-@st.cache_resource(ttl=3600)
-def get_rag_engine():
-    """Initialize RAG engine (cached for performance)."""
-    from rag_engine import RAGEngine
+# ── Initialize Auth ────────────────────────────────────────
+from google_oauth import init_auth, is_authenticated, show_login_page, logout, get_current_user
+init_auth()
 
+# ── Initialize DB ──────────────────────────────────────────
+@st.cache_resource(show_spinner="Connecting to HR Database...")
+def get_db_client():
+    try:
+        from hr_db_client import HRDBClient
+        return HRDBClient(
+            project_id=os.environ.get("PROJECT_ID", "hr-rag-dev"),
+            instance_name=os.environ.get("DB_INSTANCE_NAME", "hr-rag-db"),
+            db_name=os.environ.get("DB_NAME", "hr_db"),
+            db_user=os.environ.get("DB_USER", "hr_admin"),
+            db_password=os.environ.get("DB_PASSWORD", "ChandraAILabs2024!"),
+            region=os.environ.get("REGION", "asia-south1")
+        )
+    except Exception as e:
+        st.warning(f"HR Database not available: {e}")
+        return None
+
+# ── Initialize RAG Engine ──────────────────────────────────
+@st.cache_resource(show_spinner="Initializing HR Assistant...")
+def get_rag_engine():
+    from rag_engine import RAGEngine
     api_key = os.environ.get("GEMINI_API_KEY", "")
     project_id = os.environ.get("PROJECT_ID", "hr-rag-dev")
     environment = os.environ.get("ENVIRONMENT", "dev")
-
     return RAGEngine(
         project_id=project_id,
         gemini_api_key=api_key,
         environment=environment
     )
 
+@st.cache_resource(show_spinner="Initializing Personal Assistant...")
+def get_personal_rag():
+    try:
+        from personal_rag import PersonalRAG
+        api_key = os.environ.get("GEMINI_API_KEY", "")
+        project_id = os.environ.get("PROJECT_ID", "hr-rag-dev")
+        return PersonalRAG(
+            project_id=project_id,
+            gemini_api_key=api_key
+        )
+    except Exception as e:
+        st.warning(f"Personal RAG not available: {e}")
+        return None
+
+# ── Show Login if not authenticated ───────────────────────
+if not is_authenticated():
+    db = get_db_client()
+    show_login_page(db_client=db)
+    st.stop()
+
+# ── Main App (authenticated) ───────────────────────────────
+user = get_current_user()
+employee = user.get("employee", {})
+user_name = user.get("name", "Employee")
+first_name = user_name.split()[0] if user_name else "there"
+
 # ── Header ─────────────────────────────────────────────────
-st.markdown("""
+st.markdown(f"""
 <div class="main-header">
-    <h1>🏢 TechCorp HR Assistant</h1>
-    <p>Ask me anything about HR policies, leave, benefits, and more!</p>
+    <h1>🏢 ChandraAILabs HR Assistant</h1>
+    <p>Welcome back, {first_name}! How can I help you today?</p>
 </div>
 """, unsafe_allow_html=True)
 
 # ── Sidebar ────────────────────────────────────────────────
 with st.sidebar:
+    # User profile
+    st.markdown(f"""
+    <div class="user-info">
+        <b>👤 {user_name}</b><br>
+        <small>{employee.get("designation", "")}</small><br>
+        <small>{employee.get("department", "")} | {employee.get("employee_id", "")}</small>
+    </div>
+    """, unsafe_allow_html=True)
+
+    if st.button("Sign Out", use_container_width=True):
+        logout()
+
+    st.divider()
+
+    st.markdown("### 💬 Try asking:")
+    personal_questions = [
+        "How many leaves do I have?",
+        "What is my performance rating?",
+        "What is my CTC?",
+        "Who is my manager?",
+    ]
+    policy_questions = [
+        "What is the WFH policy?",
+        "How do I apply for leave?",
+        "What is the PIP process?",
+        "What certifications are supported?",
+    ]
+
+    st.markdown("**Personal queries:**")
+    for q in personal_questions:
+        if st.button(q, key=f"p_{q}", use_container_width=True):
+            st.session_state.pending_query = q
+
+    st.markdown("**Policy queries:**")
+    for q in policy_questions:
+        if st.button(q, key=f"pol_{q}", use_container_width=True):
+            st.session_state.pending_query = q
+
+    st.divider()
     st.markdown("### 📚 Available Policies")
     policies = [
         "📅 Leave Policy",
-        "🚀 Onboarding Policy",
+        "🚀 Onboarding",
         "✅ Code of Conduct",
-        "🏠 Remote Work Policy",
-        "⭐ Performance Management",
-        "💰 Compensation & Benefits",
+        "🏠 Remote Work",
+        "⭐ Performance",
+        "💰 Compensation",
         "✈️ Travel & Expense",
-        "📖 Training & Development",
-        "🤝 Grievance Redressal",
-        "🔒 IT Security Policy"
+        "📖 Training",
+        "🤝 Grievance",
+        "🔒 IT Security"
     ]
-    for policy in policies:
-        st.markdown(f"- {policy}")
-
-    st.divider()
-    st.markdown("### 💡 Sample Questions")
-    sample_questions = [
-        "How many leave days do I get?",
-        "What is the WFH policy?",
-        "How do I claim travel expenses?",
-        "What is the PIP process?",
-        "How to report a grievance?"
-    ]
-    for q in sample_questions:
-        if st.button(q, use_container_width=True, key=q):
-            st.session_state.sample_query = q
-
-    st.divider()
-    st.markdown("### ℹ️ About")
-    st.markdown("""
-    Powered by:
-    - 🤖 Gemini 2.5 Flash
-    - 🔍 Hybrid RAG Search
-    - 📊 BM25 + Vector Search
-    - ☁️ Google Cloud Platform
-    """)
+    for p in policies:
+        st.markdown(f"- {p}")
 
 # ── Chat Interface ─────────────────────────────────────────
 if "messages" not in st.session_state:
-    st.session_state.messages = []
-    st.session_state.messages.append({
+    st.session_state.messages = [{
         "role": "assistant",
-        "content": "Hello! I am your HR Policy Assistant. Ask me anything about TechCorp India's HR policies!",
-        "sources": []
-    })
+        "content": f"Hello {first_name}! I am your personal HR assistant. I can answer questions about HR policies AND your personal HR data like leave balance, performance rating, and more!",
+        "sources": [],
+        "intent": "greeting"
+    }]
 
 # Display chat history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
         if message.get("sources"):
-            st.markdown("**Sources:**")
             for source in message["sources"]:
+                badge_class = "personal-badge" if source == "HR Database" else "source-badge"
+                icon = "👤" if source == "HR Database" else "📄"
                 st.markdown(
-                    f'<span class="source-badge">📄 {source}</span>',
+                    f'<span class="{badge_class}">{icon} {source}</span>',
                     unsafe_allow_html=True
                 )
 
-# Handle sample question
-if "sample_query" in st.session_state:
-    query = st.session_state.pop("sample_query")
-    st.session_state.pending_query = query
+# Handle pending query
+query = st.chat_input(f"Ask me anything, {first_name}...")
 
-# Chat input
-query = st.chat_input("Ask about HR policies...")
+if not query and "pending_query" in st.session_state:
+    query = st.session_state.pop("pending_query")
 
-if query or st.session_state.get("pending_query"):
-    if not query:
-        query = st.session_state.pop("pending_query")
-
-    # Add user message
+if query:
     st.session_state.messages.append({
         "role": "user",
         "content": query,
@@ -161,44 +225,64 @@ if query or st.session_state.get("pending_query"):
     with st.chat_message("user"):
         st.markdown(query)
 
-    # Generate response
     with st.chat_message("assistant"):
-        with st.spinner("Searching HR policies..."):
-            result = {}
+        with st.spinner("Searching for your answer..."):
             try:
-                engine = get_rag_engine()
-                result = engine.query(query)
-                answer = result["answer"]
-                sources = result["sources"]
-                chunks_used = result["chunks_used"]
+                # Detect intent first
+                from query_router import QueryRouter
+                router = QueryRouter()
+                intent = router.detect_intent(query)
+
+                if intent in ["personal", "hybrid"]:
+                    # Use Personal RAG
+                    personal_rag = get_personal_rag()
+                    if personal_rag and employee.get("email"):
+                        rag_engine = get_rag_engine() if intent == "hybrid" else None
+                        result = personal_rag.query(
+                            question=query,
+                            employee_email=employee.get("email", ""),
+                            policy_rag_engine=rag_engine
+                        )
+                    else:
+                        # Fallback to policy RAG
+                        engine = get_rag_engine()
+                        result = engine.query(query)
+                else:
+                    # Use Policy RAG
+                    engine = get_rag_engine()
+                    result = engine.query(query)
+
+                answer = result.get("answer", "")
+                sources = result.get("sources", [])
+                intent_label = result.get("intent", "policy")
+
             except Exception as e:
-                answer = f"Sorry, I encountered an error: {e}"
+                answer = f"Sorry, I encountered an error. Please try again."
                 sources = []
-                chunks_used = 0
-                result = {}
+                intent_label = "error"
 
         st.markdown(answer)
 
         if sources:
-            st.markdown("**Sources:**")
             for source in sources:
+                badge_class = "personal-badge" if source == "HR Database" else "source-badge"
+                icon = "👤" if source == "HR Database" else "📄"
                 st.markdown(
-                    f'<span class="source-badge">📄 {source}</span>',
+                    f'<span class="{badge_class}">{icon} {source}</span>',
                     unsafe_allow_html=True
                 )
 
-        # Show metadata
-        with st.expander("🔍 Retrieval Details"):
-            st.markdown(f"Chunks used: **{chunks_used}**")
-            st.markdown(f"Sources: **{len(sources)}**")
-            chunks_detail = result.get("chunks", []) if isinstance(result, dict) else []
-            for i, chunk in enumerate(chunks_detail[:3]):
-                st.markdown(f"**Chunk {i+1}** [{chunk.get('document_id','?')}]")
-                st.markdown(f"> {chunk.get('text','')[:150]}...")
+        # Show intent badge
+        intent_colors = {
+            "personal": "🟢 Personal Query",
+            "hybrid": "🔵 Hybrid Query",
+            "policy": "📋 Policy Query"
+        }
+        st.caption(intent_colors.get(intent_label, "📋 Policy Query"))
 
-    # Save to history
     st.session_state.messages.append({
         "role": "assistant",
         "content": answer,
-        "sources": sources
+        "sources": sources,
+        "intent": intent_label
     })

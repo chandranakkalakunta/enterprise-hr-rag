@@ -1,300 +1,250 @@
-This IT Security Policy document outlines the mandatory requirements and guidelines for all employees, contractors, and third parties accessing TechCorp India's information systems and data. Its purpose is to protect the confidentiality, integrity, and availability of TechCorp's information assets.
+# IT Security Policy for ChandraAILabs
 
 ---
 
-# TechCorp India IT Security Policy
-
-*Version: 1.0*
-*Effective Date: 2023-10-27*
-*Reviewed By: CISO & Legal Department*
-
-## Table of Contents
-
-1.  [Introduction](#1-introduction)
-2.  [Policy Scope](#2-policy-scope)
-3.  [Policy Objectives](#3-policy-objectives)
-4.  [Roles and Responsibilities](#4-roles-and-responsibilities)
-5.  [General Security Principles](#5-general-security-principles)
-6.  [Password Policy](#6-password-policy)
-7.  [Device Usage Policy](#7-device-usage-policy)
-    *   [Company-Owned Devices](#71-company-owned-devices)
-    *   [Bring Your Own Device (BYOD)](#72-bring-your-own-device-byod)
-    *   [Physical Security of Devices](#73-physical-security-of-devices)
-8.  [Data Classification Policy](#8-data-classification-policy)
-    *   [Data Classification Levels](#81-data-classification-levels)
-    *   [Data Handling Guidelines](#82-data-handling-guidelines)
-9.  [Email Usage Policy](#9-email-usage-policy)
-10. [Software Installation and Usage Policy](#10-software-installation-and-usage-policy)
-11. [Incident Reporting and Response Policy](#11-incident-reporting-and-response-policy)
-12. [Access Control Policy](#12-access-control-policy)
-13. [Network Security Policy](#13-network-security-policy)
-14. [Third-Party and Vendor Access Policy](#14-third-party-and-vendor-access-policy)
-15. [Security Awareness and Training](#15-security-awareness-and-training)
-16. [Compliance and Enforcement](#16-compliance-and-enforcement)
-17. [Policy Review](#17-policy-review)
-18. [Definitions](#18-definitions)
-19. [Version Control](#19-version-control)
+**Document Title:** ChandraAILabs IT Security Policy
+**Version:** 1.0
+**Effective Date:** October 26, 2023
+**Last Updated:** October 26, 2023
+**Approved By:** [ChandraAILabs Leadership/CISO]
 
 ---
 
 ## 1. Introduction
 
-TechCorp India is committed to safeguarding its information assets, including all electronic and physical data, systems, networks, and intellectual property. This IT Security Policy establishes the framework for maintaining a robust security posture, ensuring compliance with relevant Indian and international laws (e.g., IT Act 2000, Digital Personal Data Protection Act, 2023, GDPR where applicable), and protecting the privacy of our customers and employees. Adherence to this policy is mandatory for everyone associated with TechCorp India.
+ChandraAILabs, an AI/ML product company, recognizes that information and intellectual property are among its most valuable assets. This IT Security Policy outlines the principles, responsibilities, and mandatory requirements to protect these assets from unauthorized access, use, disclosure, disruption, modification, or destruction.
 
-## 2. Policy Scope
+The integrity, confidentiality, and availability of our systems, data, and proprietary AI models are paramount to maintaining customer trust, ensuring business continuity, and complying with applicable laws and regulations in India and globally.
 
-This policy applies to:
-*   All TechCorp India employees (full-time, part-time, temporary).
-*   All contractors, consultants, interns, and vendors accessing TechCorp India's IT systems or data.
-*   All IT assets owned or managed by TechCorp India, including but not limited to servers, workstations, laptops, mobile devices, networks, applications, and data stored thereon.
-*   Any personal devices used to access TechCorp India resources (under BYOD guidelines).
+All employees, contractors, interns, and third-party vendors working with ChandraAILabs are required to adhere to this policy.
 
-## 3. Policy Objectives
+## 2. Purpose
 
-The primary objectives of this policy are to:
-*   Protect the **Confidentiality** of sensitive information from unauthorized disclosure.
-*   Ensure the **Integrity** of information by safeguarding its accuracy and completeness.
-*   Maintain the **Availability** of information systems and data for authorized users.
-*   Minimize security risks and protect against cyber threats.
-*   Establish clear responsibilities for information security across the organization.
-*   Ensure compliance with legal, regulatory, and contractual obligations.
-*   Foster a security-aware culture within TechCorp India.
+The purpose of this policy is to:
+*   Safeguard ChandraAILabs' information assets, including proprietary AI models, algorithms, training data, customer data, and intellectual property.
+*   Define clear security responsibilities for all personnel.
+*   Mitigate risks associated with IT systems and data handling.
+*   Ensure compliance with relevant legal, regulatory, and contractual obligations.
+*   Promote a strong security culture within the organization.
 
-## 4. Roles and Responsibilities
+## 3. Scope
 
-*   **Board of Directors/Senior Management:** Overall responsibility for establishing and supporting the information security program, providing necessary resources.
-*   **Chief Information Security Officer (CISO):** Develop, implement, manage, and enforce the IT Security Policy. Oversee security operations, incident response, and awareness programs.
-*   **IT Department:** Implement and maintain security controls, manage network and system security, ensure software updates, and provide technical support.
-*   **Department Heads/Managers:** Ensure their teams understand and comply with this policy, manage access rights for their teams, and promote security awareness.
-*   **All Employees, Contractors, and Third Parties:** Adhere strictly to this policy, report security incidents promptly, and actively participate in security awareness training.
+This policy applies to all ChandraAILabs personnel (employees, contractors, interns), all company-owned or managed IT assets (hardware, software, networks, data centers, cloud infrastructure), and all information created, stored, processed, or transmitted by or on behalf of ChandraAILabs, regardless of its storage location. This includes both on-premises and cloud-based systems.
+
+## 4. Definitions
+
+*   **Company Assets:** All hardware, software, networks, data, intellectual property, and physical resources owned or used by ChandraAILabs.
+*   **Confidential Data:** Information that, if disclosed, could cause significant harm to ChandraAILabs, its customers, or partners. This includes proprietary algorithms, source code, AI models, training data, and customer Personally Identifiable Information (PII).
+*   **Employee:** Any full-time, part-time, temporary employee, contractor, intern, or consultant associated with ChandraAILabs.
+*   **Incident:** Any event that could lead to a breach of security, compromise of data, or disruption of services.
+*   **Intellectual Property (IP):** Proprietary information including algorithms, source code, AI model architectures, weights, training methodologies, and any other unique creations of ChandraAILabs.
+*   **Least Privilege:** The principle that users should only be granted the minimum necessary access rights to perform their job functions.
+*   **LLM:** Large Language Model, referring to AI models capable of processing and generating human-like text.
+*   **Sensitive Data:** A broader category encompassing Confidential Data, customer data, financial information, HR data, and any other data requiring special protection.
 
 ## 5. General Security Principles
 
-*   **Least Privilege:** Users shall only be granted the minimum access rights necessary to perform their job functions.
-*   **Need-to-Know:** Access to sensitive information shall be granted only to individuals who require it for their official duties.
-*   **Separation of Duties:** Critical tasks shall be divided among multiple individuals to prevent a single point of failure or compromise.
-*   **Defense-in-Depth:** Multiple layers of security controls shall be implemented to protect information assets.
-*   **Accountability:** All users are accountable for their actions on TechCorp India's IT systems.
+*   **Confidentiality:** Protect information from unauthorized disclosure.
+*   **Integrity:** Ensure the accuracy, completeness, and reliability of information and processing methods.
+*   **Availability:** Ensure authorized users have timely and reliable access to information and resources.
+*   **Accountability:** All actions related to IT security are attributable to individuals.
+*   **Least Privilege:** Access to information and systems will be granted on a "need-to-know" and "need-to-do" basis.
+*   **Security by Design:** Security considerations will be integrated into the design and development of all systems, products, and processes from the outset.
 
 ## 6. Password Policy
 
-> All users must adhere to the following guidelines for creating and managing passwords for TechCorp India systems.
+Strong passwords are a primary defense against unauthorized access. All personnel must adhere to the following:
 
-*   **Complexity:** Passwords must:
-    *   Be a minimum of 12 characters long.
-    *   Include a combination of uppercase letters, lowercase letters, numbers, and special characters.
-    *   Not contain easily guessable information (e.g., common words, personal names, dates of birth).
-    *   Not be a variation of previous passwords.
-*   **Uniqueness:** Passwords for TechCorp India systems must be unique and not reused for any personal accounts or other company systems.
-*   **MFA (Multi-Factor Authentication):** Multi-Factor Authentication is mandatory for all access to TechCorp India's internal networks, critical applications, and remote access services.
-*   **Storage:** Passwords must never be written down, stored in unencrypted files, or shared with anyone. Use of an approved password manager is highly recommended.
-*   **Sharing:** Passwords must never be shared with colleagues, supervisors, or IT personnel. TechCorp India IT staff will never ask for your password.
-*   **Frequency of Change:** Passwords must be changed every 90 days.
-*   **Account Lockout:** Systems will lock accounts after a defined number of failed login attempts (e.g., 5 attempts) and require IT intervention for unlocking.
+*   **Complexity:** Passwords must be at least 12 characters long and include a mix of uppercase letters, lowercase letters, numbers, and special characters.
+*   **Uniqueness:** Passwords must not be reused across different systems or services, especially personal ones.
+*   **MFA (Multi-Factor Authentication):** All critical systems, including but not limited to, company networks, cloud services, internal applications, and VPNs, must employ MFA.
+*   **Confidentiality:** Passwords must never be written down, shared, or communicated verbally or electronically to anyone, including IT support.
+*   **Storage:** Passwords must be stored securely in an approved password manager if necessary, but never on unprotected files or sticky notes.
+*   **Change Frequency:** While not strictly enforced for strong, unique passwords with MFA, password resets will be triggered immediately upon suspicion of compromise.
+*   **Account Lockout:** Systems will automatically lock out accounts after a specified number of failed login attempts.
 
 ## 7. Device Usage Policy
 
 ### 7.1. Company-Owned Devices
 
-> TechCorp India provides company-owned devices (laptops, desktops, mobile phones) for business use.
+*   **Authorization:** Only company-issued and approved devices (laptops, desktops, mobile phones) may be used for company work.
+*   **Security Software:** All devices must have mandatory security software (Antivirus/Anti-Malware, Endpoint Detection and Response - EDR) installed, kept up-to-date, and actively running.
+*   **Encryption:** All company-issued laptops and mobile devices must have full disk encryption (FDE) enabled.
+*   **Physical Security:** Devices must be physically secured at all times. Do not leave devices unattended in public places. Report lost or stolen devices immediately (refer to Incident Reporting).
+*   **Software Installation:** Refer to Section 10 for software installation guidelines.
+*   **Updates:** Operating systems and applications must be kept up-to-date with the latest security patches. Automatic updates are preferred where feasible.
+*   **No Unauthorized Modifications:** Devices must not be rooted, jailbroken, or have any unauthorized modifications that could compromise their security.
 
-*   **Authorized Use:** Devices are primarily for business use. Limited personal use is permitted as long as it does not interfere with work duties, violate any company policy, or pose a security risk.
-*   **No Unauthorized Software:** Only authorized and licensed software may be installed (refer to [Software Installation and Usage Policy](#10-software-installation-and-usage-policy)).
-*   **Security Software:** All company-owned devices must have TechCorp India-approved antivirus, endpoint detection and response (EDR), and Mobile Device Management (MDM) software installed and actively running. Tampering with or disabling these security measures is strictly prohibited.
-*   **Updates:** Users are responsible for ensuring their devices receive timely operating system and application updates as mandated by the IT Department.
-*   **Remote Access:** All remote access to TechCorp India's internal network and resources must be conducted via approved VPN connections.
-*   **Physical Security:** Devices must be physically secured (refer to [Physical Security of Devices](#73-physical-security-of-devices)).
-*   **No Rooting/Jailbreaking:** Modifying the operating system of company-owned mobile devices (rooting, jailbreaking) is strictly forbidden.
-*   **Return of Devices:** All company-owned devices must be returned to TechCorp India upon termination of employment or contract.
+### 7.2. Bring Your Own Device (BYOD) - (If Applicable, Otherwise State "Not Allowed")
 
-### 7.2. Bring Your Own Device (BYOD)
+*   **Note:** ChandraAILabs generally discourages BYOD for accessing sensitive company data due to inherent security risks. If BYOD is permitted for specific roles or scenarios, **it must be explicitly approved by IT management and adhere to stringent security measures, including:**
+    *   Installation of company-managed security software.
+    *   Enrollment in Mobile Device Management (MDM) for corporate data containers.
+    *   Full disk encryption.
+    *   Remote wipe capabilities (in case of loss/theft).
+    *   Regular security patching and updates.
+    *   Acceptable Use Policy compliance.
+    *   Acknowledgement that the company may access corporate data on the device.
 
-> Personal devices may be allowed to access TechCorp India resources under strict conditions.
+### 7.3. Remote Work & Network Usage
 
-*   **Approval:** Use of personal devices for company business requires explicit approval from management and the IT Department.
-*   **MDM Enrollment:** Approved personal devices must be enrolled in TechCorp India's Mobile Device Management (MDM) solution. This allows the IT Department to enforce security policies (e.g., strong passwords, encryption, remote wipe capability) and access only company-related data.
-*   **Data Separation:** Sensitive company data must not be stored directly on personal devices unless secured within approved enterprise applications or containers managed by MDM.
-*   **Security Software:** Personal devices must have up-to-date operating systems, antivirus software (if applicable), and screen lock enabled.
-*   **Remote Wipe Consent:** Users consent to the IT Department's ability to remotely wipe all TechCorp India-related data (and potentially the entire device if company data cannot be isolated) from their personal device upon termination of employment or if the device is lost/stolen or policy is violated.
-*   **No Support:** TechCorp India's IT Department will provide limited support for personal devices.
-*   **User Responsibility:** Users are solely responsible for the security and maintenance of their personal devices, including backups of personal data.
-
-### 7.3. Physical Security of Devices
-
-*   **Unattended Devices:** Devices must never be left unattended in public areas. At the office, lock your screen when away from your desk.
-*   **Travel:** Exercise extreme caution when traveling with company devices. Keep them out of sight and secured.
-*   **Home Security:** When working from home, ensure devices are stored securely and inaccessible to unauthorized individuals (e.g., family members, guests).
-*   **Reporting Loss/Theft:** Any loss or theft of a TechCorp India device (company-owned or personal device with company data) must be reported immediately to the IT Department and your manager (refer to [Incident Reporting and Response Policy](#11-incident-reporting-and-response-policy)).
+*   **VPN:** All connections to ChandraAILabs' internal networks and sensitive cloud resources must be made via an approved Virtual Private Network (VPN) solution.
+*   **Secure Networks:** Employees working remotely must use secure, password-protected Wi-Fi networks. Avoid public Wi-Fi for sensitive work.
+*   **Data Storage:** Sensitive company data must only be stored on approved company storage solutions (e.g., corporate cloud drives, secured network drives), not on personal cloud storage or local machine drives without proper encryption and sync.
 
 ## 8. Data Classification Policy
 
-> All information assets at TechCorp India are classified to ensure appropriate protection based on their sensitivity and impact if compromised.
+All data within ChandraAILabs is classified to ensure appropriate protection. Personnel are responsible for understanding and correctly classifying data they create, process, or store.
 
-### 8.1. Data Classification Levels
+*   **8.1. Public Data:**
+    *   **Definition:** Information intended for general public release, requiring no confidentiality.
+    *   **Examples:** Public website content, marketing materials, job postings, public press releases.
+    *   **Handling:** No specific security controls beyond general data management best practices.
+*   **8.2. Internal Data:**
+    *   **Definition:** Information not intended for public release, but generally not sensitive enough to cause significant harm if leaked.
+    *   **Examples:** Internal memos, non-sensitive project plans, general internal communications.
+    *   **Handling:** Accessible to all employees, but not to external parties without specific authorization.
+*   **8.3. Confidential Data:**
+    *   **Definition:** Information that, if disclosed, could cause moderate to significant harm to ChandraAILabs, its customers, or partners. Access is restricted to authorized personnel on a need-to-know basis.
+    *   **Examples:** Customer non-PII project data, basic financial reports, HR records (non-medical), unreleased product specifications.
+    *   **Handling:** Requires access controls, encryption at rest and in transit, and secure storage locations.
+*   **8.4. Restricted Data (Highly Confidential):**
+    *   **Definition:** Information whose unauthorized disclosure would cause severe harm, reputational damage, financial loss, or legal penalties. This includes all ChandraAILabs' Intellectual Property and sensitive customer data.
+    *   **Examples:** Proprietary AI models (architectures, weights, parameters), source code, algorithms, training datasets containing PII or highly sensitive customer data, trade secrets, unpatented inventions, detailed financial projections, employee medical records.
+    *   **Handling:** Requires the strictest controls:
+        *   **Strict Access Control:** Granted only to specific individuals with explicit authorization and a demonstrable business need (least privilege principle).
+        *   **Encryption:** Mandatory encryption at rest and in transit.
+        *   **Auditing:** Regular logging and auditing of access attempts.
+        *   **Secure Storage:** Stored only in designated, highly secured systems (e.g., dedicated secure cloud environments, encrypted databases).
+        *   **Data Minimization:** Collect and retain only necessary restricted data.
+        *   **Data Masking/Anonymization:** Implement where feasible for non-production environments.
 
-| Classification Level | Description                                                                        | Examples                                                                                                                                                                                                                                                                                                                                                                                                     |
-| :------------------- | :--------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Public**           | Information intended for public consumption. Disclosure poses no risk to TechCorp. | Marketing materials, press releases, public website content, job postings.                                                                                                                                                                                                                                                                                                                                   |
-| **Internal**         | Information for internal use only. Disclosure causes minimal impact.               | Internal memos, company newsletters, non-sensitive internal reports, general employee directories (excluding contact details).                                                                                                                                                                                                                                                                               |
-| **Confidential**     | Information that, if disclosed, could cause significant harm to TechCorp or its customers. Subject to NDAs. | Employee PII (salary, performance reviews), customer lists, non-public financial data, internal strategies, project plans, specific intellectual property (before patent/copyright), sensitive internal communications. **(Falls under "Sensitive Personal Data or Information" (SPDI) as per IT Act 2000 rules if it relates to a natural person)**.                                                        |
-| **Restricted**       | Highly sensitive information, often legally protected. Unauthorized disclosure could result in severe financial loss, legal penalties, reputational damage, or compromise national security (if applicable). | Source code, proprietary algorithms, unfiled patents, top-secret project details, unreleased product designs, trade secrets, highly sensitive customer data (e.g., health records, credit card numbers, biometric data), critical security vulnerabilities. **(Falls under "Sensitive Personal Data or Information" (SPDI) as per IT Act 2000 rules, and subject to stricter controls under Digital Personal Data Protection Act, 2023)**. |
+## 9. AI Model Confidentiality Policy
 
-### 8.2. Data Handling Guidelines
+ChandraAILabs' AI models, algorithms, and associated training data constitute its core Intellectual Property and are classified as **Restricted Data**.
 
-*   **Ownership:** Every piece of TechCorp India data must have a designated owner (typically the department head or project manager) responsible for its classification and protection.
-*   **Marking:** All data (physical and digital) must be appropriately marked with its classification level.
-*   **Storage:**
-    *   **Public/Internal:** May be stored on standard network drives, internal platforms.
-    *   **Confidential:** Must be stored on secure, access-controlled network drives. Encryption at rest is highly recommended.
-    *   **Restricted:** Must be stored on highly secured, encrypted, and access-controlled systems. Often requires specialized storage solutions.
-*   **Access:** Access must be granted based on the "Least Privilege" and "Need-to-Know" principles.
-*   **Transmission:**
-    *   **Public/Internal:** Standard email, internal chat.
-    *   **Confidential:** Internal email, secure file transfer. External transmission must be encrypted.
-    *   **Restricted:** Secure, end-to-end encrypted channels only. External transmission requires explicit CISO approval and strong encryption.
-*   **Disposal:**
-    *   **Public/Internal:** Standard deletion.
-    *   **Confidential/Restricted:** Secure deletion or physical destruction (shredding, degaussing, data wiping) as per TechCorp India's data retention policy.
-*   **Data Minimization:** Collect and retain only the data absolutely necessary for business purposes and for the minimum required duration.
-*   **Privacy by Design:** Incorporate data protection considerations into the design of all systems and processes.
+*   **9.1. Protection of Models and Algorithms:**
+    *   **Access Control:** Access to AI model repositories (e.g., codebases, model weights, deployment artifacts) is strictly controlled on a least-privilege basis.
+    *   **Source Code Protection:** All model source code, algorithms, and development environments are treated as highly confidential. Version control systems must be secured.
+    *   **Model Versioning & Audit Trails:** All changes to models and data should be logged and auditable.
+    *   **Encryption:** Model files (weights, parameters) and deployment packages must be encrypted at rest and in transit.
+    *   **No Unauthorized Exfiltration:** Exporting, downloading, or transferring models or training data outside of approved company systems is strictly prohibited.
+    *   **Protection against Reverse Engineering:** While challenging, measures to deter unauthorized reverse engineering attempts (e.g., obfuscation, intellectual property clauses in contracts) will be considered and applied where appropriate.
+    *   **API Key Management:** API keys for accessing internal or external AI services must be treated as highly confidential, rotated regularly, and never hardcoded into applications or public repositories.
+*   **9.2. Training Data Confidentiality:**
+    *   **Restricted Access:** Access to proprietary training datasets, especially those containing customer data or sensitive information, is severely restricted.
+    *   **Data Minimization:** Only collect and use the minimum necessary data for training.
+    *   **Anonymization/Pseudonymization:** Implement techniques to anonymize or pseudonymize sensitive data within training sets wherever possible.
+    *   **Secure Storage:** Training data must be stored in designated, secured, and encrypted storage locations.
+    *   **Data Retention:** Adhere to defined data retention policies for training data.
+*   **9.3. Collaboration with Third Parties:**
+    *   Any sharing of models, data, or algorithms with third parties (partners, customers, researchers) must be covered by Non-Disclosure Agreements (NDAs) and explicit contractual terms, reviewed by legal counsel.
+    *   Access granted to third parties must be limited to the specific data or models required for their task and time-bound.
 
-## 9. Email Usage Policy
+## 10. LLM Usage Policy (Large Language Model)
 
-> This policy governs the use of TechCorp India's email system for all employees and contractors.
+The use of LLMs (e.g., ChatGPT, Bard, Claude) can be beneficial but poses significant data leakage risks.
 
-*   **Professional Conduct:** Email communications must be professional and reflect TechCorp India's values.
-*   **No Unlawful Content:** Do not send or forward emails containing illegal, offensive, discriminatory, harassing, or sexually explicit content.
-*   **Confidentiality:**
-    *   Exercise caution when sending sensitive or confidential information via email.
-    *   **Never** send Restricted data via unencrypted email, internally or externally.
-    *   External transmission of Confidential data should be encrypted and/or password-protected where feasible.
-    *   Verify recipient addresses before sending sensitive information.
-*   **Phishing & Spam:**
-    *   Be vigilant for phishing attempts. Do not click on suspicious links or open attachments from unknown senders.
-    *   Report all suspected phishing emails to `security@techcorp.in`.
-    *   Do not send unsolicited bulk emails (spam).
-*   **Attachments:** Be cautious about opening unexpected attachments, even from known senders, as they may contain malware.
-*   **Monitoring:** Users should be aware that TechCorp India's email system is company property and is subject to monitoring for security, compliance, and legal purposes, as permitted by law.
-*   **Archiving & Retention:** Emails are subject to TechCorp India's data retention policies.
-*   **Personal Use:** Limited personal use is permissible as long as it does not interfere with work, consume excessive resources, or violate other company policies.
+*   **10.1. Public/Unsanctioned LLMs (e.g., free public versions of ChatGPT, Bard):**
+    *   **PROHIBITED for Sensitive Data:** Under no circumstances shall **Confidential** or **Restricted** data (including customer data, proprietary code, trade secrets, internal financial data, unreleased product features, AI model details) be inputted, pasted, or uploaded into public, unsanctioned LLMs.
+    *   **General Use:** Public LLMs may be used for general research, generating generic text, brainstorming non-sensitive ideas, or summarization of publicly available information, provided no ChandraAILabs sensitive information is included in the prompts.
+    *   **Disclaimer:** Users must be aware that any information submitted to public LLMs may be used by the LLM provider for training purposes and may lose its confidentiality.
+*   **10.2. Approved Enterprise LLM Solutions:**
+    *   ChandraAILabs may subscribe to enterprise-grade LLM solutions that offer data privacy, data retention policies, and robust security controls (e.g., dedicated instances, API access with specific data handling agreements).
+    *   **Authorization:** Usage of such approved solutions will be communicated by the IT department, along with specific guidelines for their safe and ethical use.
+    *   **Data Handling:** Even with approved enterprise LLMs, employees must exercise caution and adhere to the principle of least privilege regarding the data they input. Avoid oversharing.
+*   **10.3. Internal LLM Deployments:**
+    *   ChandraAILabs may develop or deploy its own internal LLM instances. These will be subject to the highest levels of security and confidentiality under the "AI Model Confidentiality Policy" (Section 9).
+    *   **Guidelines:** Specific usage guidelines for internal LLMs will be provided by the development team.
+*   **10.4. Responsibility:**
+    *   Employees are personally responsible for any data leakage that occurs due to non-compliance with this LLM Usage Policy.
+    *   Violation of this policy may lead to disciplinary action, up to and including termination of employment.
 
-## 10. Software Installation and Usage Policy
+## 11. Software Installation Policy
 
-> This policy outlines the guidelines for installing and using software on TechCorp India's IT assets.
+*   **11.1. Authorized Software:**
+    *   Only authorized and licensed software approved by the IT department may be installed on company-owned devices.
+    *   A list of approved software will be maintained and communicated.
+*   **11.2. Prohibited Software:**
+    *   Installation of unauthorized personal software, shareware, freeware, peer-to-peer (P2P) file-sharing applications, or illegal software is strictly prohibited.
+    *   Software that has not been scanned and approved by IT may introduce security vulnerabilities or malware.
+*   **11.3. Installation Process:**
+    *   All software installations (beyond standard OS/application updates) must be requested through the IT ticketing system and performed or approved by IT personnel.
+    *   Developers requiring specific tools for their work must submit a request with justification to the IT department for review and approval.
+*   **11.4. Licensing:**
+    *   All software used on company devices must be properly licensed.
 
-*   **Authorized Software Only:** Only software explicitly approved and licensed by TechCorp India may be installed on company-owned devices.
-*   **No Unauthorized Installation:** Users are strictly prohibited from installing any software (including freeware, shareware, trial versions, or pirated software) without prior authorization from the IT Department.
-*   **Licensing Compliance:** All software must be legally licensed. Installing or using unlicensed software is a serious violation and illegal.
-*   **Source of Software:** Approved software must be installed only from official, trusted sources provided or sanctioned by the IT Department.
-*   **Administrator Rights:** Users will typically not have local administrator rights on their company devices. Requests for elevated privileges or specific software installations must be submitted to the IT Department.
-*   **Updates:** Users must ensure that their operating systems and approved applications are regularly updated as directed by the IT Department to apply security patches.
-*   **Malicious Software:** Users must not download, install, or knowingly use any software that could be considered malicious (e.g., spyware, adware, viruses, keyloggers) or bypass security controls.
-*   **Cloud Applications:** Use of third-party cloud applications for storing or processing company data requires explicit approval and security vetting by the IT Department and CISO.
+## 12. Incident Reporting Policy
 
-## 11. Incident Reporting and Response Policy
+Prompt reporting of security incidents is crucial for effective response and mitigation.
 
-> This policy details the procedures for reporting and responding to IT security incidents.
+*   **12.1. What to Report:**
+    *   Any suspected or actual security breach (e.g., unauthorized access, data leakage, malware infection).
+    *   Loss or theft of company devices (laptops, mobile phones, USB drives).
+    *   Suspicious emails (phishing attempts) or communications.
+    *   Unusual system behavior or performance issues that might indicate a security compromise.
+    *   Violation of this IT Security Policy.
+*   **12.2. How to Report:**
+    *   Immediately notify your direct manager and the IT Security Team.
+    *   Report via [Specify Reporting Channel, e.g., security@chandraailabs.com or dedicated incident reporting portal].
+    *   Provide as much detail as possible: what happened, when, where, and any relevant screenshots or logs.
+*   **12.3. Timeliness:**
+    *   All incidents, regardless of perceived severity, must be reported immediately upon discovery.
+*   **12.4. Cooperation:**
+    *   All personnel must fully cooperate with the IT Security Team during incident investigation and resolution.
+    *   Do not attempt to fix the problem yourself unless explicitly instructed by the IT Security Team, as this might destroy critical forensic evidence.
 
-*   **What is an Incident?** An IT security incident is any event that could compromise the confidentiality, integrity, or availability of TechCorp India's information assets. This includes, but is not limited to:
-    *   Suspected or actual data breach/leakage.
-    *   Loss or theft of a company device or a personal device containing company data.
-    *   Unauthorized access to systems or data.
-    *   Malware infection (virus, ransomware, spyware).
-    *   Successful phishing attacks.
-    *   Suspicious emails, pop-ups, or system behavior.
-    *   Denial of Service (DoS) attacks.
-    *   Weak or compromised passwords.
-*   **When to Report:** All incidents, suspected or actual, must be reported **immediately** upon discovery. Delaying reporting can exacerbate the damage.
-*   **How to Report:**
-    *   **Primary Channel:** Email `security@techcorp.in` or call the IT Helpdesk **(ext. XXXX)**.
-    *   **Provide Details:** When reporting, provide as much detail as possible, including:
-        *   Your name and contact information.
-        *   Date and time of the incident.
-        *   Description of the incident (what happened, what you observed).
-        *   System(s) affected (e.g., laptop serial number, application name).
-        *   Any actions taken so far.
-*   **User Actions During an Incident:**
-    *   **Do NOT try to fix it yourself** unless specifically instructed by IT/Security.
-    *   **Do NOT shut down or restart affected systems** unless instructed, as this can destroy forensic evidence. Disconnect from the network if possible.
-    *   Preserve any evidence (e.g., screenshots, error messages).
-    *   Cooperate fully with the incident response team.
-*   **Incident Response Team (IRT) Role:**
-    *   The CISO leads the IRT.
-    *   The IRT will investigate, contain, eradicate, recover from, and conduct post-incident analysis.
-    *   The IRT is responsible for notifying affected parties and regulatory bodies, if required by law.
-*   **No Blame Culture:** TechCorp India fosters a "no blame" culture for reporting incidents. The priority is to resolve the incident and learn from it, not to assign blame, unless gross negligence or malicious intent is evident.
+## 13. Responsible AI Usage Policy
 
-## 12. Access Control Policy
+As an AI/ML company, ChandraAILabs is committed to developing and deploying AI responsibly and ethically.
 
-> This policy governs access to TechCorp India's physical and logical IT assets.
+*   **13.1. Fairness and Bias Mitigation:**
+    *   Design, develop, and test AI models to identify and mitigate unfair biases that could lead to discriminatory outcomes.
+    *   Ensure training data is diverse and representative where possible, and actively monitor for bias.
+*   **13.2. Transparency and Explainability:**
+    *   Strive for transparency in how AI systems operate, explaining their purpose, functionality, and limitations to stakeholders.
+    *   Where feasible and necessary, incorporate explainability features to understand why an AI model made a particular decision.
+*   **13.3. Accountability:**
+    *   Clearly define roles and responsibilities for the development, deployment, and oversight of AI systems.
+    *   Establish clear processes for addressing errors, biases, and adverse impacts of AI systems.
+*   **13.4. Privacy by Design:**
+    *   Integrate data privacy principles (e.g., data minimization, purpose limitation) into the design and development of AI systems from the outset.
+    *   Ensure robust data protection measures are in place for all data used in AI development and operation, especially PII.
+*   **13.5. Human Oversight:**
+    *   Ensure that AI systems are designed to allow for meaningful human oversight and intervention, particularly in critical decision-making contexts.
+*   **13.6. Safety and Robustness:**
+    *   Develop and test AI systems for robustness against adversarial attacks and ensure they operate safely and reliably in intended environments.
+*   **13.7. Legal and Regulatory Compliance:**
+    *   Ensure all AI development and deployment comply with relevant laws and regulations, including data protection laws (e.g., GDPR, India's Personal Data Protection Bill when enacted), intellectual property laws, and emerging AI-specific regulations.
+*   **13.8. Societal Impact Assessment:**
+    *   Conduct assessments to understand and mitigate potential negative societal impacts of AI technologies developed by ChandraAILabs.
 
-*   **Principle of Least Privilege:** Access to systems, applications, and data will be granted only to the extent necessary to perform job functions.
-*   **Unique User IDs:** Each user will have a unique user ID. Sharing of user IDs is strictly prohibited.
-*   **Role-Based Access Control (RBAC):** Access will be managed through defined roles with associated permissions.
-*   **Regular Review:** User access rights will be reviewed at least quarterly or upon job role changes/termination.
-*   **Physical Access:** Access to server rooms, data centers, and other critical infrastructure is restricted to authorized personnel only, controlled by access cards, biometric systems, or logs.
-*   **Remote Access:** All remote access must utilize TechCorp India's approved VPN solutions with MFA.
+## 14. Training and Awareness
 
-## 13. Network Security Policy
+All personnel will undergo mandatory security awareness training upon joining ChandraAILabs and annually thereafter. This training will cover the principles outlined in this policy and best practices for information security.
 
-> This policy covers the security measures for TechCorp India's internal and external networks.
+## 15. Policy Review and Updates
 
-*   **Firewalls:** All network perimeters and critical internal segments will be protected by firewalls.
-*   **Intrusion Detection/Prevention Systems (IDS/IPS):** IDS/IPS will be deployed to monitor and protect against network intrusions.
-*   **Network Segmentation:** Networks will be segmented to isolate critical systems and data.
-*   **Wireless Networks:** All wireless networks must be secured using strong encryption (e.g., WPA3 Enterprise) and authentication. Guest Wi-Fi will be isolated from the corporate network.
-*   **Vulnerability Scanning:** Regular vulnerability scans and penetration testing will be conducted on network infrastructure.
+This policy will be reviewed at least annually, or as needed, in response to changes in technology, business operations, legal/regulatory requirements, or identified risks. Any updates will be communicated to all personnel.
 
-## 14. Third-Party and Vendor Access Policy
+## 16. Enforcement and Disciplinary Action
 
-> This policy governs the security requirements for third parties and vendors who access TechCorp India's systems or data.
+Violation of this IT Security Policy can result in serious consequences, including:
+*   Disciplinary action, up to and including termination of employment or contract.
+*   Legal action and prosecution under applicable Indian and international laws.
+*   Civil liability for damages.
 
-*   **Security Agreements:** All third parties and vendors accessing TechCorp India's systems or data must sign a Non-Disclosure Agreement (NDA) and a security addendum outlining their security responsibilities and compliance requirements.
-*   **Least Privilege:** Access granted to third parties will be limited to the specific systems and data required for their services.
-*   **Secure Access:** Third-party access must utilize secure, monitored channels (e.g., dedicated VPN, jump boxes) and multi-factor authentication.
-*   **Auditing:** TechCorp India reserves the right to audit third-party security controls and practices.
-*   **Data Protection:** Third parties are responsible for protecting TechCorp India's data in their care according to its classification level and applicable laws.
-
-## 15. Security Awareness and Training
-
-> TechCorp India is committed to fostering a strong security culture.
-
-*   **Mandatory Training:** All new employees, contractors, and relevant third parties must complete mandatory IT security awareness training during onboarding.
-*   **Annual Refresher:** Annual refresher training will be provided to all personnel to keep them informed about current threats and best practices.
-*   **Targeted Training:** Specific training will be provided for roles with higher security responsibilities.
-*   **Communication:** Regular security advisories and tips will be communicated via internal channels.
-
-## 16. Compliance and Enforcement
-
-*   **Monitoring:** TechCorp India reserves the right to monitor all network traffic, system usage, and data to ensure compliance with this policy and for security purposes, as permitted by applicable laws.
-*   **Violations:** Any violation of this policy may result in disciplinary action, up to and including termination of employment or contract, and potential legal action.
-*   **Legal Implications:** TechCorp India will cooperate fully with law enforcement agencies in investigating any illegal activities involving its IT assets.
-
-## 17. Policy Review
-
-This IT Security Policy will be reviewed at least annually by the CISO, IT Department, and Legal Department. It may also be updated as required by changes in technology, business operations, or legal/regulatory requirements.
-
-## 18. Definitions
-
-*   **IT Act 2000:** Information Technology Act, 2000 (and subsequent amendments) of India, governing cybersecurity and data protection.
-*   **Digital Personal Data Protection Act, 2023:** India's comprehensive data protection law.
-*   **GDPR:** General Data Protection Regulation (EU 2016/679), relevant if TechCorp India processes personal data of EU residents.
-*   **IT Asset:** Any information, system, device, network, or facility that stores, processes, or transmits TechCorp India's information.
-*   **Sensitive Data:** Information that requires specific protection due to its confidential nature, legal requirements, or potential impact if compromised.
-*   **PII:** Personally Identifiable Information (e.g., name, address, phone number, email, Aadhaar number).
-*   **SPDI:** Sensitive Personal Data or Information (as defined by IT Act 2000 rules, includes passwords, financial info, health info, biometric info, sexual orientation).
-*   **MFA (Multi-Factor Authentication):** A security system that requires more than one method of authentication from independent categories of credentials to verify the user's identity.
-*   **MDM (Mobile Device Management):** Software used to enforce security policies on mobile devices.
-*   **VPN (Virtual Private Network):** A secure tunnel over a public network, used for remote access to private networks.
-*   **CISO:** Chief Information Security Officer.
-*   **Incident:** Any event that could compromise the confidentiality, integrity, or availability of TechCorp India's information assets.
-
-## 19. Version Control
-
-| Version | Date         | Author(s)        | Changes Made                               |
-| :------ | :----------- | :--------------- | :----------------------------------------- |
-| 1.0     | 2023-10-27   | CISO Team        | Initial Draft                              |
-|         |              |                  |                                            |
-|         |              |                  |                                            |
+ChandraAILabs reserves the right to monitor all company assets, networks, systems, and data to ensure compliance with this policy and for security purposes.
 
 ---
+
+**Acknowledgement:**
+
+I, [Employee Name], acknowledge that I have read, understood, and agree to comply with the ChandraAILabs IT Security Policy. I understand my responsibilities in protecting the company's information assets and that non-compliance may lead to disciplinary action.
+
+**Employee Signature:** ____________________________
+**Date:** ____________________________
+
+---
+
+**Disclaimer:** This policy is a living document and subject to change. It is not intended to be a legal document and does not constitute legal advice. For specific legal questions, please consult with legal counsel.

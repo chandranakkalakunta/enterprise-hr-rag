@@ -1,182 +1,172 @@
-This Grievance Redressal Policy outlines the formal and informal procedures for employees of TechCorp India to raise and resolve workplace grievances fairly, impartially, and in a timely manner.
+This comprehensive Grievance Redressal Policy (GRP) outlines ChandraAILabs' commitment to fostering a fair, transparent, and respectful workplace environment. It provides a structured mechanism for employees to raise concerns and seek redressal for various workplace-related issues.
 
 ---
 
-# Grievance Redressal Policy - TechCorp India
+# ChandraAILabs Grievance Redressal Policy
 
-## 1. Policy Statement
+**Document ID:** CHAIL/HR/GRP/V1.0
+**Effective Date:** October 26, 2023
+**Revision Date:** [To be reviewed annually or as needed]
 
-TechCorp India is committed to fostering a fair, harmonious, and productive work environment for all its employees. This Grievance Redressal Policy (GRP) establishes a structured and transparent mechanism to address, investigate, and resolve employee grievances promptly and impartially, ensuring compliance with all applicable laws and regulations in India. We believe in open communication and the right of every employee to be heard and treated with dignity and respect.
+---
 
-## 2. Purpose
+## 1. Introduction & Purpose
 
-The purpose of this policy is to:
-*   Provide a clear, accessible, and confidential channel for employees to raise grievances without fear of reprisal.
-*   Ensure timely and effective resolution of grievances.
-*   Promote a culture of fairness, transparency, and trust within the organization.
-*   Comply with legal requirements in India pertaining to employee welfare and grievance handling.
+ChandraAILabs is committed to creating and maintaining a positive, productive, and respectful work environment for all its employees. This Grievance Redressal Policy (GRP) establishes a fair, transparent, and timely mechanism for addressing employee grievances. Its purpose is to:
+*   Provide a clear, accessible, and confidential channel for employees to voice their concerns without fear of retaliation.
+*   Ensure prompt and impartial investigation of grievances.
+*   Facilitate equitable resolution of issues, promoting a harmonious workplace.
+*   Comply with all applicable labor laws and regulations in India.
 
-## 3. Scope
+## 2. Scope
 
-This policy applies to all employees of TechCorp India, including permanent employees, temporary employees, contractual staff, consultants, interns, and trainees, regardless of their position or tenure.
+This policy applies to all full-time employees, part-time employees, temporary staff, contract workers, interns, and consultants working with ChandraAILabs, regardless of their designation or tenure. It covers grievances arising from any aspect of employment and workplace relations within the company.
 
-This policy covers grievances related to terms and conditions of employment, workplace issues, harassment (excluding sexual harassment which is covered under the POSH Policy), discrimination, unfair treatment, working conditions, and other work-related concerns.
+## 3. Definitions
 
-**Exclusions:**
-*   Performance appraisals or disciplinary actions for which specific separate policies and appeal mechanisms exist.
-*   Complaints of sexual harassment, which will be handled under TechCorp's Prevention of Sexual Harassment (POSH) Policy by the Internal Complaints Committee (ICC). However, the overall objective of timely resolution applies.
-
-## 4. Definitions
-
-*   **Grievance:** Any discontent or feeling of injustice an employee may have regarding their employment, working conditions, or treatment by colleagues, superiors, or the company, which they believe is unfair, unjust, or discriminatory.
+*   **Grievance:** Any dissatisfaction, complaint, or concern an employee may have regarding their employment, working conditions, supervisor, colleagues, company policies, or any other work-related matter, excluding matters covered under the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013 (POSH Act).
 *   **Complainant:** The employee raising the grievance.
-*   **Respondent:** The individual or entity against whom the grievance is raised.
-*   **Grievance Officer:** A designated HR personnel responsible for managing the formal grievance process.
-*   **Grievance Committee:** A committee formed to investigate and resolve complex formal grievances.
-*   **Internal Complaints Committee (ICC):** The committee constituted under the POSH Act, 2013, specifically for handling complaints of sexual harassment.
-*   **Working Days:** Monday to Friday, excluding public holidays observed by TechCorp India.
+*   **Respondent:** The individual(s) against whom the grievance is raised (if applicable).
+*   **Grievance Redressal Committee (GRC):** A designated committee responsible for receiving, investigating, and resolving non-POSH related grievances.
+*   **Internal Complaints Committee (ICC):** The committee established under the POSH Act, 2013, specifically for addressing complaints of sexual harassment.
+*   **Working Days:** Refers to standard company working days, excluding weekends and public holidays.
 
-## 5. Guiding Principles
+## 4. Guiding Principles
 
-*   **Fairness & Impartiality:** All grievances will be handled objectively, without bias or prejudice.
-*   **Confidentiality:** Information related to grievances will be kept confidential to the extent possible, consistent with a thorough investigation.
-*   **Non-Retaliation:** No employee will suffer adverse action or discrimination for raising a grievance in good faith or for participating in an investigation.
+*   **Fairness & Impartiality:** All grievances will be treated with fairness and an unbiased approach.
+*   **Confidentiality:** All information pertaining to a grievance will be kept confidential, shared only on a need-to-know basis to facilitate resolution.
 *   **Timeliness:** Grievances will be addressed and resolved within specified timelines.
-*   **Transparency:** The process will be transparent, and employees will be informed of the progress and outcome of their grievance.
-*   **Natural Justice:** Both the complainant and the respondent will be given a fair opportunity to present their case.
+*   **Non-Retaliation:** No employee will suffer adverse consequences for raising a grievance in good faith or for participating in an investigation.
+*   **Natural Justice:** Both the complainant and the respondent will be given a fair opportunity to present their case and be heard.
 
-## 6. Grievance Redressal Mechanism
+## 5. Types of Grievances Covered
 
-The grievance redressal process at TechCorp India comprises both informal and formal stages, followed by an escalation matrix.
+This policy covers a wide range of grievances, including but not limited to:
+*   Workplace environment issues (e.g., bullying, discrimination based on caste, religion, gender (non-sexual), origin, disability).
+*   Concerns regarding application of HR policies (e.g., leave, attendance, performance management).
+*   Issues related to compensation, benefits, or working hours.
+*   Disputes with supervisors or colleagues (non-sexual in nature).
+*   Concerns about workload or job responsibilities.
+*   Safety and health concerns.
 
-### 6.1. Informal Grievance Redressal Process
+**Note:** Complaints related to sexual harassment will be exclusively handled by the **Internal Complaints Committee (ICC)** as per ChandraAILabs' Sexual Harassment Policy, in compliance with the POSH Act, 2013. The process and timelines for POSH grievances are governed by the POSH Act and ChandraAILabs' specific POSH Policy.
 
-Employees are encouraged to attempt informal resolution first, as many grievances can be resolved quickly and amicably through direct communication.
+## 6. Grievance Redressal Committee (GRC)
 
-*   **Step 1: Direct Communication (within 3 working days)**
-    *   The Complainant should first try to discuss and resolve the issue directly with the person concerned (the Respondent) or their immediate manager/supervisor.
-    *   This direct discussion should ideally occur within **3 working days** of the incident or awareness of the grievance.
-*   **Step 2: Manager/HR Business Partner (within 5 working days)**
-    *   If direct discussion is not feasible, unsuccessful, or uncomfortable, the Complainant may approach their immediate manager/supervisor or their assigned HR Business Partner (HRBP).
-    *   The manager/HRBP will listen to the grievance, gather relevant information, and attempt to mediate a resolution within **5 working days** of being informed.
-    *   If the grievance is against the immediate manager, the Complainant should directly approach the HRBP or the next level manager.
+**6.1. Composition:**
+The GRC will typically comprise:
+*   Head of Human Resources (Chairperson)
+*   A Senior Management Representative (e.g., Department Head)
+*   An Employee Representative (preferably from a different department, elected or nominated)
+*   *Note: Efforts will be made to ensure gender diversity within the GRC.*
 
-*Outcome of Informal Process:* If the grievance is resolved to the satisfaction of the Complainant, the process concludes. If not, or if the nature of the grievance makes informal resolution inappropriate, the Complainant can proceed to the Formal Grievance Redressal Process.
+**6.2. Responsibilities:**
+*   Receive and acknowledge grievances.
+*   Conduct thorough and impartial investigations.
+*   Maintain strict confidentiality.
+*   Provide recommendations for resolution to the management.
+*   Ensure adherence to timelines and principles of natural justice.
 
-### 6.2. Formal Grievance Redressal Process
+## 7. Grievance Redressal Process
 
-If the informal process fails, is inappropriate, or the Complainant prefers to initiate a formal grievance, they may do so by submitting a written complaint.
+ChandraAILabs believes in resolving issues at the earliest possible stage. The process is divided into informal and formal stages.
 
-*   **Step 1: Filing a Formal Grievance (within 7 working days)**
-    *   The Complainant must submit a written complaint to the designated **Grievance Officer** (Head of HR or a designated senior HR personnel).
-    *   The complaint should be submitted within **7 working days** of the informal process failing or within **15 working days** of the incident if the informal process was bypassed.
-    *   The written complaint should include:
-        *   Full name and employee ID of the Complainant.
-        *   Full name and employee ID (if applicable) of the Respondent.
-        *   Date(s) and specific details of the incident(s) or issue(s) constituting the grievance.
-        *   Location(s) where the incident(s) occurred.
-        *   Names of any witnesses (if applicable).
-        *   Any supporting documents or evidence.
-        *   Desired outcome or resolution.
+### 7.1. Stage 1: Informal Resolution (Optional but Encouraged)
 
-*   **Step 2: Acknowledgment and Assessment (within 2 working days)**
-    *   The Grievance Officer will acknowledge receipt of the formal complaint within **2 working days**.
-    *   The Grievance Officer will assess the nature of the grievance to determine if it falls under this policy or requires referral to the POSH Internal Complaints Committee (ICC) or another specific policy (e.g., Disciplinary Policy).
+For minor concerns or disagreements, employees are encouraged to attempt informal resolution first.
+*   **Approach:** The Complainant should first try to address the issue directly with the person concerned or their immediate supervisor.
+*   **Confidentiality:** Discussions at this stage should be handled discreetly.
+*   **Timeline:** Endeavor to resolve informally within **5 working days**.
+*   **Outcome:** If the issue is resolved, no further action under this policy is typically required. If unresolved or the employee is uncomfortable with informal resolution, they can proceed to the formal stage.
 
-*   **Step 3: Investigation (within 15 working days)**
-    *   For grievances falling under this policy, the Grievance Officer (or a designated Grievance Committee for complex cases) will initiate an impartial investigation.
-    *   The investigation will typically involve:
-        *   Interviewing the Complainant to understand their concerns thoroughly.
-        *   Interviewing the Respondent to obtain their version of events.
-        *   Interviewing any witnesses identified by either party or deemed relevant by the investigator(s).
-        *   Collecting and reviewing relevant documents, emails, or other evidence.
-    *   The investigation aims to gather all necessary facts to reach a fair conclusion. Both parties will be given a fair opportunity to present their case and respond to allegations.
-    *   The investigation will strive to conclude within **15 working days** from the date of acknowledgment.
+### 7.2. Stage 2: Formal Grievance Submission
 
-*   **Step 4: Decision and Communication (within 5 working days)**
-    *   Upon completion of the investigation, the Grievance Officer/Committee will review all gathered information and arrive at a reasoned decision.
-    *   The decision will be communicated in writing to both the Complainant and the Respondent within **5 working days** of the investigation's conclusion.
-    *   The communication will outline the findings, the decision, and any corrective actions or recommendations.
+If an informal resolution is not suitable, or if the informal attempt fails, the employee can initiate a formal grievance.
+*   **How to Submit:** The Complainant must submit a written grievance to the HR Department or any member of the GRC.
+*   **Content of Grievance:** The written grievance should include:
+    *   Complainant's name and contact details.
+    *   Date of submission.
+    *   Clear and concise description of the grievance, including relevant dates, times, and locations.
+    *   Names of individuals involved (Complainant, Respondent, witnesses, if any).
+    *   Any supporting documentation or evidence.
+    *   Desired outcome or resolution.
+*   **Acknowledgement:** The GRC/HR will acknowledge receipt of the formal grievance within **2 working days**.
 
-### 6.3. Grievances Involving Sexual Harassment (POSH Committee)
+## 8. Investigation Process by GRC
 
-*   Complaints alleging sexual harassment will **NOT** be handled under the general formal grievance process.
-*   Upon receipt of any complaint that directly or indirectly indicates sexual harassment, the Grievance Officer will immediately refer the matter to TechCorp India's **Internal Complaints Committee (ICC)** as per the Prevention of Sexual Harassment at Workplace (Prevention, Prohibition and Redressal) Act, 2013 (POSH Act).
-*   The ICC will then take over the complaint and handle it strictly in accordance with the TechCorp POSH Policy and the statutory timelines and procedures outlined in the POSH Act.
-*   While TechCorp's general goal is a 30-day resolution, it is important to note that POSH investigations by the ICC have specific statutory timelines (e.g., investigation within 90 days), which the ICC must adhere to. The 30-day target in this policy is for initial processing and referral, and for general (non-POSH) grievances.
+Upon receiving a formal grievance, the GRC will follow these steps:
 
-## 7. Resolution Timeline (Overall Target: 30 Calendar Days)
+1.  **Preliminary Assessment (2 working days):** The GRC will review the grievance to determine if it falls under the scope of this policy or if it should be referred to the ICC (for sexual harassment) or other relevant authorities (e.g., criminal complaints).
+2.  **Formation of Inquiry Panel:** If deemed necessary, the GRC may form a smaller inquiry panel from its members or external experts to conduct a detailed investigation.
+3.  **Information Gathering:**
+    *   **Interview with Complainant:** The GRC will meet with the Complainant to understand the grievance in detail.
+    *   **Interview with Respondent:** The Respondent will be informed of the allegations and given a fair opportunity to present their version of events.
+    *   **Witness Interviews:** The GRC may interview any identified witnesses.
+    *   **Document Review:** Relevant documents, emails, or other evidence will be reviewed.
+    *   **Principles of Natural Justice:** Both the Complainant and Respondent will be given equal opportunity to present their case, ask questions (through the GRC), and provide supporting evidence.
+4.  **Fact-Finding Report:** Based on the gathered information, the GRC will prepare a fact-finding report outlining their findings.
+5.  **Recommendation:** The GRC will discuss the findings and make recommendations for resolution, which may include:
+    *   Mediation or counseling.
+    *   Issuance of warnings or disciplinary action against the Respondent.
+    *   Policy changes or training.
+    *   No action, if the grievance is unsubstantiated.
 
-TechCorp India aims to resolve all formal grievances (excluding POSH complaints which follow specific statutory timelines) within **30 calendar days** from the date of filing the formal written complaint to the communication of the decision.
+## 9. Resolution and Decision
 
-*   **Informal Process:** 3-5 working days (optional, prior to formal complaint)
-*   **Formal Complaint Filing:** Within 7-15 working days of incident/failure of informal
-*   **Acknowledgment:** 2 working days
-*   **Investigation:** 15 working days
-*   **Decision & Communication:** 5 working days
-*   **Total (Formal Process, approximate):** 22 working days (approx. 30 calendar days)
+1.  **Decision Making:** The GRC will submit its fact-finding report and recommendations to the CEO/Managing Director for final decision.
+2.  **Communication:** The CEO/Managing Director's decision will be communicated in writing to the Complainant and, if applicable, to the Respondent.
+3.  **Implementation:** Necessary actions for resolution will be implemented promptly.
 
-*Note:* In complex cases requiring extensive investigation or external expertise, the resolution period may be extended. In such instances, the Complainant will be informed of the delay and the expected revised timeline.
+## 10. Resolution Timeline
 
-## 8. Escalation Matrix
+ChandraAILabs is committed to resolving grievances efficiently.
+*   The entire formal grievance redressal process, from the date of formal grievance submission to the communication of the final decision, will aim to be completed within **30 calendar days**.
+*   **Extension:** In complex cases, where further investigation or external consultation is required, the GRC may extend this timeline. Any such extension, along with the reasons, will be communicated to the Complainant.
 
-If the Complainant is dissatisfied with the outcome of the formal grievance redressal process, they have the right to appeal.
+## 11. Escalation Matrix (Appeal Process)
 
-| Stage of Grievance | Action By Complainant | Recipient of Appeal | Resolution Body | Timeline for Resolution at this stage |
-| :----------------- | :-------------------- | :------------------ | :-------------- | :---------------------------------- |
-| **Stage 1: Informal** | Direct discussion or approach manager/HRBP | Concerned person/Manager/HRBP | Manager/HRBP | Within 3-5 working days             |
-| **Stage 2: Formal** | Written complaint | Grievance Officer (Head of HR) | Grievance Officer/Committee | Within 30 calendar days             |
-| **Stage 3: Appeal/Escalation** | Appeal in writing (within 7 working days of formal decision) | Head of Department of Respondent OR Head of HR (if not the Grievance Officer) | Grievance Review Committee / Leadership Review Panel | Within 15 working days              |
-| **Stage 4: Final Appeal** | Final appeal in writing (within 5 working days of Stage 3 decision) | CEO / Board Member (designated) | CEO / Board Representative | Within 10 working days              |
+If the Complainant is dissatisfied with the GRC's final decision, they have the right to appeal:
+*   **Appeal Submission:** The Complainant must submit a written appeal to the CEO/Managing Director within **7 working days** of receiving the GRC's decision.
+*   **Content of Appeal:** The appeal should clearly state the reasons for dissatisfaction with the GRC's decision and provide any new relevant information.
+*   **Review by CEO/Managing Director:** The CEO/Managing Director will review the original grievance, the GRC's report, and the appeal. They may conduct further inquiries if deemed necessary.
+*   **Final Decision:** The decision of the CEO/Managing Director will be final and binding, communicated to the Complainant within **10 working days** of receiving the appeal.
 
-**Escalation Process Details:**
+## 12. Handling of POSH Grievances
 
-*   **Appeal to Stage 3:** If the Complainant is not satisfied with the decision from the formal process (Stage 2), they may submit a written appeal to the Head of the Department where the Respondent works (if the grievance relates to their conduct) or the Head of HR (if the Head of HR was not the primary Grievance Officer or if the grievance is against the Head of HR). This appeal must be submitted within **7 working days** of receiving the formal decision. A senior leadership panel or a designated Grievance Review Committee will review the appeal, which may involve re-examining the investigation findings or conducting a further limited inquiry. The decision will be communicated within **15 working days**.
+As mandated by the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013, all complaints of sexual harassment will be directly referred to and handled by ChandraAILabs' **Internal Complaints Committee (ICC)**. The ICC operates independently of the GRC and follows the specific procedures, timelines (e.g., 90 days for investigation), and appellate mechanisms prescribed by the POSH Act and ChandraAILabs' POSH Policy. Employees are encouraged to familiarize themselves with the POSH Policy for full details.
 
-*   **Final Appeal to Stage 4:** If the Complainant remains dissatisfied after the Stage 3 review, they may submit a final appeal in writing to the **CEO of TechCorp India** (or a designated Board Member) within **5 working days** of receiving the Stage 3 decision. The CEO/Board Member's decision, after due consideration and review, will be final and binding. This decision will be communicated within **10 working days**.
+## 13. Confidentiality
 
-## 9. Roles and Responsibilities
+*   All information related to a grievance, including the identity of the Complainant, Respondent, and witnesses, will be kept strictly confidential.
+*   Information will only be shared with individuals who have a legitimate need to know for the purpose of investigation and resolution.
+*   Any breach of confidentiality by an employee involved in the process will be treated as a serious misconduct.
 
-*   **Employees (Complainants):**
-    *   Understand and adhere to this policy.
-    *   Raise grievances promptly and in good faith.
-    *   Cooperate fully and honestly during investigations.
-*   **Managers/Supervisors:**
-    *   Listen to employee grievances and attempt informal resolution where appropriate.
-    *   Guide employees on the grievance redressal process.
-    *   Escalate formal grievances to the Grievance Officer/HR promptly.
-    *   Cooperate fully in investigations.
-    *   Ensure non-retaliation against employees raising grievances.
-*   **HR Department (Grievance Officer):**
-    *   Administer and ensure compliance with this policy.
-    *   Act as the primary point of contact for formal grievances.
-    *   Conduct fair and impartial investigations (or oversee the Grievance Committee).
-    *   Maintain records of all grievances and their resolutions.
-    *   Provide guidance and support to employees and managers.
-*   **Grievance Committee/Review Panel:**
-    *   Conduct thorough and impartial investigations for complex cases.
-    *   Provide recommendations and decisions based on evidence.
-*   **Internal Complaints Committee (ICC):**
-    *   Handle all complaints related to sexual harassment as per the POSH Act and TechCorp's POSH Policy.
-*   **Leadership/CEO/Board Member:**
-    *   Provide ultimate oversight and ensure adherence to the policy.
-    *   Address escalated grievances fairly and impartially.
+## 14. Anti-Retaliation
 
-## 10. Confidentiality and Non-Retaliation
+ChandraAILabs has a zero-tolerance policy against retaliation.
+*   No employee will be discriminated against, harassed, or subjected to any form of adverse action or intimidation for:
+    *   Filing a grievance in good faith.
+    *   Participating as a witness in an investigation.
+    *   Assisting in any way with the grievance redressal process.
+*   Any act of retaliation will be treated as a serious disciplinary offense and will result in appropriate disciplinary action, up to and including termination of employment.
+*   Employees who believe they have been subjected to retaliation should immediately report it to the HR Department or directly to the CEO/Managing Director.
 
-*   **Confidentiality:** All information pertaining to a grievance will be treated with utmost confidentiality. Disclosure of information will be limited to those directly involved in the investigation and resolution process, on a strict "need-to-know" basis, consistent with conducting a thorough investigation and fulfilling legal obligations.
-*   **Non-Retaliation:** TechCorp India has a strict zero-tolerance policy against retaliation. No employee will be subjected to any form of harassment, discrimination, adverse employment action, or reprisal for raising a grievance in good faith, participating in an investigation, or acting as a witness. Any instance of retaliation will be treated as a serious disciplinary offense and dealt with accordingly, up to and including termination of employment.
+## 15. Record Keeping
 
-## 11. Documentation and Record Keeping
+*   All records pertaining to grievances, including complaints, investigation reports, minutes of meetings, and resolutions, will be maintained securely by the HR Department for a minimum period of **5 years**.
+*   These records will be confidential and accessed only by authorized personnel.
 
-All records related to grievances, including formal complaints, investigation reports, evidence, witness statements, decisions, and outcomes, will be maintained by the HR Department for a minimum of **7 years** or as per legal requirements, whichever is longer. These records will be kept confidential and stored securely.
+## 16. Policy Review
 
-## 12. Policy Review and Amendment
+This policy will be reviewed annually or as needed to ensure its effectiveness, compliance with legal requirements, and alignment with ChandraAILabs' values. Any amendments will be communicated to all employees.
 
-This policy will be reviewed periodically, at least once every two years, or earlier if necessitated by changes in legislation or organizational requirements. Any amendments or updates to this policy will be communicated to all employees.
+---
 
-## 13. Effective Date
+**Policy Approved By:**
 
-This Grievance Redressal Policy is effective from **[Date]**.
+[Signature of CEO/MD]
+**CEO/Managing Director**
+ChandraAILabs
+**Date:** October 26, 2023
 
 ---

@@ -88,6 +88,19 @@ class IngestionPipeline:
         logger.info(f"Starting ingestion: gs://{bucket_name}/{blob_name}")
 
         try:
+            # Step 0: Cleanup old data
+            logger.info("Step 0: Cleaning up old data...")
+            document_id = blob_name.replace('current/', '')                                   .replace('.md', '')                                   .replace('.txt', '')
+
+            # Delete old chunks from Firestore and get their IDs
+            old_chunks = self.firestore.get_document_chunks(document_id)
+            old_chunk_ids = [c.get('chunk_id', '') for c in old_chunks if c.get('chunk_id')]
+
+            # Delete old embeddings from Vector Search
+            if old_chunk_ids and self.vector_search:
+                self.vector_search.delete_embeddings(old_chunk_ids)
+                logger.info(f"Deleted {len(old_chunk_ids)} old embeddings")
+
             # Step 1: Read from GCS
             logger.info("Step 1: Reading from GCS...")
             storage_client = storage.Client(project=self.project_id)

@@ -67,6 +67,39 @@ class VectorSearchClient:
             logger.error(f"Upsert failed: {e}")
             return False
 
+    def delete_embeddings(self, datapoint_ids: list) -> bool:
+        """Delete embeddings from Vector Search index."""
+        try:
+            from google.cloud.aiplatform_v1 import IndexServiceClient
+            from google.cloud.aiplatform_v1.types import RemoveDatapointsRequest
+
+            client = IndexServiceClient(
+                client_options={"api_endpoint": f"{self.region}-aiplatform.googleapis.com"}
+            )
+
+            endpoint_info = self.endpoint.gca_resource
+            index_name = None
+            for d in endpoint_info.deployed_indexes:
+                if d.id == self.deployed_index_id:
+                    index_name = d.index
+                    break
+
+            if not index_name:
+                logger.warning("Could not find index name for delete")
+                return False
+
+            request = RemoveDatapointsRequest(
+                index=index_name,
+                datapoint_ids=datapoint_ids
+            )
+            client.remove_datapoints(request=request)
+            logger.info(f"Deleted {len(datapoint_ids)} embeddings")
+            return True
+
+        except Exception as e:
+            logger.error(f"Delete embeddings failed: {e}")
+            return False
+
     def query(self, query_embedding, top_k=10):
         """Query Vector Search."""
         try:

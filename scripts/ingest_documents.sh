@@ -62,6 +62,9 @@ os.environ['PROJECT_ID'] = '${PROJECT_ID}'
 os.environ['REGION'] = '${REGION}'
 os.environ['DOCS_BUCKET'] = '${DOCS_BUCKET}'
 
+import os
+os.environ["GRPC_VERBOSITY"] = "ERROR"
+os.environ["GLOG_minloglevel"] = "2"
 from ingestion_pipeline import IngestionPipeline
 
 pipeline = IngestionPipeline(

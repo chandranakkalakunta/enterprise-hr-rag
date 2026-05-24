@@ -1,183 +1,171 @@
-# TechCorp India Travel and Expense Policy
+# ChandraAILabs Travel and Expense Policy
+
+**Effective Date:** October 26, 2023
+**Version:** 1.0
 
 ---
 
-## 1. Policy Overview
+## 1. Introduction and Purpose
 
-### 1.1 Purpose
-This policy outlines the guidelines and procedures for managing travel and business-related expenses incurred by TechCorp India employees. Its purpose is to ensure:
-*   Fair and consistent reimbursement for legitimate business expenses.
-*   Cost-effectiveness and prudent spending of company funds.
-*   Compliance with statutory and tax regulations.
-*   Transparency and efficiency in the expense reporting and reimbursement process.
+This Travel and Expense (T&E) Policy outlines the guidelines and procedures for employees of ChandraAILabs when incurring business-related travel and other expenses. The purpose of this policy is to:
 
-### 1.2 Scope
-This policy applies to all full-time, part-time, and contractual employees of TechCorp India who incur expenses while conducting business on behalf of the company, whether for domestic travel, client entertainment, or other approved business activities.
+*   Ensure responsible and cost-effective expenditure of company funds.
+*   Provide clear guidelines for employees on what expenses are reimbursable and within what limits.
+*   Establish a consistent and fair process for expense reporting and reimbursement.
+*   Ensure compliance with legal, tax, and regulatory requirements.
 
-### 1.3 General Principles
-*   **Business Necessity:** All expenses must be legitimate, reasonable, and directly related to TechCorp India business.
-*   **Cost-Effectiveness:** Employees are expected to exercise good judgment and spend company funds as if they were their own, choosing the most economical options consistent with business needs.
-*   **Accountability:** Employees are responsible for submitting accurate and timely expense reports with proper documentation.
-*   **Compliance:** All expenses must comply with this policy, company values, and applicable laws.
+All employees are expected to exercise good judgment and prudence when incurring expenses on behalf of ChandraAILabs, treating company funds with the same care they would their own personal funds.
 
----
+## 2. Scope
 
-## 2. Approval Process
+This policy applies to all full-time and part-time employees of ChandraAILabs for all domestic business travel and related expenses. Consultants, contractors, or temporary staff may also be subject to this policy if explicitly stated in their engagement terms.
 
-### 2.1 Pre-Trip Approval (for Travel)
-All business travel requires prior approval before any bookings or expenses are incurred.
-*   **Domestic Travel:** All domestic travel must be pre-approved by the employee's direct Manager.
-*   **Approval Form/System:** Employees must complete a "Travel Request Form" (or use the designated online travel management system) detailing the purpose, destination, dates, estimated costs, and business justification.
-*   **Timing:** Travel requests should ideally be submitted at least **7 working days** prior to the planned departure date to allow for timely approvals and cost-effective bookings.
-*   **Exceptions:** Any deviation from this policy (e.g., higher class of travel, extended stay) requires explicit written approval from a Director-level or above, in addition to the direct Manager.
+## 3. General Principles
 
-### 2.2 Expense Report Approval
-*   **Submission:** Once an expense report is submitted, it will automatically route to the employee's direct Manager for review and approval.
-*   **Manager Review:** Managers are responsible for thoroughly reviewing all expense reports submitted by their direct reports to ensure:
-    *   Expenses align with the policy.
-    *   All necessary receipts and documentation are attached.
-    *   The business purpose is clearly stated.
-*   **Finance Review:** After Manager approval, the expense report will be reviewed by the Finance Department for compliance, accuracy, and processing.
-*   **Discrepancies:** If discrepancies or policy violations are identified during either Manager or Finance review, the report will be returned to the employee for correction or additional information.
+*   **Cost-Effectiveness:** Employees are expected to choose the most economical and practical options for travel and accommodation without compromising safety, comfort, or business objectives.
+*   **Approval:** All business travel and significant expenses must be pre-approved as per the guidelines below.
+*   **Documentation:** Proper documentation (original receipts, invoices, tickets, etc.) is mandatory for all expenses to be reimbursed.
+*   **Timeliness:** Expenses must be submitted within the specified timeframe.
+*   **Integrity:** All expense reports must be accurate and truthful. Any fraudulent claims will result in disciplinary action, up to and including termination of employment.
 
----
+## 4. Employee Grade Definitions
 
-## 3. Domestic Travel Allowances
+For the purpose of this policy, employees are categorized into the following grades:
 
-### 3.1 Air Travel
-*   **Class of Travel:** All domestic air travel must be booked in **Economy Class**.
-*   **Booking:** Employees are encouraged to book flights well in advance to secure lower fares. Bookings should be made through TechCorp's preferred travel portal/agent.
-*   **Exceptions:** Business Class travel may be considered for flights exceeding 4 hours (one way) for Senior Management (Director level and above) with explicit approval from their VP/CXO.
+*   **Grade A:** Founders, Directors, VP, Senior Leadership
+*   **Grade B:** Senior Managers, Managers, Principal Engineers
+*   **Grade C:** Team Leads, Senior Engineers, Analysts
+*   **Grade D:** Junior Engineers, Associates, Trainees
 
-### 3.2 Train Travel
+## 5. Pre-Approval Process for Travel
+
+All domestic business travel requires prior approval to ensure its necessity and cost-effectiveness.
+
+*   **Travel Request Form:** Employees must complete a "Travel Request Form" (or utilize the designated online travel portal/system) outlining the purpose of travel, destination, dates, proposed mode of transport, and estimated costs for airfare/train fare, accommodation, and meals.
+*   **Approval Hierarchy:**
+    *   **Employee's Direct Manager:** For review and initial approval of the travel's business necessity and proposed itinerary.
+    *   **Department Head/Functional Lead:** For final approval of the overall travel plan and budget.
+    *   **HR/Finance Department:** For verification of policy compliance and budget availability.
+*   **Timeline:** Travel requests should be submitted at least **7 working days** prior to the planned travel date to allow sufficient time for approvals and optimal booking.
+*   **Unapproved Travel:** Expenses incurred for unapproved travel will generally not be reimbursed.
+
+## 6. Expense Categories and Allowances (Domestic Travel)
+
+All amounts mentioned below are in Indian Rupees (INR) unless otherwise specified.
+
+### 6.1. Air Travel
+
+*   **Booking:** All air travel must be booked through the company's designated travel agency or online portal. Advance booking is mandatory to leverage lower fares.
 *   **Class of Travel:**
-    *   For travel up to 8 hours: AC Chair Car or AC 3-Tier.
-    *   For travel exceeding 8 hours: AC 2-Tier.
-*   **Booking:** Bookings should be made through TechCorp's preferred travel portal/agent or directly via IRCTC.
+    *   **Grade A:** Business Class or Premium Economy
+    *   **Grade B, C, D:** Economy Class
+*   **Changes/Cancellations:** Employees are responsible for any charges incurred due to personal changes or cancellations. Changes or cancellations due to business reasons must be approved by the employee's manager.
 
-### 3.3 Road Travel (Inter-City)
-*   **Company Car/Taxi:** For inter-city travel where air/train is not practical, employees may use an approved taxi service or company car (if available). Reimbursement will be based on actuals for approved vendors.
-*   **Personal Vehicle:** Use of personal vehicles for inter-city business travel is discouraged but may be approved in exceptional circumstances by the Manager. Reimbursement will be at a rate of **INR 8 per kilometer** (to cover fuel and maintenance), upon submission of a logbook detailing distance, date, and purpose. Toll charges are also reimbursable with receipts.
+### 6.2. Rail Travel
 
-### 3.4 Local Transportation (Intra-City)
-*   **Ride-Sharing Apps:** Employees are encouraged to use ride-sharing services like Uber/Ola (Standard/Prime Sedan). Reimbursement will be for actual fares upon submission of digital receipts.
-*   **Auto-Rickshaw/Public Transport:** For short distances, auto-rickshaws or public transport can be used. Reimbursement for auto-rickshaws may be claimed for amounts up to INR 150 without a receipt for individual trips (but total daily claims without receipts should not exceed INR 300). For amounts above this, or for public transport, receipts are required where available.
-*   **Rental Cars:** Rental cars for daily use are generally not permitted unless explicitly approved by a Director-level manager for specific project needs.
+*   **Booking:** All rail travel must be booked through the company's designated travel agency or online portal.
+*   **Class of Travel:**
+    *   **Grade A, B:** AC First Class (1A)
+    *   **Grade C, D:** AC Second Class (2A)
 
----
+### 6.3. Road Travel (Inter-city)
 
-## 4. Accommodation (Hotel Limits)
+*   **Applicability:** Permitted when air or rail travel is not practical, economical, or available.
+*   **Modes:**
+    *   **Company Vehicle:** Use of company vehicles is subject to separate guidelines.
+    *   **Taxi/Cab Services:** Reimbursement for actuals against receipts (e.g., Uber, Ola, pre-booked taxis).
+    *   **Personal Vehicle:** Reimbursement at a rate of **INR 10 per kilometer** for fuel and wear & tear. This requires prior approval and should only be used when it's the most practical option. Tolls and parking charges will be reimbursed as actuals against receipts.
 
-Hotel bookings must be made through TechCorp's preferred travel portal/agent to avail corporate discounts. Employees are expected to choose hotels that are safe, convenient, and within the specified limits.
+### 6.4. Accommodation (Hotel Limits - Per Night, Excluding Taxes)
 
-**Maximum Daily Hotel Limits (Excluding Taxes):**
+Employees are expected to use company-preferred hotels where available, or hotels of a similar standard within the specified limits. Longer stays (exceeding 7 nights) may require special approval for alternative accommodation like serviced apartments.
 
-| Employee Level                  | Tier-1 Cities (Mumbai, Delhi, Bangalore, Chennai, Hyderabad, Kolkata, Pune, Ahmedabad) | Tier-2 Cities (Jaipur, Lucknow, Chandigarh, Cochin, Goa, etc.) | Other Cities/Towns |
-| :------------------------------ | :----------------------------------------------------------------------------------- | :-------------------------------------------------------------- | :------------------ |
-| **Standard Employees**          | INR 4,500                                                                            | INR 3,000                                                       | INR 2,000           |
-| **Managers / Senior Staff**     | INR 6,000                                                                            | INR 4,500                                                       | INR 3,000           |
-| **Executive Leadership (L5+)**  | INR 8,000                                                                            | INR 6,000                                                       | INR 4,000           |
+| Grade | Tier 1 Cities (e.g., Bangalore, Hyderabad, Mumbai, Delhi, Chennai, Kolkata, Pune) | Tier 2 Cities (e.g., Jaipur, Lucknow, Chandigarh, Kochi, Ahmedabad) | Tier 3 Cities / Others |
+| :---- | :------------------------------------------------------------------------------- | :----------------------------------------------------------------- | :---------------------- |
+| **A** | INR 8,000                                                                        | INR 6,000                                                          | INR 4,500               |
+| **B** | INR 6,000                                                                        | INR 4,500                                                          | INR 3,500               |
+| **C** | INR 4,500                                                                        | INR 3,000                                                          | INR 2,500               |
+| **D** | INR 3,000                                                                        | INR 2,000                                                          | INR 1,500               |
 
-*   **Sharing:** Employees are not permitted to share rooms with colleagues unless specifically approved for project-related reasons and reflected in the pre-trip approval.
-*   **Extended Stays:** For stays exceeding 7 nights at a single location, employees should explore serviced apartments or long-stay rates where available, seeking manager approval for such options.
+*   **Note:** If staying with friends/relatives, a fixed incidental allowance of INR 500 per night can be claimed, in lieu of hotel expenses, for a maximum of 3 nights per trip, provided no other accommodation claim is made for those nights.
 
----
+### 6.5. Meals and Daily Per Diem
 
-## 5. Meal Allowances (Per Diem)
+This allowance covers all meals (breakfast, lunch, dinner) and non-alcoholic beverages. Receipts are generally not required for claims within the per diem limit, but employees are encouraged to spend judiciously.
 
-TechCorp India provides a daily per diem for meals and non-alcoholic beverages to simplify expense reporting and manage costs. This per diem covers breakfast, lunch, dinner, and any snacks or non-alcoholic drinks. Receipts are *not* required for expenses covered by the per diem.
+| Grade | Daily Per Diem (INR) |
+| :---- | :------------------- |
+| **A** | 1,500                |
+| **B** | 1,200                |
+| **C** | 1,000                |
+| **D** | 800                  |
 
-**Daily Meal Per Diem Allowances:**
+*   **Note:** The per diem allowance is applicable for full days of travel. For partial travel days (departure/arrival day), 75% of the daily per diem can be claimed. If meals are provided as part of a conference, event, or by the client/company, the per diem for that meal is not applicable.
 
-| Employee Level                  | Tier-1 Cities (Mumbai, Delhi, Bangalore, Chennai, Hyderabad, Kolkata, Pune, Ahmedabad) | Tier-2 Cities (Jaipur, Lucknow, Chandigarh, Cochin, Goa, etc.) | Other Cities/Towns |
-| :------------------------------ | :----------------------------------------------------------------------------------- | :-------------------------------------------------------------- | :------------------ |
-| **Standard Employees**          | INR 1,500                                                                            | INR 1,200                                                       | INR 1,000           |
-| **Managers / Senior Staff**     | INR 1,800                                                                            | INR 1,500                                                       | INR 1,200           |
-| **Executive Leadership (L5+)**  | INR 2,200                                                                            | INR 1,800                                                       | INR 1,500           |
+### 6.6. Local Conveyance (During Travel)
 
-*   **Partial Days:** On the day of departure or return, if an employee is traveling for less than a full day, the per diem will be calculated based on the meals taken during travel (e.g., 50% for one main meal, 75% for two main meals).
-*   **Company Provided Meals:** If meals are provided by TechCorp India (e.g., at a conference, company event, or client site), the corresponding meal portion of the per diem for that day will not be reimbursed.
+*   **Business Travel (outside base city):** Actual expenses for local transport (auto-rickshaw, taxi, ride-sharing apps like Uber/Ola, public transport) will be reimbursed against original receipts.
+*   **Local Commute (within base city):**
+    *   For attending client meetings, official events, or travel to different office locations within the base city: Actual expenses for public transport, auto-rickshaw, or ride-sharing apps will be reimbursed against receipts.
+    *   Regular commute from home to office is generally not reimbursable unless specified in an employment contract or for specific roles with explicit HR/Management approval.
 
----
+### 6.7. Business Entertainment
 
-## 6. Other Reimbursable Expenses
+*   **Purpose:** Expenses incurred for entertaining clients, partners, or team members for clear business purposes.
+*   **Approval:** Prior approval from the employee's Department Head is required for all entertainment expenses exceeding INR 5,000 per event.
+*   **Documentation:** Receipts must clearly show the date, amount, vendor name, and items purchased. An attendee list (names and affiliations), along with the business purpose of the entertainment, must be provided with the expense report.
+*   **Limits:** Entertainment expenses should be reasonable and proportionate to the business objective. Excessive spending will not be reimbursed.
 
-### 6.1 Incidentals
-*   Laundry services: Reimbursable for trips exceeding 4 nights.
-*   Porterage: Reasonable tips for airport/hotel porters (up to INR 200 per instance).
-*   Business Communication: Reasonable costs for business calls on personal phones if no company phone is provided (itemized bill required). Wi-Fi charges (if not available in hotel/office) up to INR 300 per day.
-*   Visa/Passport Fees: For business travel, if required.
-*   Travel Insurance: If company policy does not cover it, pre-approved travel insurance costs for business trips are reimbursable.
+### 6.8. Miscellaneous Expenses
 
-### 6.2 Client Entertainment
-*   Client entertainment expenses must be pre-approved by the Manager.
-*   Detailed receipts, attendee names, company names, and business purpose must be provided.
-*   Alcoholic beverages, while generally non-reimbursable for individual employees, may be approved as part of client entertainment within reasonable limits and with explicit Manager approval.
-
-### 6.3 Conference/Training Fees
-*   Registration fees for approved conferences, seminars, or training programs are reimbursable with valid receipts and proof of attendance. Travel and accommodation for such events follow the standard policy.
-
----
+*   **Communication:** Reimbursement for business calls, internet access (if not available via hotel Wi-Fi or personal data plan), or temporary SIM card purchase during travel, against receipts.
+*   **Laundry:** For trips exceeding 5 consecutive nights, reasonable laundry expenses will be reimbursed against receipts.
+*   **Tips/Gratuities:** Reasonable tips for services (e.g., porters, bellhops) up to INR 200 per instance, without a receipt, can be claimed.
+*   **Stationery/Printing:** If required for business purposes during travel, against receipts.
 
 ## 7. Non-Reimbursable Expenses
 
 The following expenses are generally **not reimbursable**:
-*   Alcoholic beverages (except as specified for client entertainment).
-*   Personal leisure activities, entertainment (e.g., movies, sightseeing, gym memberships, spa services).
-*   Mini-bar charges (unless pre-approved for client entertainment).
-*   Personal items (e.g., toiletries, newspapers, magazines, souvenirs).
-*   Traffic fines, parking tickets, or any legal penalties.
-*   Loss or damage to personal property.
-*   "No-show" charges for hotel or flight bookings not canceled in time (unless due to unavoidable business reasons approved by a Director).
-*   Expenses incurred by family members or friends traveling with the employee.
-*   Haircuts, personal grooming, massages.
+
+*   Alcoholic beverages, tobacco products.
+*   Personal entertainment (e.g., movies, in-room mini-bar, personal shopping, souvenirs).
+*   Traffic fines, parking tickets, or any other penalties.
+*   Expenses for accompanying family members, partners, or friends.
+*   Personal toiletries and grooming products.
+*   Loss or damage to personal belongings.
+*   Unapproved upgrades (e.g., flight class, hotel room).
+*   Any expense incurred without a legitimate business purpose.
+*   Expenses for which original, valid receipts cannot be provided.
+
+## 8. Expense Submission and Reimbursement Process
+
+*   **Expense Reporting System:** ChandraAILabs utilizes an online expense management system (or a standard manual form) for submitting expense reports. Employees must use this system for all claims.
+*   **Documentation:**
+    *   All expense claims must be supported by original itemized receipts, invoices, e-tickets, boarding passes (for flights), and other relevant supporting documents.
+    *   Scanned copies or clear photographs of receipts are acceptable within the online system, but original receipts must be retained for audit purposes if requested by Finance.
+    *   Bank/credit card statements are NOT sufficient as proof of expense without corresponding vendor receipts.
+*   **Submission Deadline:** Expense reports must be submitted within **7 calendar days** of the completion of the travel or the date the expense was incurred.
+*   **Approval Process:**
+    1.  **Employee:** Submits the expense report with all required documentation.
+    2.  **Manager:** Reviews the expense report for business purpose, policy compliance, and accuracy. Approves or rejects the report.
+    3.  **Finance Department:** Reviews the approved expense report for policy compliance, documentation, and proper coding. Approves or rejects for payment.
+*   **Reimbursement Timeline:** Approved expense reports will be processed for reimbursement within **15 working days** from the date of final approval by the Finance Department. Reimbursements will be made via bank transfer to the employee's registered bank account.
+*   **Query/Rejection:** If an expense report is incomplete or contains non-compliant items, it will be returned to the employee for correction or clarification. This will delay the reimbursement process.
+
+## 9. Roles and Responsibilities
+
+*   **Employee:** Responsible for understanding and adhering to this policy, obtaining necessary approvals, incurring expenses prudently, and submitting accurate and timely expense reports with proper documentation.
+*   **Manager/Department Head:** Responsible for ensuring direct reports understand and comply with this policy, reviewing and approving expense reports, and exercising due diligence in ensuring the business necessity and reasonableness of expenses.
+*   **Finance Department:** Responsible for maintaining this policy, processing expense reimbursements, ensuring compliance, conducting audits, and providing training and support to employees on the expense reporting system.
+*   **HR Department:** Responsible for defining employee grades and communicating the policy.
+
+## 10. Policy Violations
+
+Any non-compliance with this policy may result in the rejection of expense claims, delayed reimbursement, or disciplinary action, up to and including termination of employment, depending on the severity and nature of the violation. Intentional misrepresentation or fraudulent claims will lead to immediate disciplinary action.
+
+## 11. Policy Review
+
+This policy will be reviewed periodically (at least annually) by the Finance and HR Departments to ensure it remains relevant, effective, and compliant with current laws and company practices.
 
 ---
-
-## 8. Expense Submission & Reimbursement Process
-
-### 8.1 Expense Report Submission
-*   **Timeline:** All expense reports must be submitted within **7 calendar days** from the date the expense was incurred or the business trip concluded, whichever is later.
-*   **System:** All expenses must be submitted through TechCorp's designated online expense management system.
-*   **Receipts:**
-    *   **Mandatory:** Itemized receipts are mandatory for all expenses exceeding **INR 500**.
-    *   **Digital Preferred:** Digital receipts (e-tickets, e-invoices, photos of physical receipts) are preferred. Physical receipts must be retained for at least 90 days after reimbursement and may be requested by Finance for audit purposes.
-    *   **Missing Receipts:** For expenses under INR 500 where a receipt is unavailable, a detailed explanation of the expense and reason for missing receipt must be provided. Frequent claims for missing receipts will be flagged for review.
-    *   **Foreign Currency:** Expenses incurred in foreign currency must be reported in the original currency, and the expense system will automatically convert it using the prevailing exchange rate on the date of transaction or reimbursement.
-
-### 8.2 Reimbursement Timeline
-*   Once an expense report has been fully approved by the Manager and Finance, TechCorp India aims to process the reimbursement within **15 working days** via direct bank transfer to the employee's registered salary account.
-*   Incomplete or incorrectly submitted reports will cause delays in reimbursement.
-
-### 8.3 Travel Advances
-*   Employees may request a travel advance for anticipated out-of-pocket expenses for approved business trips.
-*   Advance requests must be submitted at least **5 working days** before the trip.
-*   All advances must be reconciled with an expense report within 7 calendar days of trip completion. Any unspent portion of the advance must be returned to the company.
-
----
-
-## 9. Policy Violations
-
-Any violation of this policy may result in:
-*   Non-reimbursement of expenses.
-*   Requirement to repay any improperly reimbursed amounts.
-*   Disciplinary action, up to and including termination of employment.
-*   Fraudulent expense claims will be treated with utmost seriousness and may lead to legal action.
-
----
-
-## 10. Policy Review
-
-This policy will be reviewed annually by the Finance and HR departments and updated as necessary to reflect changes in business needs, regulations, or economic conditions. TechCorp India reserves the right to amend this policy at any time without prior notice.
-
----
-
-## 11. Contact Information
-
-For any questions or clarifications regarding this policy, please contact:
-*   **Finance Department:** [finance@techcorp.in]
-*   **Human Resources Department:** [hr@techcorp.in]
-
----
-**Effective Date:** [DD-MM-YYYY]
-**Version:** 1.0
+**ChandraAILabs Management**
