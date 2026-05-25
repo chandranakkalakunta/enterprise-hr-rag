@@ -37,7 +37,8 @@ class HybridRetriever:
         self.top_k_sparse = top_k_sparse
         self.top_k_dense = top_k_dense
         self.top_k_final = top_k_final
-        self.alpha = alpha  # 0=sparse only, 1=dense only
+        import os
+        self.alpha = alpha if alpha is not None else float(os.environ.get('RRF_ALPHA', '0.2'))  # 0=sparse only, 1=dense only
 
         # Firestore for chunk text lookup
         self.firestore = FirestoreClient(project_id=project_id)
