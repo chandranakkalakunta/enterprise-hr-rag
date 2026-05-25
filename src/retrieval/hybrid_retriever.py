@@ -206,15 +206,17 @@ class HybridRetriever:
         for rank, result in enumerate(sparse):
             chunk_id = result["chunk_id"]
             if chunk_id not in scores:
-                scores[chunk_id] = {"rrf_score": 0, "data": result}
+                scores[chunk_id] = {"rrf_score": 0, "data": result, "sources": []}
             scores[chunk_id]["rrf_score"] += (1 - self.alpha) / (k + rank + 1)
+            scores[chunk_id]["sources"].append("bm25")
 
         # Add dense scores
         for rank, result in enumerate(dense):
             chunk_id = result["chunk_id"]
             if chunk_id not in scores:
-                scores[chunk_id] = {"rrf_score": 0, "data": result}
+                scores[chunk_id] = {"rrf_score": 0, "data": result, "sources": []}
             scores[chunk_id]["rrf_score"] += self.alpha / (k + rank + 1)
+            scores[chunk_id]["sources"].append("vector_search")
 
         # Sort by RRF score
         sorted_results = sorted(
@@ -224,7 +226,14 @@ class HybridRetriever:
         )
 
         return [
-            {**r["data"], "rrf_score": r["rrf_score"]}
+            {
+                **r["data"],
+                "rrf_score": r["rrf_score"],
+                # Show actual source: hybrid if in both!
+                "source": "hybrid" if len(r["sources"]) > 1
+                          else r["sources"][0] if r["sources"]
+                          else "unknown"
+            }
             for r in sorted_results
         ]
 
