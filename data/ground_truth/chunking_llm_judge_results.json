@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-05-25T21:59:06.235057",
+  "evaluation_type": "llm_judge_chunking_comparison",
+  "questions_used": 20,
+  "model": "gemini-2.5-flash",
+  "findings": {
+    "winner": "Fixed-1024",
+    "winner_score": 0.657,
+    "hard_question_improvement": "+71% vs Fixed-512 (0.925 vs 0.540)"
+  },
+  "results": [
+    {
+      "strategy": "Fixed-256",
+      "chunks": 101,
+      "avg": 0.626,
+      "src_acc": 1.0,
+      "easy": 0.738,
+      "hard": 0.525
+    },
+    {
+      "strategy": "Fixed-512 (original)",
+      "chunks": 47,
+      "avg": 0.589,
+      "src_acc": 1.0,
+      "easy": 0.71,
+      "hard": 0.54
+    },
+    {
+      "strategy": "Fixed-1024 (current)",
+      "chunks": 22,
+      "avg": 0.657,
+      "src_acc": 0.95,
+      "easy": 0.698,
+      "hard": 0.925
+    }
+  ],
+  "conclusion": "Fixed-1024 validated as optimal for HR policy documents. Larger chunks capture cross-paragraph context critical for complex policy questions."
+}
