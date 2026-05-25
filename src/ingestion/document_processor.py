@@ -87,8 +87,8 @@ class DocumentProcessor:
 
     def __init__(
         self,
-        chunk_size: int = 512,
-        chunk_overlap: int = 50,
+        chunk_size: int = 1024,
+        chunk_overlap: int = 100,
         min_chunk_size: int = 10
     ):
         self.chunk_size = chunk_size

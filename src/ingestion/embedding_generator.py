@@ -10,7 +10,7 @@ from document_processor import DocumentChunk
 
 logger = logging.getLogger(__name__)
 
-EMBEDDING_MODEL = "gemini-embedding-001"
+EMBEDDING_MODEL = os.environ.get("EMBEDDING_MODEL", "gemini-embedding-001")
 EMBEDDING_DIMENSIONS = 3072
 BATCH_SIZE = 100  # Max embeddings per API call
 RATE_LIMIT_DELAY = 0.1  # Seconds between batches
@@ -22,7 +22,9 @@ class EmbeddingGenerator:
     Handles batching and rate limiting.
     """
 
-    def __init__(self, api_key: str, model: str = EMBEDDING_MODEL):
+    def __init__(self, api_key: str, model: str = None):
+        # Allow runtime override via env
+        model = model or os.environ.get("EMBEDDING_MODEL", "gemini-embedding-001")
         from google import genai
         self.client = genai.Client(api_key=api_key)
         self.model = model

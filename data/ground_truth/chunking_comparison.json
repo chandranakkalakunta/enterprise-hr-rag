@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-05-25T19:30:36.391865",
+  "total_questions": 60,
+  "results": [
+    {
+      "strategy": "Fixed-512 (baseline)",
+      "strategy_id": "fixed_512",
+      "description": "Current: 512 words, 50 overlap",
+      "chunks_created": 46,
+      "avg_words_per_chunk": 456.8,
+      "avg_relevancy": 0.609,
+      "source_accuracy": 0.967,
+      "easy_relevancy": 0.702,
+      "medium_relevancy": 0.582,
+      "hard_relevancy": 0.544
+    },
+    {
+      "strategy": "Fixed-256 (smaller)",
+      "strategy_id": "fixed_256",
+      "description": "256 words, 30 overlap - more precise",
+      "chunks_created": 89,
+      "avg_words_per_chunk": 242.9,
+      "avg_relevancy": 0.56,
+      "source_accuracy": 0.967,
+      "easy_relevancy": 0.712,
+      "medium_relevancy": 0.528,
+      "hard_relevancy": 0.441
+    },
+    {
+      "strategy": "Fixed-1024 (larger)",
+      "strategy_id": "fixed_1024",
+      "description": "1024 words, 100 overlap - more context",
+      "chunks_created": 24,
+      "avg_words_per_chunk": 856.7,
+      "avg_relevancy": 0.711,
+      "source_accuracy": 0.95,
+      "easy_relevancy": 0.78,
+      "medium_relevancy": 0.68,
+      "hard_relevancy": 0.672
+    },
+    {
+      "strategy": "Sentence-5 (natural)",
+      "strategy_id": "sentence_5",
+      "description": "5 sentences per chunk - natural boundaries",
+      "chunks_created": 337,
+      "avg_words_per_chunk": 70.8,
+      "avg_relevancy": 0.426,
+      "source_accuracy": 0.883,
+      "easy_relevancy": 0.604,
+      "medium_relevancy": 0.416,
+      "hard_relevancy": 0.259
+    },
+    {
+      "strategy": "Paragraph-aware",
+      "strategy_id": "paragraph",
+      "description": "Paragraph boundaries - semantic units",
+      "chunks_created": 60,
+      "avg_words_per_chunk": 320.9,
+      "avg_relevancy": 0.593,
+      "source_accuracy": 0.95,
+      "easy_relevancy": 0.689,
+      "medium_relevancy": 0.555,
+      "hard_relevancy": 0.535
+    }
+  ],
+  "winner": "fixed_1024"
+}
