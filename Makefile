@@ -68,6 +68,8 @@ upload:
 
 ingest-pipeline:
 	@./scripts/ingest_documents.sh --env=dev
+	@echo "Restarting Cloud Run to clear response cache..."
+	@gcloud run services update hr-rag-engine --region=asia-south1 --project=hr-rag-dev --set-env-vars="CACHE_BUST=$$(date +%s)" --quiet 2>/dev/null || true
 
 check-index:
 	@gcloud ai indexes list \

@@ -28,6 +28,10 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s \
     CMD curl -f http://localhost:8080/_stcore/health || exit 1
 
 # Start command
+# Health check endpoint
+HEALTHCHECK --interval=30s --timeout=30s --start-period=60s \
+    CMD curl -f http://localhost:8080/_stcore/health || exit 1
+
 CMD ["streamlit", "run", "src/ui/app.py", \
      "--server.port=8080", \
      "--server.address=0.0.0.0", \

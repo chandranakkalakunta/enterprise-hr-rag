@@ -38,7 +38,7 @@ class RAGEngine:
         self.retriever = HybridRetriever(
             project_id=project_id,
             environment=environment,
-            top_k_final=5
+            top_k_final=3
         )
 
         # Enable Vector Search
@@ -66,6 +66,12 @@ class RAGEngine:
         self._cache = {}
         self._cache_ttl = 3600
 
+    def invalidate_cache(self):
+        """Clear response cache - call after re-ingestion!"""
+        self._cache = {}
+        logger.info("Response cache invalidated!")
+
+
     def build_prompt(self, query: str, chunks: list[dict]) -> str:
         """Build prompt with retrieved context."""
         context_parts = []
@@ -88,11 +94,12 @@ HR POLICY DOCUMENTS:
 EMPLOYEE QUESTION: {query}
 
 INSTRUCTIONS:
-- Answer clearly and concisely
-- Always cite which policy document your answer comes from
+- Answer concisely in 3-5 sentences maximum
+- Always cite the source policy document
 - Use format: "According to [Policy Name]..."
-- If multiple policies apply, reference all of them
+- Give the key facts only, not exhaustive details
 - Be helpful and professional
+- If employee wants more details, they can ask follow-up
 
 ANSWER:"""
         return prompt
