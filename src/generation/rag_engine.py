@@ -62,9 +62,10 @@ class RAGEngine:
 
         logger.info(f"RAG Engine initialized: {model}")
 
-        # Simple response cache (TTL: 1 hour)
+        # Simple response cache (TTL: 30 mins)
+        # Shorter TTL ensures stale data cleared faster
         self._cache = {}
-        self._cache_ttl = 3600
+        self._cache_ttl = 1800
 
     def invalidate_cache(self):
         """Clear response cache - call after re-ingestion!"""
@@ -226,6 +227,9 @@ ANSWER:"""
         Stream response for better UX.
         Yields text chunks as they are generated.
         """
+        import time as _time
+        _start = _time.time()
+
         chunks = self.retriever.retrieve(question)
 
         if not chunks:
@@ -233,6 +237,7 @@ ANSWER:"""
             return
 
         prompt = self.build_prompt(question, chunks)
+        full_answer = ""
 
         try:
             response = self.client.models.generate_content_stream(
@@ -241,9 +246,30 @@ ANSWER:"""
             )
             for chunk in response:
                 if chunk.text:
+                    full_answer += chunk.text
                     yield chunk.text
         except Exception as e:
             yield f"Error: {e}"
+
+        # Log analytics after streaming completes
+        try:
+            import sys as _sys, os as _os
+            _analytics_path = _os.path.join(
+                _os.path.dirname(_os.path.abspath(__file__)), "../analytics"
+            )
+            _sys.path.insert(0, _analytics_path)
+            from analytics_logger import AnalyticsLogger
+            al = AnalyticsLogger(project_id=self.project_id, environment=self.environment)
+            al.log_query_async(
+                question=question,
+                intent="policy",
+                chunks_retrieved=len(chunks),
+                latency_ms=int((_time.time() - _start) * 1000),
+                model_used=self.model,
+                success=True
+            )
+        except Exception as e:
+            logger.warning(f"Stream analytics failed: {e}")
 
 
 if __name__ == "__main__":

@@ -188,6 +188,9 @@ with st.sidebar:
         st.markdown(f"- {p}")
 
 # ── Chat Interface ─────────────────────────────────────────
+if "processing" not in st.session_state:
+    st.session_state.processing = False
+
 if "messages" not in st.session_state:
     st.session_state.messages = [{
         "role": "assistant",
@@ -210,12 +213,17 @@ for message in st.session_state.messages:
                 )
 
 # Handle pending query
-query = st.chat_input(f"Ask me anything, {first_name}...")
+if st.session_state.processing:
+    st.chat_input(f"Please wait...", disabled=True)
+    query = None
+else:
+    query = st.chat_input(f"Ask me anything, {first_name}...")
 
 if not query and "pending_query" in st.session_state:
     query = st.session_state.pop("pending_query")
 
 if query:
+    st.session_state.processing = True
     st.session_state.messages.append({
         "role": "user",
         "content": query,
@@ -296,6 +304,7 @@ if query:
         }
         st.caption(intent_colors.get(intent_label, "📋 Policy Query"))
 
+    st.session_state.processing = False
     st.session_state.messages.append({
         "role": "assistant",
         "content": answer,
