@@ -62,6 +62,10 @@ class RAGEngine:
 
         logger.info(f"RAG Engine initialized: {model}")
 
+        # Simple response cache (TTL: 1 hour)
+        self._cache = {}
+        self._cache_ttl = 3600
+
     def build_prompt(self, query: str, chunks: list[dict]) -> str:
         """Build prompt with retrieved context."""
         context_parts = []
@@ -99,8 +103,16 @@ ANSWER:"""
         Returns answer with citations and metadata.
         """
         logger.info(f"Processing query: {question[:50]}...")
-        import time
+        import time, hashlib
         start_time = time.time()
+
+        # Check cache first!
+        cache_key = hashlib.md5(question.lower().strip().encode()).hexdigest()
+        if cache_key in self._cache:
+            cached_time, cached_result = self._cache[cache_key]
+            if time.time() - cached_time < self._cache_ttl:
+                logger.info("Cache hit!")
+                return cached_result
 
         # Step 1: Retrieve relevant chunks
         chunks = self.retriever.retrieve(question)
@@ -169,6 +181,13 @@ ANSWER:"""
             )
         except Exception as e:
             logger.warning(f"Analytics logging failed: {e}")
+
+        # Cache the result
+        self._cache[cache_key] = (time.time(), result)
+        # Keep cache size manageable
+        if len(self._cache) > 100:
+            oldest = min(self._cache, key=lambda k: self._cache[k][0])
+            del self._cache[oldest]
 
         return result
 

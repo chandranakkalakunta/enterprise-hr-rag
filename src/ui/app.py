@@ -226,42 +226,58 @@ if query:
         st.markdown(query)
 
     with st.chat_message("assistant"):
-        with st.spinner("Searching for your answer..."):
+        with st.spinner("Searching HR policies..."):
             try:
-                # Detect intent first
                 from query_router import QueryRouter
                 router = QueryRouter()
                 intent = router.detect_intent(query)
-
-                if intent in ["personal", "hybrid"]:
-                    # Use Personal RAG
-                    personal_rag = get_personal_rag()
-                    if personal_rag and employee.get("email"):
-                        rag_engine = get_rag_engine() if intent == "hybrid" else None
-                        result = personal_rag.query(
-                            question=query,
-                            employee_email=employee.get("email", ""),
-                            policy_rag_engine=rag_engine
-                        )
-                    else:
-                        # Fallback to policy RAG
-                        engine = get_rag_engine()
-                        result = engine.query(query)
-                else:
-                    # Use Policy RAG
-                    engine = get_rag_engine()
-                    result = engine.query(query)
-
-                answer = result.get("answer", "")
-                sources = result.get("sources", [])
-                intent_label = result.get("intent", "policy")
-
             except Exception as e:
-                answer = f"Sorry, I encountered an error. Please try again."
-                sources = []
-                intent_label = "error"
+                intent = "policy"
 
-        st.markdown(answer)
+        sources = []
+        intent_label = intent
+        answer = ""
+
+        try:
+            if intent in ["personal", "hybrid"]:
+                personal_rag = get_personal_rag()
+                if personal_rag and employee.get("email"):
+                    rag_engine = get_rag_engine() if intent == "hybrid" else None
+                    result = personal_rag.query(
+                        question=query,
+                        employee_email=employee.get("email", ""),
+                        policy_rag_engine=rag_engine
+                    )
+                    answer = result.get("answer", "")
+                    sources = result.get("sources", [])
+                    intent_label = result.get("intent", "personal")
+                    st.markdown(answer)
+                else:
+                    engine = get_rag_engine()
+                    answer_placeholder = st.empty()
+                    full_answer = ""
+                    for chunk in engine.query_stream(query):
+                        full_answer += chunk
+                        answer_placeholder.markdown(full_answer + "▌")
+                    answer_placeholder.markdown(full_answer)
+                    answer = full_answer
+                    sources = ["HR Policies"]
+            else:
+                engine = get_rag_engine()
+                answer_placeholder = st.empty()
+                full_answer = ""
+                for chunk in engine.query_stream(query):
+                    full_answer += chunk
+                    answer_placeholder.markdown(full_answer + "▌")
+                answer_placeholder.markdown(full_answer)
+                answer = full_answer
+                sources = ["HR Policies"]
+
+        except Exception as e:
+            answer = "Sorry, I encountered an error. Please try again."
+            sources = []
+            intent_label = "error"
+            st.markdown(answer)
 
         if sources:
             for source in sources:
