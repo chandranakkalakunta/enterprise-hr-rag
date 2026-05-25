@@ -119,6 +119,29 @@ ANSWER:"""
             cached_time, cached_result = self._cache[cache_key]
             if time.time() - cached_time < self._cache_ttl:
                 logger.info("Cache hit!")
+                # Still log cache hits to BigQuery!
+                try:
+                    import sys as _sys
+                    import os as _os
+                    _analytics_path = _os.path.join(
+                        _os.path.dirname(_os.path.abspath(__file__)), "../analytics"
+                    )
+                    _sys.path.insert(0, _analytics_path)
+                    from analytics_logger import AnalyticsLogger
+                    al = AnalyticsLogger(
+                        project_id=self.project_id,
+                        environment=self.environment
+                    )
+                    al.log_query_async(
+                        question=question,
+                        intent="policy",
+                        chunks_retrieved=0,
+                        latency_ms=0,
+                        model_used="cache",
+                        success=True
+                    )
+                except Exception as e:
+                    logger.warning(f"Cache hit logging failed: {e}")
                 return cached_result
 
         # Step 1: Retrieve relevant chunks
