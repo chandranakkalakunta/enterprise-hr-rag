@@ -159,7 +159,7 @@ ANSWER:"""
             from analytics_logger import AnalyticsLogger
             al = AnalyticsLogger(project_id=self.project_id, environment=self.environment)
             latency_ms = int((time.time() - start_time) * 1000)
-            al.log_query(
+            al.log_query_async(
                 question=question,
                 intent=result.get("intent", "policy"),
                 chunks_retrieved=len(chunks),

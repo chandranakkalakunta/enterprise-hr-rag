@@ -1,35 +1,34 @@
 {
   "metrics": {
     "total_questions": 20,
-    "avg_relevancy_score": 0.674,
+    "avg_relevancy_score": 0.644,
     "source_accuracy": 1.0,
     "avg_chunks_used": 5.0,
     "by_difficulty": {
       "easy": {
         "count": 10,
-        "avg_relevancy": 0.74
+        "avg_relevancy": 0.708
       },
       "medium": {
         "count": 8,
-        "avg_relevancy": 0.63
+        "avg_relevancy": 0.587
       },
       "hard": {
         "count": 2,
-        "avg_relevancy": 0.522
+        "avg_relevancy": 0.552
       }
     },
-    "timestamp": "2026-05-24T04:30:44.621575+00:00",
+    "timestamp": "2026-05-24T18:13:09.432294+00:00",
     "status": "completed"
   },
   "details": [
     {
       "question": "How many annual leave days do employees get?",
       "expected": "Employees are entitled to 21 days of annual leave per year.",
-      "actual": "According to 01_leave_policy, employees are entitled to 21 working days of Privilege Leave (PL) / Annual Leave per calendar year.",
+      "actual": "According to the Employee Leave Policy - ChandraAILabs (Source 1), employees are entitled to 21 working days of Annual Leave per calendar year.",
       "sources": [
-        "05_performance_management",
-        "01_leave_policy",
-        "08_training_development"
+        "06_compensation_benefits",
+        "01_leave_policy"
       ],
       "chunks_used": 5,
       "relevancy_score": 1.0,
@@ -39,47 +38,50 @@
     {
       "question": "How many sick leave days are provided?",
       "expected": "Employees get 10 days of sick leave per year.",
-      "actual": "According to **01_leave_policy**, employees are entitled to 10 working days of Sick Leave (SL) per calendar year.",
+      "actual": "According to [Source 2: 01_leave_policy], ChandraAILabs provides 10 working days of Sick Leave per calendar year.",
       "sources": [
-        "01_leave_policy",
-        "08_training_development"
+        "06_compensation_benefits",
+        "01_leave_policy"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.889,
+      "relevancy_score": 0.778,
       "source_correct": true,
       "difficulty": "easy"
     },
     {
       "question": "What is the maternity leave entitlement?",
       "expected": "Female employees are entitled to 26 weeks of paid maternity leave.",
-      "actual": "According to [Source 1: 01_leave_policy] and [Source 2: 01_leave_policy], the maternity leave entitlement is as follows:\n\n*   **Standard Entitlement:** 26 weeks (182 calendar days) for female employees with up to two surviving children. Up to 8 weeks can be taken before the expected delivery date, with the remaining leave taken after delivery.\n*   **For two or more surviving children:** 12 weeks, with no more than 6 weeks allowed before the expected delivery.\n*   **Adoption Leave:** Female employees who legally adopt a child below the age of three months are entitled to 12 weeks of leave from the date the child is handed over.\n*   **Surrogacy Leave:** Commissioning mothers (who use a surrogate) are entitled to 12 weeks of leave from the date the child is handed over.\n*   **Miscarriage/Medical Termination of Pregnancy (MTP):** Employees are entitled to 6 weeks of leave with pay immediately following the date of miscarriage/MTP.\n*   **Complications:** In case of illness arising out of pregnancy, delivery, premature birth of a child, or miscarriage, an additional one month of leave with wages may be granted upon submission of proof.\n\n**Eligibility:** Female employees must have worked at TechCorp India for at least 80 days in the 12 months immediately preceding the date of her expected delivery. This is as per the Maternity Benefit Act, 1961 (as amended in 2017).",
+      "actual": "According to [01_leave_policy], the maternity leave entitlement is 26 weeks (182 calendar days) for up to two surviving children, as per the Maternity Benefit Act, 1961 (as amended).\n\nAdditionally:\n*   Up to 8 weeks of leave can be taken before the expected date of delivery, with the remaining leave to be taken after delivery.\n*   For commissioning mothers or mothers adopting a child below three months of age, 12 weeks of leave from the date the child is handed over.\n*   A commissioning mother (surrogacy) is entitled to 12 weeks of leave from the date the child is handed over.\n*   In case of miscarriage/Medical Termination of Pregnancy (MTP), 6 weeks of leave from the date of miscarriage/MTP.\n*   For a tubectomy operation, 2 weeks of leave from the date of the operation.\n*   An additional one month of leave (beyond 26 weeks) may be granted on medical grounds for illness arising out of pregnancy, subject to approval from HR and supporting medical documentation.\n\nMaternity Leave is a specific-purpose leave and does not involve carry-forward or encashment, as stated in [01_leave_policy].",
       "sources": [
+        "06_compensation_benefits",
+        "08_training_development",
         "01_leave_policy"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.818,
+      "relevancy_score": 0.545,
       "source_correct": true,
       "difficulty": "easy"
     },
     {
       "question": "How many days of paternity leave do employees get?",
       "expected": "Employees get 5 days of paternity leave.",
-      "actual": "According to **Source 2: 01_leave_policy**, employees are entitled to 5 working days of paternity leave.",
+      "actual": "According to [01_leave_policy], employees are entitled to 5 working days of Paternity Leave per calendar year.",
       "sources": [
+        "06_compensation_benefits",
         "01_leave_policy"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.857,
+      "relevancy_score": 0.714,
       "source_correct": true,
       "difficulty": "easy"
     },
     {
       "question": "How many casual leave days are allowed per year?",
       "expected": "Employees are allowed 7 days of casual leave per year.",
-      "actual": "According to the `01_leave_policy` document, employees are entitled to 7 working days of Casual Leave (CL) per calendar year.",
+      "actual": "According to 01_leave_policy, employees are entitled to 7 working days of Casual Leave per calendar year.",
       "sources": [
-        "01_leave_policy",
-        "08_training_development"
+        "06_compensation_benefits",
+        "01_leave_policy"
       ],
       "chunks_used": 5,
       "relevancy_score": 0.9,
@@ -89,23 +91,53 @@
     {
       "question": "How many days can employees work from home per week?",
       "expected": "Employees can work from home up to 2 days per week with manager approval.",
-      "actual": "According to the Remote Work Policy - TechCorp India (Source 2), eligible employees are permitted to work remotely for up to two (2) days per standard five-day work week. Employees are required to work from the TechCorp India office for a minimum of three (3) days per standard five-day work week.",
+      "actual": "According to the 04_remote_work_policy for ChandraAILabs:\n\n*   **For most teams (Hybrid Work Model):** Employees can work remotely for up to 3 days per week, and are required to work from the office for a minimum of 2 days per week (Source 2).\n*   **For specific AI Teams (Full Remote Work Model):** Employees within AI/ML Engineering, AI Research, and Data Science teams may work fully remotely from any location within India (Source 2).",
       "sources": [
-        "04_remote_work_policy",
-        "09_grievance_policy"
+        "06_compensation_benefits",
+        "01_leave_policy",
+        "04_remote_work_policy"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.5,
+      "relevancy_score": 0.714,
       "source_correct": true,
       "difficulty": "easy"
     },
     {
       "question": "What are the core working hours for remote work?",
       "expected": "Core working hours are 10am to 4pm IST for remote workers.",
-      "actual": "According to [04_remote_work_policy], the core working hours for all employees, including those working remotely, are 10:00 AM to 4:00 PM Indian Standard Time (IST). During these hours, employees are required to be online, available, and responsive. [04_remote_work_policy] also defines Core Hours as \"Specific hours during the workday when all employees are expected to be available and responsive for collaboration and meetings.\"",
+      "actual": "According to the **04_remote_work_policy**, all employees (hybrid and full remote) are expected to be available and responsive during Core Hours: 10:00 AM to 4:00 PM IST (Indian Standard Time), Monday to Friday.",
       "sources": [
-        "10_it_security_policy",
-        "04_remote_work_policy"
+        "05_performance_management",
+        "04_remote_work_policy",
+        "10_it_security_policy"
+      ],
+      "chunks_used": 5,
+      "relevancy_score": 0.364,
+      "source_correct": true,
+      "difficulty": "easy"
+    },
+    {
+      "question": "What is the annual training budget per employee?",
+      "expected": "Each employee receives an annual training budget of INR 50,000.",
+      "actual": "According to [Source 2: 08_training_development], an annual budget of INR 75,000 is allocated per eligible full-time employee for external training and certifications. Any requests exceeding this annual limit will require special approval from the Department Head and Senior Management, accompanied by a strong business justification.",
+      "sources": [
+        "06_compensation_benefits",
+        "08_training_development",
+        "07_travel_expense_policy"
+      ],
+      "chunks_used": 5,
+      "relevancy_score": 0.7,
+      "source_correct": true,
+      "difficulty": "easy"
+    },
+    {
+      "question": "How many study leave days are provided per year?",
+      "expected": "Employees get 5 days of study leave per year for certifications.",
+      "actual": "According to [Source 1: 08_training_development], each full-time employee is entitled to 5 working days of paid study leave per calendar year.",
+      "sources": [
+        "06_compensation_benefits",
+        "08_training_development",
+        "01_leave_policy"
       ],
       "chunks_used": 5,
       "relevancy_score": 0.545,
@@ -113,159 +145,131 @@
       "difficulty": "easy"
     },
     {
-      "question": "What is the annual training budget per employee?",
-      "expected": "Each employee receives an annual training budget of INR 50,000.",
-      "actual": "According to the **08_training_development** policy document, each eligible employee will receive an annual training budget of \u20b950,000 INR (Fifty Thousand Indian Rupees) for each financial year (April 1st to March 31st).",
-      "sources": [
-        "05_performance_management",
-        "08_training_development"
-      ],
-      "chunks_used": 5,
-      "relevancy_score": 0.8,
-      "source_correct": true,
-      "difficulty": "easy"
-    },
-    {
-      "question": "How many study leave days are provided per year?",
-      "expected": "Employees get 5 days of study leave per year for certifications.",
-      "actual": "According to 08_training_development, each eligible employee is entitled to 5 (five) paid study leave days per financial year.",
-      "sources": [
-        "01_leave_policy",
-        "08_training_development"
-      ],
-      "chunks_used": 5,
-      "relevancy_score": 0.455,
-      "source_correct": true,
-      "difficulty": "easy"
-    },
-    {
       "question": "Within how many days must travel expenses be submitted?",
       "expected": "Travel expenses must be submitted within 7 calendar days of travel.",
-      "actual": "According to [Source 2: 07_travel_expense_policy], all expense reports must be submitted within 7 calendar days from the date the expense was incurred or the business trip concluded, whichever is later.",
+      "actual": "According to [Source 1: 07_travel_expense_policy], expense reports must be submitted within 7 calendar days of the completion of the travel or the date the expense was incurred.",
       "sources": [
+        "08_training_development",
         "07_travel_expense_policy",
-        "09_grievance_policy",
-        "08_training_development"
+        "04_remote_work_policy"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.636,
+      "relevancy_score": 0.818,
       "source_correct": true,
       "difficulty": "easy"
     },
     {
       "question": "How long does grievance resolution take?",
       "expected": "Grievances must be resolved within 30 days of formal complaint.",
-      "actual": "According to the **09_grievance_policy**, TechCorp India aims to resolve all formal grievances (excluding POSH complaints) within 30 calendar days from the date of filing the formal written complaint to the communication of the decision.\n\nHere's a breakdown of the typical timelines:\n\n*   **Informal Process (optional)**:\n    *   Direct Communication: Within 3 working days of the incident or awareness of the grievance. (Source 2)\n    *   Manager/HR Business Partner: Within 5 working days of being informed. (Source 2)\n    *   Overall informal process: 3-5 working days. (Source 1)\n*   **Formal Grievance Redressal Process**:\n    *   Acknowledgment and Assessment: Within 2 working days of filing the formal complaint. (Source 1, Source 2)\n    *   Investigation: Within 15 working days from the date of acknowledgment. (Source 1, Source 2)\n    *   Decision and Communication: Within 5 working days of the investigation's conclusion. (Source 1)\n    *   Total Formal Process (approximate): 22 working days, which is approximately 30 calendar days. (Source 1)\n\nFor grievances involving sexual harassment, complaints are referred to the Internal Complaints Committee (ICC) and follow specific statutory timelines, such as an investigation within 90 days, as per the POSH Act. (Source 1)\n\nIt is also noted that in complex cases requiring extensive investigation, the resolution period may be extended, and the Complainant will be informed of any delays and revised timelines. (Source 1)",
+      "actual": "According to the 09_grievance_policy document:\n\n*   **Informal Resolution:** Endeavor to resolve informally within 5 working days.\n*   **Formal Grievance Submission Acknowledgement:** The GRC/HR will acknowledge receipt of the formal grievance within 2 working days.\n*   **Preliminary Assessment by GRC:** This will take 2 working days.\n*   **Entire Formal Grievance Redressal Process:** The aim is to complete this process, from the date of formal grievance submission to the communication of the final decision, within 30 calendar days. This timeline may be extended in complex cases, and any such extension will be communicated to the Complainant.\n*   **Appeal Process:** If an appeal is submitted, the CEO/Managing Director's final decision will be communicated to the Complainant within 10 working days of receiving the appeal.\n\nPlease note that \"Working Days\" refers to standard company working days, excluding weekends and public holidays, as defined in the 09_grievance_policy document.",
       "sources": [
-        "06_compensation_benefits",
+        "05_performance_management",
         "09_grievance_policy"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.8,
+      "relevancy_score": 0.6,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "What is the probation period for new employees?",
       "expected": "New employees have a probation period of 6 months.",
-      "actual": "According to the 02_onboarding_policy, all new employees at TechCorp India undergo a mandatory probation period of 6 months.",
+      "actual": "According to the `02_onboarding_policy` document, all new employees at ChandraAILabs undergo a six (6) months probation period. This period allows both the employee and the company to assess suitability for the role and company culture.",
       "sources": [
-        "01_leave_policy",
-        "02_onboarding_policy"
+        "02_onboarding_policy",
+        "05_performance_management",
+        "01_leave_policy"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.889,
+      "relevancy_score": 0.556,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "What happens if performance rating is below expectations?",
       "expected": "Employees with below expectation ratings are placed on a Performance Improvement Plan for 90 days.",
-      "actual": "If an employee's performance rating is below expectations (a rating of '2' - Partially Meets Expectations, or '1' - Needs Significant Improvement), the following actions may be taken:\n\n*   **Performance Improvement Plan (PIP):** A rating of '1' typically triggers a Performance Improvement Plan (PIP). A PIP is also initiated for employees whose performance is consistently below expectations, such as a '2' rating over multiple review cycles, to help them meet required standards within a defined timeframe. According to [Source 1: 05_performance_management] and [Source 3: 05_performance_management].\n*   **Annual Increment:** Employees rated '1' or '2' may receive a lower or no annual increment until their performance improves. According to [Source 3: 05_performance_management] and [Source 5: 06_compensation_benefits].\n*   **Performance Bonus:** A rating of '1' or '2' may lead to a significantly reduced or no performance bonus. Employees on a PIP or who have received a '1' rating may also be ineligible for a bonus or receive a prorated bonus. According to [Source 3: 05_performance_management] and [Source 5: 06_compensation_benefits].\n\nDuring the Mid-Year Performance Review, performance concerns requiring a PIP may also be identified, although no formal rating is typically assigned at that stage. According to [Source 2: 05_performance_management].",
+      "actual": "According to [Source 1: 05_performance_management] and [Source 2: 05_performance_management], if your performance rating is below expectations (a formal rating of '1' - Does Not Meet Expectations, or '2' - Needs Improvement / Partially Meets Expectations):\n\n*   It will trigger a Performance Improvement Plan (PIP), which is a formal process designed to address significant and consistent performance deficiencies.\n*   A rating of '1' may lead to a formal PIP or further disciplinary action up to and including termination.\n*   If performance does not improve during the PIP, it may lead to further disciplinary action, demotion, or termination of employment.\n*   According to [Source 5: 05_performance_management], employees with a rating of '1' or '2' may receive no annual salary increment or a reduced increment.\n*   Additionally, employees with a rating of '1' or '2' are not eligible for the annual bonus program.",
       "sources": [
-        "05_performance_management",
-        "06_compensation_benefits",
-        "10_it_security_policy"
+        "05_performance_management"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.533,
+      "relevancy_score": 0.6,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "What is the password policy for IT security?",
       "expected": "Passwords must be complex with minimum 8 characters and changed every 90 days.",
-      "actual": "According to the \"10_it_security_policy\" document, the password policy for TechCorp India systems requires the following:\n\n*   **Complexity**: Passwords must be a minimum of 12 characters long, include a combination of uppercase letters, lowercase letters, numbers, and special characters. They must not contain easily guessable information (e.g., common words, personal names, dates of birth) or be a variation of previous passwords.\n*   **Uniqueness**: Passwords for TechCorp India systems must be unique and not reused for any personal accounts or other company systems.\n*   **MFA (Multi-Factor Authentication)**: MFA is mandatory for all access to TechCorp India's internal networks, critical applications, and remote access services.\n*   **Storage**: Passwords must never be written down, stored in unencrypted files, or shared with anyone. The use of an approved password manager is highly recommended.\n*   **Sharing**: Passwords must never be shared with colleagues, supervisors, or IT personnel. TechCorp India IT staff will never ask for your password.\n*   **Frequency of Change**: Passwords must be changed every 90 days.\n*   **Account Lockout**: Systems will lock accounts after a defined number of failed login attempts (e.g., 5 attempts) and require IT intervention for unlocking.\n\nThis policy is referenced across multiple sections of the \"10_it_security_policy\" document.",
+      "actual": "According to the IT Security Policy for ChandraAILabs (10_it_security_policy), strong passwords are a primary defense against unauthorized access. All personnel must adhere to the following:\n\n*   **Complexity:** Passwords must be at least 12 characters long and include a mix of uppercase letters, lowercase letters, numbers, and special characters.\n*   **Uniqueness:** Passwords must not be reused across different systems or services, especially personal ones.\n*   **MFA (Multi-Factor Authentication):** All critical systems, including company networks, cloud services, internal applications, and VPNs, must employ MFA.\n*   **Confidentiality:** Passwords must never be written down, shared, or communicated verbally or electronically to anyone, including IT support.\n*   **Storage:** Passwords must be stored securely in an approved password manager if necessary, but never on unprotected files or sticky notes.\n*   **Change Frequency:** While not strictly enforced for strong, unique passwords with MFA, password resets will be triggered immediately upon suspicion of compromise.\n*   **Account Lockout:** Systems will automatically lock out accounts after a specified number of failed login attempts.",
       "sources": [
-        "05_performance_management",
+        "04_remote_work_policy",
         "10_it_security_policy"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.846,
+      "relevancy_score": 0.462,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "Can employees take leave during probation period?",
       "expected": "During probation, employees can only take emergency leave. Annual leave accrual begins after probation.",
-      "actual": "According to the **TechCorp India - Employee Leave Policy (Source 1, Source 2, Source 3)**:\n\nDuring the probation period, employees are generally not entitled to paid Privilege Leave (PL). While PL accrual begins from the date of joining, it can typically only be availed after successful completion of the probation period.\n\nCasual Leave (CL) and Sick Leave (SL) may be availed on a pro-rata basis during probation, but they are generally unpaid or adjusted against future accruals if the probation is successfully completed. Each such case will be reviewed by HR and the manager. Eligibility for full CL and SL entitlements is also stated to be after successful completion of the probation period.\n\nIn case of extended absence during probation, the probation period may be extended accordingly.",
+      "actual": "According to [Source 1: 01_leave_policy] and [Source 2: 01_leave_policy], during the probation period:\n\n*   Employees are generally not eligible for paid Annual Leave.\n*   They may be granted paid Sick Leave and Casual Leave on a pro-rata basis, subject to management approval, for genuine reasons.\n*   Any leave taken during probation, if unpaid, will extend the probation period accordingly.\n*   Annual Leave accrued during probation may be utilized only after the completion of the probation period and confirmation of employment.",
       "sources": [
         "02_onboarding_policy",
         "01_leave_policy"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.643,
+      "relevancy_score": 0.571,
       "source_correct": true,
       "difficulty": "hard"
     },
     {
       "question": "What certifications does the company support financially?",
       "expected": "The company supports GCP, AWS, and Azure certifications through the training budget.",
-      "actual": "According to the `08_training_development` policy:\n\nTechCorp India financially supports certifications from leading cloud providers, specifically:\n*   Amazon Web Services (AWS)\n*   Google Cloud Platform (GCP)\n*   Microsoft Azure\n\nAdditionally, other industry-relevant technical certifications such as those in networking, cybersecurity, project management, specific programming languages, and data science may be supported, subject to manager and HR approval based on business relevance.\n\nThe annual training budget of \u20b950,000 INR can be utilized to cover certification exam registration fees, approved study materials, practice tests, and preparatory courses. In case an employee fails a certification exam, TechCorp India will cover the cost of one (1) retake per certification. Recertification costs can also be covered by the annual training budget.",
+      "actual": "ChandraAILabs financially supports a variety of certifications relevant to employee development and company objectives.\n\nAccording to [Source 1: 08_training_development] and [Source 2: 08_training_development], the company provides an annual budget of INR 75,000 per eligible full-time employee for external training and certifications. This budget covers course enrollment fees, certification exam fees, and required study materials. Employees typically pay upfront and claim reimbursement upon successful completion.\n\nSpecifically, the company supports:\n\n*   **Cloud Platform Certifications:**\n    *   From leading cloud providers such as Google Cloud Platform (GCP), Amazon Web Services (AWS), and Microsoft Azure.\n    *   This includes Associate, Professional, and Specialty certifications relevant to AI/ML, Data Engineering, DevOps, and Solutions Architecture.\n    *   Examples include GCP Professional Machine Learning Engineer, AWS Certified Machine Learning \u2013 Specialty, and Microsoft Certified: Azure AI Engineer Associate. (Source 2: 08_training_development)\n\n*   **AI/ML Specific Certifications & Courses:**\n    *   From platforms like Coursera, DeepLearning.AI, Udacity, fast.ai, and edX.\n    *   Examples include DeepLearning.AI Specializations, Coursera Professional Certificates (e.g., Google AI/ML, IBM AI Engineering), and Udacity Nanodegree Programs. (Source 2: 08_training_development)\n\nOverall, ChandraAILabs supports professional development through training programs and certifications relevant to an employee's role and company growth, as stated in [Source 4: 06_compensation_benefits] and reiterated in [Source 3: 08_training_development].",
       "sources": [
-        "05_performance_management",
-        "10_it_security_policy",
-        "02_onboarding_policy",
-        "08_training_development"
+        "06_compensation_benefits",
+        "08_training_development",
+        "07_travel_expense_policy"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.636,
+      "relevancy_score": 0.727,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "What is the reimbursement timeline for travel expenses?",
       "expected": "Travel expense reimbursements are processed within 15 days of submission.",
-      "actual": "According to [Source 1: 07_travel_expense_policy]:\n\n*   **Expense Report Submission Timeline:** All expense reports must be submitted within 7 calendar days from the date the expense was incurred or the business trip concluded, whichever is later.\n*   **Reimbursement Timeline:** Once an expense report has been fully approved by the Manager and Finance, TechCorp India aims to process the reimbursement within 15 working days via direct bank transfer to the employee's registered salary account. Please note that incomplete or incorrectly submitted reports will cause delays.",
+      "actual": "According to 07_travel_expense_policy, approved expense reports will be processed for reimbursement within 15 working days from the date of final approval by the Finance Department. Reimbursements will be made via bank transfer to the employee's registered bank account.",
       "sources": [
-        "07_travel_expense_policy",
-        "10_it_security_policy",
-        "08_training_development"
+        "06_compensation_benefits",
+        "08_training_development",
+        "07_travel_expense_policy"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.4,
+      "relevancy_score": 0.7,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "What are the data classification levels?",
       "expected": "Data is classified as Public, Internal, Confidential, and Secret.",
-      "actual": "According to the **10_it_security_policy** document, TechCorp India classifies its information assets into the following levels:\n\n*   **Public/Internal:** May be stored on standard network drives, internal platforms.\n*   **Confidential:** Must be stored on secure, access-controlled network drives. Encryption at rest is highly recommended.\n*   **Restricted:** Must be stored on highly secured, encrypted, and access-controlled systems. Often requires specialized storage solutions.",
+      "actual": "According to **10_it_security_policy** (Source 4), the data classification levels are:\n\n*   **Public Data**: Information intended for general public release, requiring no confidentiality.\n*   **Internal Data**: Information not intended for public release, but generally not sensitive enough to cause significant harm if leaked.\n*   **Confidential Data**: Information that, if disclosed, could cause moderate to significant harm to ChandraAILabs, its customers, or partners. Access is restricted to authorized personnel on a need-to-know basis.\n*   **Restricted Data (Highly Confidential)**: Information whose unauthorized disclosure would cause severe harm, reputational damage, financial loss, or legal penalties. This includes all ChandraAILabs' Intellectual Property and sensitive customer data.",
       "sources": [
-        "05_performance_management",
         "10_it_security_policy"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.222,
+      "relevancy_score": 0.333,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "What is the POSH committee?",
       "expected": "POSH stands for Prevention of Sexual Harassment. The committee handles harassment complaints and investigations.",
-      "actual": "According to 09_grievance_policy, the POSH Committee is also known as the Internal Complaints Committee (ICC). It is constituted under the Prevention of Sexual Harassment at Workplace (Prevention, Prohibition and Redressal) Act, 2013 (POSH Act). The ICC is specifically responsible for handling all complaints related to sexual harassment, strictly in accordance with TechCorp India's POSH Policy and the statutory timelines and procedures outlined in the POSH Act.",
+      "actual": "According to the 09_grievance_policy, the POSH committee is referred to as the Internal Complaints Committee (ICC). It is the committee established under the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013 (POSH Act), specifically for addressing complaints of sexual harassment. The ICC operates independently of the Grievance Redressal Committee (GRC) and follows the specific procedures, timelines, and appellate mechanisms prescribed by the POSH Act and ChandraAILabs' POSH Policy.",
       "sources": [
-        "10_it_security_policy",
+        "06_compensation_benefits",
+        "02_onboarding_policy",
         "09_grievance_policy"
       ],
       "chunks_used": 5,
@@ -276,14 +280,12 @@
     {
       "question": "How is the performance rating calculated?",
       "expected": "Performance rating is based on goal achievement, competency assessment, and manager evaluation on a 1-5 scale.",
-      "actual": "According to the **05_performance_management** policy documents, the performance rating is determined through a comprehensive annual review process:\n\n1.  **Evaluation Criteria**: Performance is evaluated over the entire year against Objectives and Key Results (OKRs), job responsibilities, and TechCorp India's values (Source 2, 3).\n2.  **Inputs**:\n    *   **Self-Assessment**: The employee provides a detailed write-up of their achievements, challenges, development areas, and adherence to company values (Source 2).\n    *   **Manager Assessment**: The manager evaluates the employee's performance against OKRs, job description, leadership competencies (if applicable), and TechCorp India values, considering continuous feedback and mid-year review inputs (Source 2).\n    *   **Peer Feedback**: Managers may solicit feedback from peers, cross-functional colleagues, or direct reports to gain a holistic view (Source 2).\n3.  **Calibration**: A moderation session is conducted among managers and HR to ensure fairness, consistency, and alignment in ratings across teams and departments (Source 2, 4).\n4.  **Performance Discussion**: A structured meeting takes place between the employee and manager to discuss the performance review, including the assigned rating (Source 2).\n5.  **Rating Scale**: TechCorp India uses a 5-point rating scale (1-5), where each number signifies a specific level of performance, from \"Needs Significant Improvement\" (1) to \"Exceptional Performer\" (5) (Source 2). The expected level of performance is \"Meets Expectations\" (3) (Source 2).\n\nThe outcome of this process is the final performance rating, which is then recorded (Source 2).",
+      "actual": "According to the `05_performance_management` policy documents:\n\nThe performance rating is assigned during the Annual Performance Review (January-February) and uses a 5-point rating scale (Source 1). The process involves:\n\n1.  **Manager Assessment (January):** The manager evaluates the employee's performance against their Objectives and Key Results (OKRs), job description, core competencies, and company values. This assessment considers peer feedback (if applicable) and other relevant data (Source 1).\n2.  **Calibration Meeting (January):** Managers meet with their leadership and HR to review and calibrate ratings across departments and teams to ensure consistency and fairness (Source 1).\n3.  **Rating Scale Criteria:** The 5-point rating scale defines specific criteria for each level, from '1 - Does Not Meet Expectations' to '5 - Outstanding / Exceeds All Expectations', detailing performance against OKRs, job requirements, initiative, innovation, problem-solving skills, and overall impact (Source 3).\n4.  **Principles of Assessment:** Assessments are based on observable behaviors, measurable results, and established criteria, aiming for fairness and objectivity. Where possible, performance is assessed using quantitative and qualitative data relevant to AI/ML development and product impact (Source 4).",
       "sources": [
-        "05_performance_management",
-        "06_compensation_benefits",
-        "01_leave_policy"
+        "05_performance_management"
       ],
       "chunks_used": 5,
-      "relevancy_score": 0.4,
+      "relevancy_score": 0.533,
       "source_correct": true,
       "difficulty": "hard"
     }

@@ -118,7 +118,7 @@ class PersonalRAG:
             from analytics_logger import AnalyticsLogger, hash_user_id
             al = AnalyticsLogger(project_id=self.project_id)
             latency_ms = int((time.time() - start_time) * 1000)
-            al.log_query(
+            al.log_query_async(
                 question=question,
                 intent=intent,
                 employee_email=employee_email,

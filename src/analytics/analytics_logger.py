@@ -54,6 +54,11 @@ class AnalyticsLogger:
             self._bq_client = bigquery.Client(project=self.project_id)
         return self._bq_client
 
+    def log_query_async(self, **kwargs):
+        """Non-blocking analytics logging."""
+        import threading
+        threading.Thread(target=self.log_query, kwargs=kwargs, daemon=True).start()
+
     def log_query(
         self,
         question: str,

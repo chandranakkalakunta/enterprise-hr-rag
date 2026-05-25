@@ -42,6 +42,10 @@ class HybridRetriever:
         # Firestore for chunk text lookup
         self.firestore = FirestoreClient(project_id=project_id)
 
+        # In-memory chunk cache (avoids Firestore call per query!)
+        self._chunk_cache = {}
+        self._load_chunk_cache()
+
         # BM25 retriever - build from Firestore on startup
         self.bm25 = BM25Indexer(
             index_path=f"/tmp/bm25_index_{environment}.pkl"
@@ -224,12 +228,22 @@ class HybridRetriever:
             for r in sorted_results
         ]
 
+    def _load_chunk_cache(self):
+        """Load all chunks into memory on startup."""
+        try:
+            chunks = self.firestore.get_all_chunks()
+            self._chunk_cache = {c.get("chunk_id",""): c for c in chunks if c.get("chunk_id")}
+            logger.info(f"Chunk cache loaded: {len(self._chunk_cache)} chunks")
+        except Exception as e:
+            logger.warning(f"Chunk cache load failed: {e}")
+            self._chunk_cache = {}
+
     def _enrich_with_firestore(self, results: list[dict]) -> list[dict]:
         """Enrich results with full chunk data from Firestore."""
         enriched = []
-        all_chunks = {
-            c["chunk_id"]: c
-            for c in self.firestore.get_all_chunks()
+        # Use in-memory cache - saves ~1000ms per query!
+        all_chunks = self._chunk_cache if self._chunk_cache else {
+            c["chunk_id"]: c for c in self.firestore.get_all_chunks()
         }
 
         for result in results:
