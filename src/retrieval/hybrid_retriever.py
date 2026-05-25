@@ -237,6 +237,21 @@ class HybridRetriever:
             for r in sorted_results
         ]
 
+    def rebuild_bm25(self):
+        """Rebuild BM25 index from Firestore - call after ingestion!"""
+        try:
+            chunks = self.firestore.get_all_chunks()
+            self._chunk_cache = {
+                c.get("chunk_id",""): c
+                for c in chunks if c.get("chunk_id")
+            }
+            self.bm25_indexer.build_index_from_chunks(chunks)
+            logger.info(f"BM25 rebuilt: {len(chunks)} chunks")
+            return True
+        except Exception as e:
+            logger.error(f"BM25 rebuild failed: {e}")
+            return False
+
     def _load_chunk_cache(self):
         """Load all chunks into memory on startup."""
         try:

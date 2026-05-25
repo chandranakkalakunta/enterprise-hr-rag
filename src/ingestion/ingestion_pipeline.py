@@ -45,9 +45,9 @@ class IngestionPipeline:
 
         # Initialize components
         self.processor = DocumentProcessor(
-            chunk_size=512,
-            chunk_overlap=50,
-            min_chunk_size=10
+            chunk_size=int(os.environ.get("CHUNK_SIZE", "1024")),
+            chunk_overlap=int(os.environ.get("CHUNK_OVERLAP", "100")),
+            min_chunk_size=int(os.environ.get("MIN_CHUNK_SIZE", "10"))
         )
         self.embedder = EmbeddingGenerator(api_key=gemini_api_key)
         self.bm25 = BM25Indexer(
