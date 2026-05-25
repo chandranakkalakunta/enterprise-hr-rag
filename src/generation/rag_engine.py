@@ -85,7 +85,7 @@ class RAGEngine:
 
         context = "\n\n".join(context_parts)
 
-        prompt = f"""You are an HR assistant for TechCorp India.
+        prompt = f"""You are an HR assistant for ChandraAILabs.
 Answer the employee question based ONLY on the HR policy documents provided.
 If the answer is not in the documents, say "I don't have information about this in our HR policies."
 
