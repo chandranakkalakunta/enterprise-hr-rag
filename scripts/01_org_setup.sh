@@ -1,37 +1,18 @@
 #!/bin/bash
 # ============================================================
 # Script: 01_org_setup.sh
-# Purpose: Create GCP Organization folder structure
-# Usage: ./scripts/01_org_setup.sh --org-id=ORG_ID
+# Purpose: Setup GCP Organization folder structure and policies
+# Usage: ./scripts/01_org_setup.sh
 # ============================================================
-set -euo pipefail
+set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/../config/common.env"
 
-# ── Parse arguments ────────────────────────────────────────
-ORG_ID=""
-for arg in "$@"; do
-    case $arg in
-        --org-id=*) ORG_ID="${arg#*=}" ;;
-        *) log_warn "Unknown argument: $arg" ;;
-    esac
-done
-
-# ── Prompt if not provided ─────────────────────────────────
-if [ -z "$ORG_ID" ]; then
-    echo -e "${YELLOW}Enter your GCP Organization ID:${NC}"
-    echo "(Find at: console.cloud.google.com → IAM → Settings)"
-    read -r ORG_ID
-fi
-
-if [ -z "$ORG_ID" ]; then
-    log_error "Organization ID is required!"
-fi
-
 echo "=================================================="
-echo " Enterprise HR RAG Platform - Organization Setup"
-echo " Organization ID: ${ORG_ID}"
+echo " Enterprise HR RAG - Organization Setup"
+echo " Organization: chandra-idle-org"
+echo " Org ID: ${ORG_ID}"
 echo "=================================================="
 
 # ── Helper: create folder if not exists ───────────────────
@@ -40,118 +21,106 @@ create_folder() {
     local PARENT_TYPE=$2
     local PARENT_ID=$3
 
-    # Check if folder exists
-    EXISTING=$(gcloud resource-manager folders list \
-        --${PARENT_TYPE}=${PARENT_ID} \
-        --filter="displayName=${NAME}" \
-        --format="value(name)" 2>/dev/null | head -1)
+    EXISTING=$(gcloud resource-manager folders list         --"${PARENT_TYPE}"="${PARENT_ID}"         --filter="displayName=${NAME}"         --format="value(name)" 2>/dev/null | head -1)
 
     if [ -n "$EXISTING" ]; then
-        log_warn "Folder '${NAME}' already exists: ${EXISTING}"
+        log_warn "Folder already exists: ${NAME}"
         echo "$EXISTING"
     else
-        FOLDER=$(gcloud resource-manager folders create \
-            --display-name="${NAME}" \
-            --${PARENT_TYPE}=${PARENT_ID} \
-            --format="value(name)" 2>/dev/null)
-        log_success "Created folder: ${NAME} (${FOLDER})"
+        FOLDER=$(gcloud resource-manager folders create             --display-name="${NAME}"             --"${PARENT_TYPE}"="${PARENT_ID}"             --format="value(name)" 2>/dev/null)
+        log_success "Created folder: ${NAME}"
         echo "$FOLDER"
     fi
 }
 
 # ── Create folder structure ────────────────────────────────
-log_step "Creating folder structure"
+log_step "Creating GCP folder structure"
 
-# Root folder under org
-ROOT_FOLDER=$(create_folder "Chandra AI Labs" "organization" "$ORG_ID")
-ROOT_ID=$(echo $ROOT_FOLDER | sed 's/folders\///')
+NON_PROD=$(create_folder "Non-Production" "organization" "${ORG_ID}")
+NON_PROD_ID=$(echo "${NON_PROD}" | grep -o "[0-9]*$")
 
-# Sub-folders
-DEV_FOLDER=$(create_folder "dev" "folder" "$ROOT_ID")
-PROD_FOLDER=$(create_folder "prod" "folder" "$ROOT_ID")
-SHARED_FOLDER=$(create_folder "shared-services" "folder" "$ROOT_ID")
+PROD=$(create_folder "Production" "organization" "${ORG_ID}")
+PROD_ID=$(echo "${PROD}" | grep -o "[0-9]*$")
 
-DEV_ID=$(echo $DEV_FOLDER | sed 's/folders\///')
-PROD_ID=$(echo $PROD_FOLDER | sed 's/folders\///')
-SHARED_ID=$(echo $SHARED_FOLDER | sed 's/folders\///')
+log_info "Non-Production ID: ${NON_PROD_ID}"
+log_info "Production ID: ${PROD_ID}"
 
-# ── Apply Organization Policies ───────────────────────────
+# ── Move project to Non-Production ────────────────────────
+log_step "Placing ${PROJECT_ID} in Non-Production folder"
+
+CURRENT_PARENT=$(gcloud projects describe "${PROJECT_ID}"     --format="value(parent.id)" 2>/dev/null)
+
+if [ "${CURRENT_PARENT}" = "${NON_PROD_ID}" ]; then
+    log_warn "Project already in Non-Production folder"
+else
+    echo "y" | gcloud beta projects move "${PROJECT_ID}"         --folder="${NON_PROD_ID}" 2>/dev/null &&         log_success "Project moved to Non-Production!" ||         log_warn "Could not move project"
+fi
+
+# ── Apply org policies ─────────────────────────────────────
 log_step "Applying organization policies"
 
-# Policy 1: Restrict resource locations to India
-log_info "Setting resource location policy..."
-gcloud org-policies set-policy \
-    --organization=$ORG_ID \
-    <(cat << POLICY
+# Policy 1: Restrict resources to India only (Data Sovereignty)
+cat > /tmp/location_policy.yaml << YAMLEOF
 name: organizations/${ORG_ID}/policies/gcp.resourceLocations
 spec:
   rules:
   - values:
       allowedValues:
       - in:asia-south1-locations
-      - in:asia-south2-locations
-POLICY
-) 2>/dev/null && log_success "Resource location policy applied" \
-  || log_warn "Could not apply resource location policy (may need org admin role)"
+YAMLEOF
 
-# Policy 2: Disable SA key creation
-log_info "Disabling SA key creation..."
-gcloud org-policies set-policy \
-    --organization=$ORG_ID \
-    <(cat << POLICY
+gcloud org-policies set-policy /tmp/location_policy.yaml 2>/dev/null &&     log_success "Policy 1: Resources restricted to asia-south1 (India)" ||     log_warn "Policy 1: Could not set location policy"
+
+# Policy 2: Disable Service Account key creation
+# Forces use of Workload Identity - more secure!
+cat > /tmp/sa_key_policy.yaml << YAMLEOF
 name: organizations/${ORG_ID}/policies/iam.disableServiceAccountKeyCreation
 spec:
   rules:
   - enforce: true
-POLICY
-) 2>/dev/null && log_success "SA key creation disabled" \
-  || log_warn "Could not apply SA key policy"
+YAMLEOF
 
-# ── Save folder IDs to config ─────────────────────────────
-log_step "Saving folder IDs"
+gcloud org-policies set-policy /tmp/sa_key_policy.yaml 2>/dev/null &&     log_success "Policy 2: SA key creation disabled (use Workload Identity)" ||     log_warn "Policy 2: Could not set SA key policy"
 
+# Policy 3: Enforce uniform bucket-level IAM on GCS
+cat > /tmp/bucket_policy.yaml << YAMLEOF
+name: organizations/${ORG_ID}/policies/storage.uniformBucketLevelAccess
+spec:
+  rules:
+  - enforce: true
+YAMLEOF
 
-log_success "Folder IDs saved to config/common.env"
+gcloud org-policies set-policy /tmp/bucket_policy.yaml 2>/dev/null &&     log_success "Policy 3: Uniform bucket IAM enforced on GCS" ||     log_warn "Policy 3: Could not set bucket policy"
 
-# ── Summary ───────────────────────────────────────────────
+# Policy 4: Disable default service account
+cat > /tmp/default_sa_policy.yaml << YAMLEOF
+name: organizations/${ORG_ID}/policies/iam.automaticIamGrantsForDefaultServiceAccounts
+spec:
+  rules:
+  - enforce: false
+YAMLEOF
+
+gcloud org-policies set-policy /tmp/default_sa_policy.yaml 2>/dev/null &&     log_success "Policy 4: Default SA auto-grants disabled" ||     log_warn "Policy 4: Could not set default SA policy"
+
+# Cleanup temp files
+rm -f /tmp/location_policy.yaml /tmp/sa_key_policy.yaml       /tmp/bucket_policy.yaml /tmp/default_sa_policy.yaml
+
 echo ""
-# ── Create folder structure ───────────────────────────────
-log_step "Creating folder structure"
-
-NON_PROD_FOLDER=$(gcloud resource-manager folders list     --organization="${ORG_ID}"     --filter="displayName=Non-Production"     --format="value(name)" 2>/dev/null | head -1)
-
-if [ -z "${NON_PROD_FOLDER}" ]; then
-    NON_PROD_FOLDER=$(gcloud resource-manager folders create         --display-name="Non-Production"         --organization="${ORG_ID}"         --format="value(name)" 2>/dev/null)
-    log_success "Created folder: Non-Production"
-else
-    log_warn "Folder Non-Production already exists"
-fi
-
-PROD_FOLDER=$(gcloud resource-manager folders list     --organization="${ORG_ID}"     --filter="displayName=Production"     --format="value(name)" 2>/dev/null | head -1)
-
-if [ -z "${PROD_FOLDER}" ]; then
-    PROD_FOLDER=$(gcloud resource-manager folders create         --display-name="Production"         --organization="${ORG_ID}"         --format="value(name)" 2>/dev/null)
-    log_success "Created folder: Production"
-else
-    log_warn "Folder Production already exists"
-fi
-
-log_info "Non-Production folder: ${NON_PROD_FOLDER}"
-log_info "Production folder: ${PROD_FOLDER}"
-
 echo "=================================================="
 log_success "Organization setup complete!"
 echo ""
-echo "  Org: ${ORG_ID}"
-echo "  Non-Production folder: ${NON_PROD_FOLDER}"
-echo "  Production folder: ${PROD_FOLDER}"
+echo "Structure:"
+echo "  chandra-idle-org (${ORG_ID})"
+echo "  ├── Non-Production (${NON_PROD_ID})"
+echo "  │   └── ${PROJECT_ID} (dev)"
+echo "  └── Production (${PROD_ID})"
+echo "      └── hr-rag-prod (future)"
 echo ""
-echo "Folder Structure:"
-echo "  chandraailabs.com (org: ${ORG_ID})"
-echo "  └── Chandra AI Labs (${ROOT_ID})"
-echo "      ├── dev (${DEV_ID})"
-echo "      ├── prod (${PROD_ID})"
-echo "      └── shared-services (${SHARED_ID})"
+echo "Org Policies Applied:"
+echo "  1. Resources: asia-south1 only (India data sovereignty)"
+echo "  2. SA Keys: disabled (use Workload Identity)"
+echo "  3. GCS: uniform bucket IAM enforced"
+echo "  4. Default SA: auto-grants disabled"
 echo ""
 echo "Next step: ./scripts/02_project_setup.sh --env=dev"
 echo "=================================================="
