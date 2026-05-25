@@ -118,5 +118,245 @@
     "answer": "Performance rating is based on goal achievement, competency assessment, and manager evaluation on a 1-5 scale.",
     "source_document": "05_performance_management",
     "difficulty": "hard"
+  },
+  {
+    "question": "What is the notice period for annual leave?",
+    "answer": "Employees must provide 15-30 days notice for annual leave.",
+    "source_document": "01_leave_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How many days can annual leave be carried forward?",
+    "answer": "A maximum of 30 days of unused Annual Leave can be carried forward.",
+    "source_document": "01_leave_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the minimum consecutive annual leave allowed?",
+    "answer": "A minimum of 1 day and maximum of 15 consecutive days can be taken at one time.",
+    "source_document": "01_leave_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the probation period duration?",
+    "answer": "The standard probation period is typically 3-6 months.",
+    "source_document": "02_onboarding_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How many days notice required for resignation?",
+    "answer": "Employees must provide notice as per their employment contract, typically 30-90 days.",
+    "source_document": "03_code_of_conduct",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the maximum reimbursement for hotel stay?",
+    "answer": "Hotel reimbursement limits are defined in the travel expense policy based on city tier.",
+    "source_document": "07_travel_expense_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the company dress code policy?",
+    "answer": "ChandraAILabs follows a business casual dress code with formal attire for client meetings.",
+    "source_document": "03_code_of_conduct",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How many performance ratings levels exist?",
+    "answer": "Performance ratings have multiple levels including Exceeds Expectations, Meets Expectations, Below Expectations.",
+    "source_document": "05_performance_management",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What is the IT password minimum length?",
+    "answer": "Passwords must be at least 12 characters long.",
+    "source_document": "10_it_security_policy",
+    "difficulty": "easy"
+  },
+  {
+    "question": "How often are performance reviews conducted?",
+    "answer": "Performance reviews are conducted annually with mid-year check-ins.",
+    "source_document": "05_performance_management",
+    "difficulty": "easy"
+  },
+  {
+    "question": "What happens to sick leave at end of year?",
+    "answer": "Unused sick leave cannot be carried forward and lapses at end of calendar year.",
+    "source_document": "01_leave_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "Can annual leave be encashed during employment?",
+    "answer": "Annual leave encashment is generally not permitted during employment, only at separation.",
+    "source_document": "01_leave_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What is the process for raising a grievance?",
+    "answer": "Employees must submit a formal grievance to HR in writing with details of the issue.",
+    "source_document": "09_grievance_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What qualifies as a data breach?",
+    "answer": "Unauthorized access, disclosure, or loss of confidential company or customer data.",
+    "source_document": "10_it_security_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What is the WFH eligibility criteria?",
+    "answer": "WFH eligibility is based on role suitability, performance, tenure, suitable home environment and manager approval.",
+    "source_document": "04_remote_work_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What expenses are not reimbursable?",
+    "answer": "Personal expenses, alcohol, entertainment without business purpose are not reimbursable.",
+    "source_document": "07_travel_expense_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What is the PIP process?",
+    "answer": "PIP or Performance Improvement Plan is a structured plan with specific goals and timeline for employees rated below expectations.",
+    "source_document": "05_performance_management",
+    "difficulty": "medium"
+  },
+  {
+    "question": "How long does POSH investigation take?",
+    "answer": "POSH investigations must be completed within 90 days of the complaint.",
+    "source_document": "09_grievance_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What training is mandatory for all employees?",
+    "answer": "Mandatory training includes security awareness, code of conduct, and POSH training annually.",
+    "source_document": "08_training_development",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What is the overtime policy?",
+    "answer": "Overtime must be pre-approved by manager and is compensated as per company policy.",
+    "source_document": "03_code_of_conduct",
+    "difficulty": "medium"
+  },
+  {
+    "question": "What devices are allowed for remote work?",
+    "answer": "Company-issued devices are preferred. Personal devices require IT security approval and MDM enrollment.",
+    "source_document": "10_it_security_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "How are travel expenses approved?",
+    "answer": "Travel expenses require pre-approval from manager before booking and submission within 30 days of travel.",
+    "source_document": "07_travel_expense_policy",
+    "difficulty": "medium"
+  },
+  {
+    "question": "If an employee joins in July, how many annual leaves are they entitled to in the first year?",
+    "answer": "Employees joining mid-year get pro-rata annual leave. Joining in July gives approximately 10-11 days for the remainder of the year at 1.75 days per month.",
+    "source_document": "01_leave_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Can an employee on probation work from home?",
+    "answer": "WFH requires tenure as one of the eligibility criteria. Employees on probation are generally not eligible for WFH until confirmed.",
+    "source_document": "04_remote_work_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What happens if an employee exhausts all leaves and falls sick?",
+    "answer": "Employee can apply for Leave Without Pay (LWP) after exhausting all paid leaves, with manager and HR approval.",
+    "source_document": "01_leave_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does performance rating affect WFH eligibility?",
+    "answer": "WFH eligibility includes performance as a criteria. Below expectations rating may disqualify an employee from WFH privileges.",
+    "source_document": "04_remote_work_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Can an employee claim travel expenses for WFH setup?",
+    "answer": "WFH setup expenses are separate from travel policy. Travel policy covers business travel only, not home office setup.",
+    "source_document": "07_travel_expense_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the difference between grievance and POSH complaint process?",
+    "answer": "Grievance covers general workplace issues resolved in 30 days. POSH is specifically for sexual harassment with mandatory 90-day investigation and ICC committee.",
+    "source_document": "09_grievance_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "If an employee is on PIP, are they eligible for promotion?",
+    "answer": "Employees on PIP are typically not eligible for promotion as they are below expected performance levels.",
+    "source_document": "05_performance_management",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does taking unpaid leave affect gratuity calculation?",
+    "answer": "Unpaid leave may impact service benefits including gratuity, provident fund contributions and appraisal cycles.",
+    "source_document": "01_leave_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Can an employee carry forward both annual and casual leave?",
+    "answer": "Only annual leave can be carried forward up to 30 days. Casual leave cannot be carried forward and lapses at year end.",
+    "source_document": "01_leave_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What recourse does an employee have if grievance is not resolved?",
+    "answer": "If grievance is not resolved at manager level, it escalates to HR, then senior management, and finally can be taken to external labor authorities.",
+    "source_document": "09_grievance_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How does study leave interact with annual leave?",
+    "answer": "Study leave is separate from annual leave. Both can be utilized independently. Study leave is specifically for approved courses and cannot substitute annual leave.",
+    "source_document": "08_training_development",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What security measures are required for employees working remotely?",
+    "answer": "Remote workers need VPN, company-approved devices or MDM-enrolled personal devices, secure home network, and must follow all IT security policies.",
+    "source_document": "10_it_security_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "If a public holiday falls during annual leave, is it counted as leave?",
+    "answer": "Public holidays falling during annual leave period are not counted as annual leave days and should be excluded from leave calculation.",
+    "source_document": "01_leave_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Can an employee use study leave for online courses?",
+    "answer": "Study leave is for approved external courses and intensive programs. Online courses may qualify if formally approved by manager and HR beforehand.",
+    "source_document": "08_training_development",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What is the combined maximum training investment per employee annually?",
+    "answer": "Training budget covers certification costs plus study leave (5 days). Total investment includes course fees up to approved budget plus paid study leave days.",
+    "source_document": "08_training_development",
+    "difficulty": "hard"
+  },
+  {
+    "question": "How are data classification levels applied to HR documents?",
+    "answer": "HR documents containing personal data (CTC, performance, leave) are classified as Confidential. Policy documents are Internal. Public announcements are Public.",
+    "source_document": "10_it_security_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "What happens to accrued leaves when an employee resigns?",
+    "answer": "Annual leave balance is encashed at full and final settlement. Sick leave and casual leave lapse on last working day and are not encashed.",
+    "source_document": "01_leave_policy",
+    "difficulty": "hard"
+  },
+  {
+    "question": "Can a manager deny WFH to an employee who meets all criteria?",
+    "answer": "Yes, WFH is granted at management discretion considering business needs, team requirements and workload even if employee meets eligibility criteria.",
+    "source_document": "04_remote_work_policy",
+    "difficulty": "hard"
   }
 ]
