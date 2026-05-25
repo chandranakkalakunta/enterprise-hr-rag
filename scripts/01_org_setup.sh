@@ -115,8 +115,36 @@ log_success "Folder IDs saved to config/common.env"
 
 # ── Summary ───────────────────────────────────────────────
 echo ""
+# ── Create folder structure ───────────────────────────────
+log_step "Creating folder structure"
+
+NON_PROD_FOLDER=$(gcloud resource-manager folders list     --organization="${ORG_ID}"     --filter="displayName=Non-Production"     --format="value(name)" 2>/dev/null | head -1)
+
+if [ -z "${NON_PROD_FOLDER}" ]; then
+    NON_PROD_FOLDER=$(gcloud resource-manager folders create         --display-name="Non-Production"         --organization="${ORG_ID}"         --format="value(name)" 2>/dev/null)
+    log_success "Created folder: Non-Production"
+else
+    log_warn "Folder Non-Production already exists"
+fi
+
+PROD_FOLDER=$(gcloud resource-manager folders list     --organization="${ORG_ID}"     --filter="displayName=Production"     --format="value(name)" 2>/dev/null | head -1)
+
+if [ -z "${PROD_FOLDER}" ]; then
+    PROD_FOLDER=$(gcloud resource-manager folders create         --display-name="Production"         --organization="${ORG_ID}"         --format="value(name)" 2>/dev/null)
+    log_success "Created folder: Production"
+else
+    log_warn "Folder Production already exists"
+fi
+
+log_info "Non-Production folder: ${NON_PROD_FOLDER}"
+log_info "Production folder: ${PROD_FOLDER}"
+
 echo "=================================================="
 log_success "Organization setup complete!"
+echo ""
+echo "  Org: ${ORG_ID}"
+echo "  Non-Production folder: ${NON_PROD_FOLDER}"
+echo "  Production folder: ${PROD_FOLDER}"
 echo ""
 echo "Folder Structure:"
 echo "  chandraailabs.com (org: ${ORG_ID})"
