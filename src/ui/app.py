@@ -67,7 +67,7 @@ from google_oauth import init_auth, is_authenticated, show_login_page, logout, g
 init_auth()
 
 # ── Initialize DB ──────────────────────────────────────────
-@st.cache_resource(show_spinner="Connecting to HR Database...")
+@st.cache_resource(show_spinner=False)
 def get_db_client():
     try:
         from hr_db_client import HRDBClient
@@ -84,7 +84,7 @@ def get_db_client():
         return None
 
 # ── Initialize RAG Engine ──────────────────────────────────
-@st.cache_resource(show_spinner="Initializing HR Assistant...")
+@st.cache_resource(show_spinner=False)
 def get_rag_engine():
     from rag_engine import RAGEngine
     api_key = os.environ.get("GEMINI_API_KEY", "")
@@ -96,7 +96,7 @@ def get_rag_engine():
         environment=environment
     )
 
-@st.cache_resource(show_spinner="Initializing Personal Assistant...")
+@st.cache_resource(show_spinner=False)
 def get_personal_rag():
     try:
         from personal_rag import PersonalRAG
