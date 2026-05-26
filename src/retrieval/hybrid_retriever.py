@@ -280,6 +280,7 @@ class HybridRetriever:
                     "text": chunk_data.get("text", chunk_data.get("chunk_text", result.get("text", ""))),
                     "document_id": chunk_data.get("document_id", ""),
                     "filename": chunk_data.get("filename", ""),
+                    "gcs_path": chunk_data.get("gcs_path", ""),
                     "chunk_index": chunk_data.get("chunk_index", 0),
                     "score": result.get("score", 0),
                     "source": result.get("source", "bm25")
