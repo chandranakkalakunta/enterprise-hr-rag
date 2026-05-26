@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-05-26T11:39:52.067614",
+  "evaluation_type": "alpha_tuning_llm_judge_final",
+  "total_questions": 20,
+  "key_finding": "Alpha has minimal impact on small corpus (10 docs). All values score 0.972-0.987. Will matter more at scale (500+ docs).",
+  "results": [
+    {
+      "alpha": 0.0,
+      "avg": 0.972,
+      "src_acc": 1.0,
+      "easy": 0.995,
+      "hard": 0.85
+    },
+    {
+      "alpha": 0.2,
+      "avg": 0.98,
+      "src_acc": 1.0,
+      "easy": 0.995,
+      "hard": 0.925
+    },
+    {
+      "alpha": 0.5,
+      "avg": 0.985,
+      "src_acc": 1.0,
+      "easy": 0.995,
+      "hard": 0.95
+    },
+    {
+      "alpha": 0.7,
+      "avg": 0.987,
+      "src_acc": 1.0,
+      "easy": 0.995,
+      "hard": 1.0
+    },
+    {
+      "alpha": 1.0,
+      "avg": 0.987,
+      "src_acc": 1.0,
+      "easy": 1.0,
+      "hard": 1.0
+    }
+  ],
+  "decision": "Keep alpha=0.5 (balanced). At 500+ documents, re-tune alpha.",
+  "limitations": [
+    "Only 10 documents - corpus too small to differentiate alpha",
+    "Gemini judging Gemini - same model bias",
+    "Questions derived from same documents - not true held-out test"
+  ]
+}
