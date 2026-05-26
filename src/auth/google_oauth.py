@@ -16,6 +16,7 @@ DEMO_CREDENTIALS = {
     "demo@chandraailabs.com": "demo123",
     "guest@chandraailabs.com": "guest123",
 }
+DEMO_EMAILS = set(DEMO_CREDENTIALS.keys())
 
 # Real employee emails (no password needed - just email)
 EMPLOYEE_EMAILS = [
@@ -125,10 +126,18 @@ def show_login_page(db_client=None, password=""):
 def _handle_login(email: str, db_client=None, password: str = ""):
     """Handle login attempt."""
     # Check domain or demo emails
-    is_allowed = (
-        email.endswith(f"@{ALLOWED_DOMAIN}") or
-        email in DEMO_EMAILS
-    )
+    # Check if demo user - validate password
+    if email in DEMO_EMAILS:
+        if password != DEMO_CREDENTIALS.get(email, ""):
+            st.error("Invalid password for demo account!")
+            return
+        is_allowed = True
+    elif email.endswith(f"@{ALLOWED_DOMAIN}"):
+        # Real employee - just email check for now
+        # TODO Phase 3: Add proper SSO/OAuth
+        is_allowed = True
+    else:
+        is_allowed = False
 
     if not is_allowed:
         st.error(f"Access restricted to @{ALLOWED_DOMAIN} accounts")
