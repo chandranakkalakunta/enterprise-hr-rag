@@ -3,7 +3,8 @@
 > Reference-grade Enterprise RAG on Google Cloud Platform
 
 A production-ready HR Policy Q&A system built with hybrid RAG architecture,
-enterprise security, personal data integration, and privacy-compliant analytics.
+enterprise security, personal data integration, privacy-compliant analytics,
+and operational monitoring.
 
 Live Demo: https://hr-rag-engine-946703664996.asia-south1.run.app
 
@@ -29,6 +30,8 @@ Employees ask natural language questions and get accurate, personalized answers.
 ---
 
 ## Architecture
+
+```
 Employee Login (Google OAuth)
           |
           v
@@ -48,28 +51,10 @@ HR DB       Vector      Combined
               |
               v
     BigQuery Analytics (No PII!)
+              |
+              v
+    Cloud Monitoring Dashboard
 ```
-|
-v
-Query Router
-(Intent Detection)
-/      |      Personal  Policy  Hybrid
-|        |       |
-Cloud SQL  BM25 +  Both
-HR DB    Vector   Combined
-\       |      /
-\      v     /
-Gemini 2.5 Flash
-|
-v
-Personalized Answer
-
-Citations + Sources
-|
-v
-BigQuery Analytics
-(Anonymized - No PII!)
-
 
 ---
 
@@ -83,7 +68,7 @@ BigQuery Analytics
 | Identity | 4 dedicated Service Accounts (least privilege) |
 | Encryption | CMEK with Cloud KMS |
 | Network | VPC with private subnets + Cloud NAT |
-| Audit | Cloud Logging + BigQuery (PII-free) |
+| Audit | Cloud Logging (structured JSON) + BigQuery (PII-free) |
 
 ---
 
@@ -102,7 +87,7 @@ BigQuery stores ONLY:
 - question_category (leave/wfh/ctc/policy)
 - intent (personal/policy/hybrid)
 - department (Engineering/HR etc)
-- latency_ms, success, timestamp
+- latency_ms, model_used, success, timestamp
 
 BigQuery NEVER stores:
 - Employee name or email
@@ -121,6 +106,7 @@ BigQuery NEVER stores:
 | Dense Retrieval | Vertex AI Vector Search (STREAM_UPDATE) |
 | Sparse Retrieval | BM25 (rank-bm25) |
 | Hybrid Fusion | Reciprocal Rank Fusion (RRF) |
+| Response Cache | In-memory TTL cache (30 min) |
 | Personal Data | Cloud SQL PostgreSQL |
 | Metadata Store | Google Firestore |
 | Analytics | BigQuery (anonymized) |
@@ -129,7 +115,51 @@ BigQuery NEVER stores:
 | Auth | Google OAuth |
 | Deployment | Google Cloud Run |
 | Security | Binary Authorization + KMS |
+| Monitoring | Cloud Monitoring + Cloud Logging (structured JSON) |
 | IaC | 14 Shell Scripts + Makefile |
+
+---
+
+## Monitoring
+
+Operational monitoring is implemented at two layers:
+
+### App Layer (`src/monitoring/`)
+- **Structured JSON logging** — every log line is a Cloud Logging-compatible JSON object with `severity`, `message`, `timestamp`, and structured fields (intent, latency_ms, success). Parsed automatically by Cloud Run → Cloud Logging.
+- **Per-query telemetry** — each query logs intent, latency_ms, chunks_retrieved, success/failure to both Cloud Logging and BigQuery.
+
+### GCP Layer
+- **Cloud Monitoring Dashboard** — 8 widgets: request rate, latency p50/p95/p99, error rate (4xx/5xx), CPU utilisation, memory utilisation, active instances, error log panel.
+- **4 Alert Policies** (all wired to email):
+  - 5xx error rate > 5% for 5 min
+  - Latency p99 > 5s for 5 min
+  - Service down (zero active instances for 10 min)
+  - Memory utilisation > 85% for 5 min
+- **Uptime check** — 5-minute interval from asia-pacific probe
+
+View dashboards:
+```
+https://console.cloud.google.com/monitoring/dashboards?project=hr-rag-dev
+https://console.cloud.google.com/monitoring/alerting?project=hr-rag-dev
+```
+
+Run monitoring setup:
+```bash
+./scripts/09_monitoring.sh --env=dev --email=you@example.com
+```
+
+---
+
+## Response Caching
+
+Policy queries are cached in-memory per Cloud Run instance (TTL: 30 minutes):
+
+- **Cache miss** — full retrieval + Gemini generation; result stored in cache
+- **Cache hit** — answer returned instantly; BigQuery logs `latency_ms=0`, `model_used=cache`
+- **Cache size** — capped at 100 entries (LRU eviction)
+- **Invalidation** — automatic on TTL expiry or container restart; manual via `engine.invalidate_cache()`
+
+Personal and hybrid queries are not cached (data changes per employee).
 
 ---
 
@@ -155,8 +185,9 @@ BigQuery NEVER stores:
 | personal | compensation | 2,248ms | 1 |
 | personal | general | 2,121ms | 1 |
 | hybrid | performance | 5,998ms | 1 |
+| policy | (cache hit) | 0ms | — |
 
-Personal queries 3x faster than policy queries!
+Personal queries 3x faster than policy queries. Cache hits are instant.
 
 ---
 
@@ -181,48 +212,49 @@ make evaluate
 
 # Deploy to Cloud Run
 make deploy-dev
+
+# Setup monitoring dashboards and alerts
+./scripts/09_monitoring.sh --env=dev --email=you@example.com
 ```
 
 ---
 
 ## Project Structure
+
+```
 enterprise-hr-rag/
-setup_all.sh              - ONE command setup
-Makefile                  - Developer commands
-requirements.txt          - Python dependencies
-Dockerfile                - Container definition
-config/                   - Environment configs
-scripts/                  - IaC scripts 00-14
-00_prerequisites.sh
-01_org_setup.sh
-02_project_setup.sh     - 19 APIs enabled
-03_networking.sh        - VPC + subnets + NAT
-04_security.sh          - IAM + KMS + Binary Auth
-05_storage.sh           - GCS + BigQuery + Firestore
-06_vector_search.sh     - Vertex AI Vector Search
-07_data_pipeline.sh     - Cloud Functions
-08_rag_deployment.sh    - Cloud Run deployment
-09_monitoring.sh        - Dashboards + Alerts
-10_evaluation.sh        - RAGAS pipeline
-11_cicd.sh              - Cloud Build CI/CD
-12_hr_database.sh       - Cloud SQL PostgreSQL
-13_hr_data_load.sh      - Sample employee data
-ingest_documents.sh     - Document ingestion
-verify_ingestion.sh     - Verification
-upload_documents.sh     - Full upload pipeline
-src/
-ingestion/              - Document processing
-retrieval/              - Hybrid search (BM25 + Vector)
-generation/             - RAG engine (Gemini)
-evaluation/             - RAGAS pipeline
-database/               - HR DB client + Query Router
-auth/                   - Google OAuth
-analytics/              - PII-free BigQuery logging
-ui/                     - Streamlit chat interface
-data/
-documents/              - 10 ChandraAILabs HR policies
-ground_truth/           - 20 Q&A evaluation dataset
-teardown/                 - Cleanup scripts
+├── setup_all.sh              # ONE command setup
+├── Makefile                  # Developer commands
+├── requirements.txt          # Python dependencies
+├── Dockerfile                # Container definition
+├── config/                   # Environment configs (dev/prod)
+├── monitoring/               # Cloud Monitoring dashboard JSON
+├── scripts/                  # IaC scripts 00-14
+│   ├── 00_prerequisites.sh
+│   ├── 01_org_setup.sh
+│   ├── 02_project_setup.sh   # 19 APIs enabled
+│   ├── 03_networking.sh      # VPC + subnets + NAT
+│   ├── 04_security.sh        # IAM + KMS + Binary Auth
+│   ├── 05_storage.sh         # GCS + BigQuery + Firestore
+│   ├── 06_vector_search.sh   # Vertex AI Vector Search
+│   ├── 07_data_pipeline.sh   # Cloud Functions
+│   ├── 08_rag_deployment.sh  # Cloud Run deployment
+│   ├── 09_monitoring.sh      # Dashboards + Alerts
+│   ├── 10_evaluation.sh      # RAGAS pipeline
+│   ├── 11_cicd.sh            # Cloud Build CI/CD
+│   ├── 12_hr_database.sh     # Cloud SQL PostgreSQL
+│   └── 13_hr_data_load.sh    # Sample employee data
+└── src/
+    ├── ingestion/            # Document processing
+    ├── retrieval/            # Hybrid search (BM25 + Vector)
+    ├── generation/           # RAG engine + response cache
+    ├── evaluation/           # RAGAS pipeline
+    ├── database/             # HR DB client + Query Router
+    ├── auth/                 # Google OAuth
+    ├── analytics/            # PII-free BigQuery logging
+    ├── monitoring/           # Structured JSON logger (Cloud Logging)
+    └── ui/                   # Streamlit chat interface
+```
 
 ---
 
@@ -242,23 +274,24 @@ teardown/                 - Cleanup scripts
 | Secret Manager | gemini-api-key, hr-db-password |
 | KMS | hr-rag-keyring, RSA-4096 signing key |
 | Service Accounts | rag-engine-sa, ingestion-sa, evaluation-sa, cicd-sa |
+| Cloud Monitoring | Dashboard + 4 alert policies + uptime check |
 
 ---
 
 ## Roadmap
 
-Phase 1 - Infrastructure: COMPLETE
-Phase 2 - Personal RAG + Auth: COMPLETE
-Phase 3 - MLOps (planned):
-  - Vertex AI Experiments tracking
-  - A/B testing framework
-  - Automated model retraining
-  - Drift monitoring
-
-Phase 4 - Advanced (planned):
+- Phase 1 — Infrastructure: **COMPLETE**
+- Phase 2 — Personal RAG + Auth: **COMPLETE**
+- Phase 3 — MLOps:
+  - Operational monitoring (dashboards, alerts, structured logging): **COMPLETE**
+  - Response caching with BigQuery telemetry: **COMPLETE**
+  - Vertex AI Experiments tracking: planned
+  - A/B testing framework: planned
+  - Automated model retraining: planned
+  - Drift monitoring: planned
+- Phase 4 — Advanced (planned):
   - Multi-tenancy support
   - Slack/Teams bot integration
-  - Analytics dashboard
   - Mobile app
 
 ---
