@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 sys.path.insert(0, os.path.dirname(__file__))
 
 from document_processor import DocumentProcessor
+from enhanced_document_processor import EnhancedDocumentProcessor
 from embedding_generator import EmbeddingGenerator
 from bm25_indexer import BM25Indexer
 from firestore_client import FirestoreClient
@@ -48,6 +49,10 @@ class IngestionPipeline:
             chunk_size=int(os.environ.get("CHUNK_SIZE", "1024")),
             chunk_overlap=int(os.environ.get("CHUNK_OVERLAP", "100")),
             min_chunk_size=int(os.environ.get("MIN_CHUNK_SIZE", "10"))
+        )
+        # Enhanced processor for PDF/Word/Excel/Images
+        self.enhanced_processor = EnhancedDocumentProcessor(
+            gemini_api_key=os.environ.get("GEMINI_API_KEY", "")
         )
         self.embedder = EmbeddingGenerator(api_key=gemini_api_key)
         self.bm25 = BM25Indexer(
@@ -90,7 +95,7 @@ class IngestionPipeline:
         try:
             # Step 0: Cleanup old data
             logger.info("Step 0: Cleaning up old data...")
-            document_id = blob_name.replace('current/', '')                                   .replace('.md', '')                                   .replace('.txt', '')
+            document_id = blob_name.replace('current/', '').replace('.md', '').replace('.txt', '').replace('.pdf', '').replace('.docx', '').replace('.doc', '').replace('.xlsx', '').replace('.xls', '')
 
             # Delete old chunks from Firestore and get their IDs
             old_chunks = self.firestore.get_document_chunks(document_id)
@@ -106,15 +111,47 @@ class IngestionPipeline:
             storage_client = storage.Client(project=self.project_id)
             bucket = storage_client.bucket(bucket_name)
             blob = bucket.blob(blob_name)
-            content = blob.download_as_text()
             gcs_path = f"gs://{bucket_name}/{blob_name}"
-            logger.info(f"Read {len(content)} chars")
 
-            # Step 2: Process document
+            # Detect file format
+            file_ext = blob_name.lower().split(".")[-1] if "." in blob_name else "md"
+            logger.info(f"File format: {file_ext}")
+
+            # Step 2: Extract text based on format
             logger.info("Step 2: Processing document...")
+
+            if file_ext in ["pdf", "docx", "doc", "xlsx", "xls"]:
+                # Download to temp file for binary formats
+                import tempfile
+                with tempfile.NamedTemporaryFile(suffix=f".{file_ext}", delete=False) as tmp:
+                    blob.download_to_filename(tmp.name)
+                    tmp_path = tmp.name
+
+                logger.info(f"Extracting text from {file_ext.upper()} file...")
+                extracted_text = self.enhanced_processor.process_file(tmp_path)
+
+                import os as _os
+                _os.unlink(tmp_path)
+
+                if not extracted_text:
+                    logger.warning(f"No text extracted from {blob_name}")
+                    return None, None
+
+                logger.info(f"Extracted {len(extracted_text)} chars from {file_ext.upper()}")
+                doc_content = extracted_text
+            else:
+                # Markdown/text: download as text directly
+                doc_content = blob.download_as_text()
+                logger.info(f"Read {len(doc_content)} chars")
+
+            # For non-markdown files use extracted text as markdown
+            process_filename = blob_name
+            if file_ext in ["pdf", "docx", "doc", "xlsx", "xls"]:
+                process_filename = blob_name.rsplit(".", 1)[0] + ".md"
+
             chunks, metadata = self.processor.process_document(
-                content=content,
-                filename=blob_name,
+                content=doc_content,
+                filename=process_filename,
                 gcs_path=gcs_path,
                 version=version,
                 environment=self.environment
@@ -191,7 +228,7 @@ class IngestionPipeline:
 
         results = []
         for blob in blobs:
-            if blob.name.endswith(('.md', '.txt', '.pdf')):
+            if blob.name.endswith(('.md', '.txt', '.pdf', '.docx', '.doc', '.xlsx', '.xls')):
                 result = self.ingest_from_gcs(
                     bucket_name=bucket_name,
                     blob_name=blob.name

@@ -35,15 +35,20 @@ echo "=================================================="
 
 # ── Count documents ────────────────────────────────────────
 log_step "Counting documents to upload"
-DOC_COUNT=$(ls "${DOC_DIR}"/*.md 2>/dev/null | wc -l | tr -d ' ')
+DOC_COUNT=$(ls "${DOC_DIR}"/*.md "${DOC_DIR}"/*.pdf "${DOC_DIR}"/*.docx "${DOC_DIR}"/*.xlsx 2>/dev/null | wc -l | tr -d ' ')
 if [ "$DOC_COUNT" -eq 0 ]; then
-    log_error "No .md files found in ${DOC_DIR}"
+    log_error "No supported files found in ${DOC_DIR} (md/pdf/docx/xlsx)"
 fi
 log_success "Found ${DOC_COUNT} documents to upload"
 
 # ── Upload to GCS ──────────────────────────────────────────
 log_step "Uploading documents to GCS"
-gcloud storage cp "${DOC_DIR}/"*.md     "gs://${DOCS_BUCKET}/current/"     --project="${PROJECT_ID}"
+# Upload all supported formats
+for ext in md pdf docx xlsx; do
+    if ls "${DOC_DIR}"/*.${ext} 2>/dev/null | head -1 > /dev/null; then
+        gcloud storage cp "${DOC_DIR}/"*.${ext} "gs://${DOCS_BUCKET}/current/" --project="${PROJECT_ID}"
+    fi
+done
 log_success "Documents uploaded to gs://${DOCS_BUCKET}/current/"
 
 # ── List uploaded documents ────────────────────────────────

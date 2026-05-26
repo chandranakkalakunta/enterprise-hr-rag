@@ -111,13 +111,41 @@ class EnhancedDocumentProcessor:
             logger.error("python-docx not installed! pip install python-docx")
             return ""
 
+
+    def extract_from_excel(self, file_path: str) -> str:
+        """Extract text and data from Excel files."""
+        try:
+            import openpyxl
+            wb = openpyxl.load_workbook(file_path, data_only=True)
+            full_text = []
+            for sheet_name in wb.sheetnames:
+                ws = wb[sheet_name]
+                full_text.append(f"[Sheet: {sheet_name}]")
+                rows = []
+                for row in ws.iter_rows(values_only=True):
+                    cells = [str(c) if c is not None else "" for c in row]
+                    if any(c.strip() for c in cells):
+                        rows.append(" | ".join(cells))
+                if rows:
+                    full_text.append("\n".join(rows))
+            return "\n\n".join(full_text)
+        except ImportError:
+            logger.error("openpyxl not installed!")
+            return ""
+        except Exception as e:
+            logger.error(f"Excel extraction failed: {e}")
+            return ""
+
     def process_file(self, file_path: str) -> str:
         """Auto-detect format and extract text."""
         ext = Path(file_path).suffix.lower()
+        logger.info(f"Processing {ext} file")
         if ext == ".pdf":
             return self.extract_from_pdf(file_path)
         elif ext in [".docx", ".doc"]:
             return self.extract_from_docx(file_path)
+        elif ext in [".xlsx", ".xls"]:
+            return self.extract_from_excel(file_path)
         elif ext in [".md", ".txt"]:
             with open(file_path, "r") as f:
                 return f.read()
@@ -125,12 +153,3 @@ class EnhancedDocumentProcessor:
             logger.warning(f"Unsupported format: {ext}")
             return ""
 
-
-if __name__ == "__main__":
-    import os
-    processor = EnhancedDocumentProcessor(
-        gemini_api_key=os.environ.get("GEMINI_API_KEY")
-    )
-    print("Enhanced Document Processor ready!")
-    print("Supports: .md .txt .pdf .docx")
-    print("Features: text + tables + images (Gemini Vision)")

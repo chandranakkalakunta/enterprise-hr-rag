@@ -277,11 +277,7 @@ class DocumentProcessor:
         Returns (chunks, metadata)
         """
         # Generate document ID from filename
-        document_id = filename.replace('current/', '')\
-                              .replace('.md', '')\
-                              .replace('.txt', '')\
-                              .replace(' ', '_')\
-                              .lower()
+        document_id = filename.replace('current/', '')                              .replace('.md', '').replace('.txt', '')                              .replace('.pdf', '').replace('.docx', '')                              .replace('.doc', '').replace('.xlsx', '')                              .replace('.xls', '').replace(' ', '_')                              .lower()
 
         # Determine file type
         file_type = filename.split('.')[-1].lower()

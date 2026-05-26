@@ -26,3 +26,8 @@ functions-framework>=3.0.0
 sqlalchemy>=2.0.0
 pg8000>=1.30.0
 cloud-sql-python-connector[pg8000]>=1.4.0
+
+# Multi-format document support
+pymupdf>=1.23.0
+python-docx>=1.1.0
+openpyxl>=3.1.0
