@@ -35,7 +35,7 @@ class QueryRouter:
         r"(am i|am i eligible).*(wfh|work from home|remote)",
         r"(can i|can i take).*(leave|wfh|remote)",
         r"(when|how).*(get promoted|promotion|next level)",
-        r"(my|i).*(pip|performance improvement)",
+        r"\b(my|i)\b.*(pip|performance improvement)",
         r"(am i|will i).*(bonus|increment|hike)",
     ]
 
