@@ -179,17 +179,26 @@ Personal and hybrid queries are not cached (data changes per employee).
 
 ## Analytics Insights (Live Data)
 
-| Intent | Category | Avg Latency | Count |
-|--------|----------|-------------|-------|
-| policy | leave | 7,426ms | 3 |
-| policy | wfh | 6,790ms | 2 |
-| policy | training | 4,518ms | 2 |
-| personal | compensation | 2,248ms | 1 |
-| personal | general | 2,121ms | 1 |
-| hybrid | performance | 5,998ms | 1 |
-| policy | (cache hit) | 0ms | — |
+> Aggregated from BigQuery — updated 2026-05-26
 
-Personal queries 3x faster than policy queries. Cache hits are instant.
+| Intent | Category | Queries | Avg Latency | Cache Hits |
+|--------|----------|---------|-------------|------------|
+| policy | leave | 209 | 4,351ms | 9 (4%) |
+| policy | wfh | 101 | 4,536ms | 3 (3%) |
+| policy | performance | 51 | 4,793ms | 1 (2%) |
+| policy | travel | 41 | 3,535ms | 0 |
+| policy | training | 37 | 4,689ms | 2 (5%) |
+| policy | grievance | 34 | 4,378ms | 0 |
+| policy | security | 30 | 3,720ms | 1 (3%) |
+| hybrid | performance | 30 | 5,400ms | 0 |
+| personal | general | 23 | 2,195ms | 0 |
+| personal | compensation | 15 | 2,223ms | 0 |
+
+Key observations:
+- Personal queries (2–2.2s) are ~2x faster than policy queries (3.5–5.4s) — no vector search needed
+- Hybrid queries (5.4s) are slowest — combine DB lookup + retrieval + generation
+- Cache hit rate is low due to recent deployments resetting in-memory cache; grows with usage
+- Leave and WFH are the most queried categories
 
 ---
 
