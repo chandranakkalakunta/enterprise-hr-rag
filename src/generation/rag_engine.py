@@ -221,7 +221,27 @@ ANSWER:"""
         Yields text chunks as they are generated.
         """
         import time as _time
+        import hashlib
         _start = _time.time()
+
+        # Check cache — yield full answer instantly on hit
+        cache_key = hashlib.md5(question.lower().strip().encode()).hexdigest()
+        if cache_key in self._cache:
+            cached_time, cached_result = self._cache[cache_key]
+            if _time.time() - cached_time < self._cache_ttl:
+                logger.info("Cache hit (stream)!")
+                try:
+                    import sys as _sys, os as _os
+                    _sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "../analytics"))
+                    from analytics_logger import AnalyticsLogger
+                    AnalyticsLogger(project_id=self.project_id, environment=self.environment).log_query_async(
+                        question=question, intent="policy", chunks_retrieved=0,
+                        latency_ms=0, model_used="cache", success=True
+                    )
+                except Exception:
+                    pass
+                yield cached_result.get("answer", "")
+                return
 
         chunks = self.retriever.retrieve(question)
 
@@ -243,6 +263,19 @@ ANSWER:"""
                     yield chunk.text
         except Exception as e:
             yield f"Error: {e}"
+
+        # Cache the full answer for future hits
+        if full_answer:
+            self._cache[cache_key] = (_time.time(), {
+                "question": question,
+                "answer": full_answer,
+                "sources": list(set(c.get("document_id", "unknown") for c in chunks)),
+                "chunks_used": len(chunks),
+                "chunks": [{"document_id": c.get("document_id",""), "text": c.get("text",""), "score": c.get("score",0), "gcs_path": c.get("gcs_path","")} for c in chunks[:3]],
+            })
+            if len(self._cache) > 100:
+                oldest = min(self._cache, key=lambda k: self._cache[k][0])
+                del self._cache[oldest]
 
         # Log analytics after streaming completes
         try:
