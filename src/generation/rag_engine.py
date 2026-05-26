@@ -182,14 +182,7 @@ ANSWER:"""
             "answer": answer,
             "sources": sources,
             "chunks_used": len(chunks),
-            "chunks": [
-                {
-                    "document_id": c.get("document_id"),
-                    "text": c.get("text", "")[:200],
-                    "score": c.get("score", 0)
-                }
-                for c in chunks
-            ]
+            "chunks": [{"document_id": c.get("document_id",""), "text": c.get("text",""), "score": c.get("score", 0)} for c in chunks[:3]],
         }
 
         logger.info(f"Answer generated using {len(chunks)} chunks")

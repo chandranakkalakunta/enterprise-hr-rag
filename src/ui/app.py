@@ -211,6 +211,18 @@ for message in st.session_state.messages:
                     f'<span class="{badge_class}">{icon} {source}</span>',
                     unsafe_allow_html=True
                 )
+            # Show source chunks in expander
+            if message.get("chunks"):
+                with st.expander("📖 View Source References"):
+                    for i, chunk in enumerate(message.get("chunks", [])[:3]):
+                        doc_id = chunk.get("document_id", "")
+                        text = chunk.get("text", "")[:500]
+                        score = chunk.get("score", 0)
+                        st.markdown(f"**Source {i+1}: {doc_id}**")
+                        st.caption(f"Relevance score: {score:.3f}")
+                        st.info(text + ("..." if len(chunk.get("text","")) > 500 else ""))
+                        if i < len(message.get("chunks",[])) - 1:
+                            st.divider()
 
 # Handle pending query
 if st.session_state.processing:
