@@ -16,7 +16,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../ingestion"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../database"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../auth"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../monitoring"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../analytics"))
 
 from structured_logger import setup_logging, get_logger
 setup_logging(level=logging.INFO)
@@ -116,14 +115,6 @@ def get_personal_rag():
         st.warning(f"Personal RAG not available: {e}")
         return None
 
-@st.cache_resource(show_spinner=False)
-def get_analytics():
-    from analytics_logger import AnalyticsLogger
-    return AnalyticsLogger(
-        project_id=os.environ.get("PROJECT_ID", "hr-rag-dev"),
-        environment=os.environ.get("ENVIRONMENT", "dev"),
-    )
-
 # ── Show Login if not authenticated ───────────────────────
 if not is_authenticated():
     db = get_db_client()
@@ -205,9 +196,6 @@ with st.sidebar:
 if "processing" not in st.session_state:
     st.session_state.processing = False
 
-if "session_id" not in st.session_state:
-    import uuid
-    st.session_state.session_id = str(uuid.uuid4())
 
 if "messages" not in st.session_state:
     st.session_state.messages = [{
@@ -356,16 +344,6 @@ if query:
                 "success": success,
                 "department": employee.get("department", ""),
             },
-        )
-        get_analytics().log_query_async(
-            question=query,
-            intent=intent_label,
-            employee_email=employee.get("email", ""),
-            department=employee.get("department", ""),
-            chunks_retrieved=chunks_retrieved,
-            latency_ms=latency_ms,
-            success=success,
-            session_id=st.session_state.get("session_id"),
         )
 
         if sources:
