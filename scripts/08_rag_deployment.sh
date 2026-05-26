@@ -93,7 +93,7 @@ gcloud run deploy "${RAG_ENGINE_NAME}" \
     --project="${PROJECT_ID}" \
     --service-account="${RAG_SA}" \
     --update-secrets="GEMINI_API_KEY=gemini-api-key:latest,DB_PASSWORD=hr-db-password:latest" \
-    --set-env-vars="PROJECT_ID=${PROJECT_ID},ENVIRONMENT=${ENVIRONMENT},REGION=${REGION},DOCS_BUCKET=${DOCS_BUCKET},DB_INSTANCE_NAME=${DB_INSTANCE_NAME},DB_NAME=${DB_NAME},DB_USER=${DB_USER}" \
+    --set-env-vars="PROJECT_ID=${PROJECT_ID},ENVIRONMENT=${ENVIRONMENT},REGION=${REGION},DOCS_BUCKET=${DOCS_BUCKET},DB_INSTANCE_NAME=${DB_INSTANCE_NAME},DB_NAME=${DB_NAME},DB_USER=${DB_USER},RRF_ALPHA=${RRF_ALPHA}" \
     --memory="${MEMORY}" \
     --cpu="${CPU}" \
     --min-instances="${MIN_INSTANCES}" \
