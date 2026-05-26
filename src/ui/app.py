@@ -3,6 +3,7 @@ Streamlit UI - ChandraAILabs HR RAG Platform
 Employee-facing chat with Google OAuth + Personal RAG
 """
 import streamlit as st
+from datetime import timedelta
 import os
 import sys
 import logging
@@ -218,8 +219,31 @@ for message in st.session_state.messages:
                         doc_id = chunk.get("document_id", "")
                         text = chunk.get("text", "")[:500]
                         score = chunk.get("score", 0)
-                        st.markdown(f"**Source {i+1}: {doc_id}**")
-                        st.caption(f"Relevance score: {score:.3f}")
+                        gcs_path = chunk.get("gcs_path", "")
+
+                        col1, col2 = st.columns([3, 1])
+                        with col1:
+                            st.markdown(f"**Source {i+1}: {doc_id}**")
+                            st.caption(f"Relevance score: {score:.3f}")
+                        with col2:
+                            # Generate signed URL for document access
+                            if gcs_path and gcs_path.startswith("gs://"):
+                                try:
+                                    from google.cloud import storage
+                                    parts = gcs_path.replace("gs://","").split("/", 1)
+                                    bucket_name, blob_name = parts[0], parts[1]
+                                    storage_client = storage.Client()
+                                    bucket = storage_client.bucket(bucket_name)
+                                    blob = bucket.blob(blob_name)
+                                    signed_url = blob.generate_signed_url(
+                                        expiration=timedelta(hours=1),
+                                        method="GET",
+                                        version="v4"
+                                    )
+                                    st.link_button("📥 Open Doc", signed_url)
+                                except Exception:
+                                    st.caption("🔒 Restricted")
+
                         st.info(text + ("..." if len(chunk.get("text","")) > 500 else ""))
                         if i < len(message.get("chunks",[])) - 1:
                             st.divider()
