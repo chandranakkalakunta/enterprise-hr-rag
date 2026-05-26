@@ -168,7 +168,7 @@ if __name__ == "__main__":
         "evaluation_type": "llm_judge",
         "model": "gemini-2.5-flash",
         "chunk_size": os.environ.get("CHUNK_SIZE", "1024"),
-        "alpha": os.environ.get("RRF_ALPHA", "0.2"),
+        "alpha": os.environ.get("RRF_ALPHA", "0.5"),
         "summary": summary,
         "results": results
     }

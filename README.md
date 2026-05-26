@@ -206,7 +206,7 @@ ORDER BY thumbs_up DESC
 | Medium Questions | 0.611 | 0.630 | **0.910** |
 | Hard Questions | 0.377 | 0.522 | **0.830** |
 
-60 questions · Model: gemini-2.5-flash · chunk_size: 1024 · alpha: 0.2
+60 questions · Model: gemini-2.5-flash · chunk_size: 1024 · alpha: 0.5
 
 ---
 
