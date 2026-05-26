@@ -12,11 +12,27 @@ from hybrid_retriever import HybridRetriever
 
 logger = logging.getLogger(__name__)
 
+_ANALYTICS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../analytics")
+
+
+def _log(project_id, environment, **kwargs):
+    """Fire-and-forget analytics log."""
+    try:
+        sys.path.insert(0, _ANALYTICS_PATH)
+        from analytics_logger import AnalyticsLogger
+        AnalyticsLogger(project_id=project_id, environment=environment).log_query_async(**kwargs)
+    except Exception as e:
+        logger.warning(f"Analytics logging failed: {e}")
+
 
 class RAGEngine:
     """
     RAG Engine for HR Policy Q&A.
     Retrieves relevant chunks and generates answers with citations.
+
+    Cache hierarchy:
+      L1 — in-memory dict (per instance, TTL 30 min)
+      L2 — Firestore collection 'rag_cache' (shared across instances, TTL 24 h)
     """
 
     def __init__(
@@ -30,18 +46,15 @@ class RAGEngine:
         self.environment = environment
         self.model = model
 
-        # Initialize Gemini client
         from google import genai
         self.client = genai.Client(api_key=gemini_api_key)
 
-        # Initialize retriever
         self.retriever = HybridRetriever(
             project_id=project_id,
             environment=environment,
             top_k_final=3
         )
 
-        # Enable Vector Search
         endpoint_id = os.environ.get(
             'VECTOR_ENDPOINT_ID',
             'projects/946703664996/locations/asia-south1/indexEndpoints/2379105667995664384'
@@ -62,30 +75,100 @@ class RAGEngine:
 
         logger.info(f"RAG Engine initialized: {model}")
 
-        # Simple response cache (TTL: 30 mins)
-        # Shorter TTL ensures stale data cleared faster
+        # L1 cache — in-memory, per instance
         self._cache = {}
-        self._cache_ttl = 1800
+        self._cache_ttl = 1800  # 30 min
+
+        # L2 cache — Firestore, shared and persistent (lazy init)
+        self._fs_client = None
+        self._fs_ttl_hours = 24
+
+    # ── Firestore L2 cache helpers ─────────────────────────
+
+    def _get_fs_client(self):
+        if not self._fs_client:
+            from google.cloud import firestore
+            self._fs_client = firestore.Client(project=self.project_id)
+        return self._fs_client
+
+    def _fs_doc_id(self, cache_key: str) -> str:
+        return f"{self.environment}_{cache_key}"
+
+    def _fs_cache_get(self, cache_key: str) -> dict | None:
+        try:
+            from datetime import datetime, timezone
+            doc = self._get_fs_client().collection("rag_cache").document(
+                self._fs_doc_id(cache_key)
+            ).get()
+            if not doc.exists:
+                return None
+            data = doc.to_dict()
+            expires_at = datetime.fromisoformat(data["expires_at"])
+            if datetime.now(timezone.utc) > expires_at:
+                return None
+            return data["result"]
+        except Exception as e:
+            logger.warning(f"Firestore cache read failed: {e}")
+            return None
+
+    def _fs_cache_set(self, cache_key: str, result: dict):
+        """Write to Firestore in a background thread — never blocks the response."""
+        import threading
+        threading.Thread(target=self._fs_cache_write, args=(cache_key, result), daemon=True).start()
+
+    def _fs_cache_write(self, cache_key: str, result: dict):
+        try:
+            from datetime import datetime, timezone, timedelta
+            now = datetime.now(timezone.utc)
+            self._get_fs_client().collection("rag_cache").document(
+                self._fs_doc_id(cache_key)
+            ).set({
+                "result": result,
+                "created_at": now.isoformat(),
+                "expires_at": (now + timedelta(hours=self._fs_ttl_hours)).isoformat(),
+                "environment": self.environment,
+            })
+            logger.info("L2 cache written to Firestore")
+        except Exception as e:
+            logger.warning(f"Firestore cache write failed: {e}")
+
+    # ── Cache invalidation ─────────────────────────────────
 
     def invalidate_cache(self):
-        """Clear response cache - call after re-ingestion!"""
+        """Clear L1 + L2 cache — call after re-ingestion."""
         self._cache = {}
-        logger.info("Response cache invalidated!")
+        try:
+            from google.cloud.firestore_v1.base_query import FieldFilter
+            docs = self._get_fs_client().collection("rag_cache").where(
+                filter=FieldFilter("environment", "==", self.environment)
+            ).stream()
+            batch = self._get_fs_client().batch()
+            count = 0
+            for doc in docs:
+                batch.delete(doc.reference)
+                count += 1
+                if count % 500 == 0:
+                    batch.commit()
+                    batch = self._get_fs_client().batch()
+            if count % 500 != 0:
+                batch.commit()
+            logger.info(f"Cache invalidated: L1 + {count} Firestore entries")
+        except Exception as e:
+            logger.warning(f"Firestore cache invalidation failed: {e}")
+            logger.info("Cache invalidated: L1 only")
 
+    # ── Prompt builder ─────────────────────────────────────
 
     def build_prompt(self, query: str, chunks: list[dict]) -> str:
-        """Build prompt with retrieved context."""
         context_parts = []
         for i, chunk in enumerate(chunks, 1):
             doc_id = chunk.get("document_id", "unknown")
             text = chunk.get("text", "")
-            context_parts.append(
-                f"[Source {i}: {doc_id}]\n{text}"
-            )
+            context_parts.append(f"[Source {i}: {doc_id}]\n{text}")
 
         context = "\n\n".join(context_parts)
 
-        prompt = f"""You are an HR assistant for ChandraAILabs.
+        return f"""You are an HR assistant for ChandraAILabs.
 Answer the employee question based ONLY on the HR policy documents provided.
 If the answer is not in the documents, say "I don't have information about this in our HR policies."
 
@@ -103,148 +186,99 @@ INSTRUCTIONS:
 - If employee wants more details, they can ask follow-up
 
 ANSWER:"""
-        return prompt
+
+    # ── query() ───────────────────────────────────────────
 
     def query(self, question: str) -> dict:
-        """
-        Process a query through the RAG pipeline.
-        Returns answer with citations and metadata.
-        """
-        logger.info(f"Processing query: {question[:50]}...")
         import time, hashlib
         start_time = time.time()
-
-        # Check cache first!
         cache_key = hashlib.md5(question.lower().strip().encode()).hexdigest()
+
+        # L1 check
         if cache_key in self._cache:
             cached_time, cached_result = self._cache[cache_key]
             if time.time() - cached_time < self._cache_ttl:
-                logger.info("Cache hit!")
-                # Still log cache hits to BigQuery!
-                try:
-                    import sys as _sys
-                    import os as _os
-                    _analytics_path = _os.path.join(
-                        _os.path.dirname(_os.path.abspath(__file__)), "../analytics"
-                    )
-                    _sys.path.insert(0, _analytics_path)
-                    from analytics_logger import AnalyticsLogger
-                    al = AnalyticsLogger(
-                        project_id=self.project_id,
-                        environment=self.environment
-                    )
-                    al.log_query_async(
-                        question=question,
-                        intent="policy",
-                        chunks_retrieved=0,
-                        latency_ms=0,
-                        model_used="cache",
-                        success=True
-                    )
-                except Exception as e:
-                    logger.warning(f"Cache hit logging failed: {e}")
+                logger.info("Cache hit (L1)")
+                _log(self.project_id, self.environment, question=question, intent="policy",
+                     chunks_retrieved=0, latency_ms=0, model_used="cache_l1", success=True)
                 return cached_result
 
-        # Step 1: Retrieve relevant chunks
+        # L2 check
+        fs_result = self._fs_cache_get(cache_key)
+        if fs_result:
+            logger.info("Cache hit (L2 Firestore)")
+            self._cache[cache_key] = (time.time(), fs_result)  # warm L1
+            _log(self.project_id, self.environment, question=question, intent="policy",
+                 chunks_retrieved=0, latency_ms=0, model_used="cache_l2", success=True)
+            return fs_result
+
+        # Full pipeline
         chunks = self.retriever.retrieve(question)
-
         if not chunks:
-            return {
-                "answer": "I could not find relevant information in our HR policies.",
-                "sources": [],
-                "chunks_used": 0,
-                "question": question
-            }
+            return {"answer": "I could not find relevant information in our HR policies.",
+                    "sources": [], "chunks_used": 0, "question": question}
 
-        # Step 2: Build prompt
         prompt = self.build_prompt(question, chunks)
-
-        # Step 3: Generate answer
         try:
-            response = self.client.models.generate_content(
-                model=self.model,
-                contents=prompt
-            )
+            response = self.client.models.generate_content(model=self.model, contents=prompt)
             answer = response.text
-
         except Exception as e:
             logger.error(f"Generation failed: {e}")
             answer = f"Error generating answer: {e}"
 
-        # Step 4: Extract sources
-        sources = list(set([
-            c.get("document_id", "unknown")
-            for c in chunks
-        ]))
-
+        sources = list(set(c.get("document_id", "unknown") for c in chunks))
         result = {
             "question": question,
             "answer": answer,
             "sources": sources,
             "chunks_used": len(chunks),
-            "chunks": [{"document_id": c.get("document_id",""), "text": c.get("text",""), "score": c.get("score", 0), "gcs_path": c.get("gcs_path","")} for c in chunks[:3]],
+            "chunks": [{"document_id": c.get("document_id",""), "text": c.get("text",""),
+                        "score": c.get("score", 0), "gcs_path": c.get("gcs_path","")} for c in chunks[:3]],
         }
 
-        logger.info(f"Answer generated using {len(chunks)} chunks")
+        latency_ms = int((time.time() - start_time) * 1000)
+        logger.info(f"Answer generated using {len(chunks)} chunks in {latency_ms}ms")
+        _log(self.project_id, self.environment, question=question, intent="policy",
+             chunks_retrieved=len(chunks), latency_ms=latency_ms, model_used=self.model, success=True)
 
-        # Log to BigQuery (anonymized - no PII!)
-        try:
-            import sys
-            analytics_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../analytics")
-            sys.path.insert(0, analytics_path)
-            from analytics_logger import AnalyticsLogger
-            al = AnalyticsLogger(project_id=self.project_id, environment=self.environment)
-            latency_ms = int((time.time() - start_time) * 1000)
-            al.log_query_async(
-                question=question,
-                intent=result.get("intent", "policy"),
-                chunks_retrieved=len(chunks),
-                latency_ms=latency_ms,
-                model_used=self.model,
-                success=True
-            )
-        except Exception as e:
-            logger.warning(f"Analytics logging failed: {e}")
-
-        # Cache the result
+        # Store in L1 + L2
         self._cache[cache_key] = (time.time(), result)
-        # Keep cache size manageable
         if len(self._cache) > 100:
             oldest = min(self._cache, key=lambda k: self._cache[k][0])
             del self._cache[oldest]
+        self._fs_cache_set(cache_key, result)
 
         return result
 
-    def query_stream(self, question: str):
-        """
-        Stream response for better UX.
-        Yields text chunks as they are generated.
-        """
-        import time as _time
-        import hashlib
-        _start = _time.time()
+    # ── query_stream() ────────────────────────────────────
 
-        # Check cache — yield full answer instantly on hit
+    def query_stream(self, question: str):
+        import time as _time, hashlib
+        _start = _time.time()
         cache_key = hashlib.md5(question.lower().strip().encode()).hexdigest()
+
+        # L1 check
         if cache_key in self._cache:
             cached_time, cached_result = self._cache[cache_key]
             if _time.time() - cached_time < self._cache_ttl:
-                logger.info("Cache hit (stream)!")
-                try:
-                    import sys as _sys, os as _os
-                    _sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "../analytics"))
-                    from analytics_logger import AnalyticsLogger
-                    AnalyticsLogger(project_id=self.project_id, environment=self.environment).log_query_async(
-                        question=question, intent="policy", chunks_retrieved=0,
-                        latency_ms=0, model_used="cache", success=True
-                    )
-                except Exception:
-                    pass
+                logger.info("Cache hit (L1 stream)")
+                _log(self.project_id, self.environment, question=question, intent="policy",
+                     chunks_retrieved=0, latency_ms=0, model_used="cache_l1", success=True)
                 yield cached_result.get("answer", "")
                 return
 
-        chunks = self.retriever.retrieve(question)
+        # L2 check
+        fs_result = self._fs_cache_get(cache_key)
+        if fs_result:
+            logger.info("Cache hit (L2 Firestore stream)")
+            self._cache[cache_key] = (_time.time(), fs_result)  # warm L1
+            _log(self.project_id, self.environment, question=question, intent="policy",
+                 chunks_retrieved=0, latency_ms=0, model_used="cache_l2", success=True)
+            yield fs_result.get("answer", "")
+            return
 
+        # Full pipeline
+        chunks = self.retriever.retrieve(question)
         if not chunks:
             yield "I could not find relevant information in our HR policies."
             return
@@ -253,10 +287,7 @@ ANSWER:"""
         full_answer = ""
 
         try:
-            response = self.client.models.generate_content_stream(
-                model=self.model,
-                contents=prompt
-            )
+            response = self.client.models.generate_content_stream(model=self.model, contents=prompt)
             for chunk in response:
                 if chunk.text:
                     full_answer += chunk.text
@@ -264,38 +295,25 @@ ANSWER:"""
         except Exception as e:
             yield f"Error: {e}"
 
-        # Cache the full answer for future hits
         if full_answer:
-            self._cache[cache_key] = (_time.time(), {
+            result = {
                 "question": question,
                 "answer": full_answer,
                 "sources": list(set(c.get("document_id", "unknown") for c in chunks)),
                 "chunks_used": len(chunks),
-                "chunks": [{"document_id": c.get("document_id",""), "text": c.get("text",""), "score": c.get("score",0), "gcs_path": c.get("gcs_path","")} for c in chunks[:3]],
-            })
+                "chunks": [{"document_id": c.get("document_id",""), "text": c.get("text",""),
+                            "score": c.get("score", 0), "gcs_path": c.get("gcs_path","")} for c in chunks[:3]],
+            }
+            # Store in L1 + L2
+            self._cache[cache_key] = (_time.time(), result)
             if len(self._cache) > 100:
                 oldest = min(self._cache, key=lambda k: self._cache[k][0])
                 del self._cache[oldest]
+            self._fs_cache_set(cache_key, result)
 
-        # Log analytics after streaming completes
-        try:
-            import sys as _sys, os as _os
-            _analytics_path = _os.path.join(
-                _os.path.dirname(_os.path.abspath(__file__)), "../analytics"
-            )
-            _sys.path.insert(0, _analytics_path)
-            from analytics_logger import AnalyticsLogger
-            al = AnalyticsLogger(project_id=self.project_id, environment=self.environment)
-            al.log_query_async(
-                question=question,
-                intent="policy",
-                chunks_retrieved=len(chunks),
-                latency_ms=int((_time.time() - _start) * 1000),
-                model_used=self.model,
-                success=True
-            )
-        except Exception as e:
-            logger.warning(f"Stream analytics failed: {e}")
+        latency_ms = int((_time.time() - _start) * 1000)
+        _log(self.project_id, self.environment, question=question, intent="policy",
+             chunks_retrieved=len(chunks), latency_ms=latency_ms, model_used=self.model, success=True)
 
 
 if __name__ == "__main__":
