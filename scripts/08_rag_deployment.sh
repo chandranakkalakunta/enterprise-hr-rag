@@ -44,6 +44,7 @@ log_step "Building Docker image"
 # Use Cloud Build - no local Docker needed!
 gcloud builds submit \
     --project="${PROJECT_ID}" \
+    --region="${REGION}" \
     --tag="${IMAGE_NAME}:latest" \
     "${SCRIPT_DIR}/.." 2>&1 | tail -5
 
