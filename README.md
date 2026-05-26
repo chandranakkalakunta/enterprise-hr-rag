@@ -165,13 +165,15 @@ Personal and hybrid queries are not cached (data changes per employee).
 
 ## Evaluation Results
 
-| Metric | BM25 Only | Hybrid RAG | Improvement |
-|--------|-----------|------------|-------------|
-| Avg Relevancy | 0.635 | 0.674 | +6.1% |
-| Source Accuracy | 1.000 | 1.000 | Maintained |
-| Easy Questions | 0.706 | 0.740 | +4.8% |
-| Medium Questions | 0.611 | 0.630 | +3.1% |
-| Hard Questions | 0.377 | 0.522 | +38.5% |
+| Metric | BM25 Only | Hybrid RAG | Latest (2026-05-26) |
+|--------|-----------|------------|---------------------|
+| Avg Relevancy | 0.635 | 0.674 | **0.863** |
+| Source Accuracy | 1.000 | 1.000 | **0.967** |
+| Easy Questions | 0.706 | 0.740 | **0.850** |
+| Medium Questions | 0.611 | 0.630 | **0.910** |
+| Hard Questions | 0.377 | 0.522 | **0.830** |
+
+60 questions · Model: gemini-2.5-flash · chunk_size: 1024 · alpha: 0.2
 
 ---
 
