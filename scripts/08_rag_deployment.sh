@@ -40,11 +40,12 @@ log_success "Docker authenticated!"
 
 log_step "Building Docker image" 
 
-docker buildx build \
-    --platform linux/amd64 \
-    -t "${IMAGE_NAME}:latest" \
-    --push \
-    "${SCRIPT_DIR}/.."
+
+# Use Cloud Build - no local Docker needed!
+gcloud builds submit \
+    --project="${PROJECT_ID}" \
+    --tag="${IMAGE_NAME}:latest" \
+    "${SCRIPT_DIR}/.." 2>&1 | tail -5
 
 log_success "Docker image built and pushed!"
 
