@@ -102,3 +102,65 @@ class AnalyticsLogger:
 
         except Exception as e:
             logger.warning(f"Analytics logging failed: {e}")
+
+    # ── Feedback logging ───────────────────────────────────
+
+    def _ensure_feedback_table(self):
+        try:
+            from google.cloud import bigquery as bq
+            client = self._get_bq_client()
+            table_id = f"{self.project_id}.hr_rag_metrics.feedback_logs"
+            try:
+                client.get_table(table_id)
+            except Exception:
+                schema = [
+                    bq.SchemaField("feedback_id", "STRING"),
+                    bq.SchemaField("timestamp", "TIMESTAMP"),
+                    bq.SchemaField("session_id", "STRING"),
+                    bq.SchemaField("hashed_user_id", "STRING"),
+                    bq.SchemaField("intent", "STRING"),
+                    bq.SchemaField("question_category", "STRING"),
+                    bq.SchemaField("feedback", "STRING"),
+                    bq.SchemaField("environment", "STRING"),
+                ]
+                table = bq.Table(table_id, schema=schema)
+                table.time_partitioning = bq.TimePartitioning(field="timestamp")
+                client.create_table(table)
+                logger.info("Created feedback_logs table")
+        except Exception as e:
+            logger.warning(f"Could not ensure feedback table: {e}")
+
+    def log_feedback_async(self, **kwargs):
+        import threading
+        threading.Thread(target=self.log_feedback, kwargs=kwargs, daemon=True).start()
+
+    def log_feedback(
+        self,
+        feedback: str,
+        intent: str = "policy",
+        question_category: str = "general",
+        employee_email: str = None,
+        session_id: str = None,
+    ):
+        """Log thumbs up/down feedback — no PII stored."""
+        try:
+            self._ensure_feedback_table()
+            client = self._get_bq_client()
+            table_id = f"{self.project_id}.hr_rag_metrics.feedback_logs"
+            row = {
+                "feedback_id": str(uuid.uuid4()),
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "session_id": session_id or str(uuid.uuid4()),
+                "hashed_user_id": hash_user_id(employee_email) if employee_email else None,
+                "intent": intent,
+                "question_category": question_category,
+                "feedback": feedback,
+                "environment": self.environment,
+            }
+            errors = client.insert_rows_json(table_id, [row])
+            if errors:
+                logger.warning(f"Feedback insert errors: {errors}")
+            else:
+                logger.info(f"Feedback logged: {feedback}/{question_category}")
+        except Exception as e:
+            logger.warning(f"Feedback logging failed: {e}")

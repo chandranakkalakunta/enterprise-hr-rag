@@ -8,6 +8,7 @@ import os
 import sys
 import time
 import logging
+from uuid import uuid4
 
 # Add paths
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../generation"))
@@ -16,6 +17,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../ingestion"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../database"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../auth"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../monitoring"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../analytics"))
 
 from structured_logger import setup_logging, get_logger
 setup_logging(level=logging.INFO)
@@ -115,6 +117,14 @@ def get_personal_rag():
         st.warning(f"Personal RAG not available: {e}")
         return None
 
+@st.cache_resource(show_spinner=False)
+def get_analytics():
+    from analytics_logger import AnalyticsLogger
+    return AnalyticsLogger(
+        project_id=os.environ.get("PROJECT_ID", "hr-rag-dev"),
+        environment=os.environ.get("ENVIRONMENT", "dev"),
+    )
+
 # ── Show Login if not authenticated ───────────────────────
 if not is_authenticated():
     db = get_db_client()
@@ -196,6 +206,12 @@ with st.sidebar:
 if "processing" not in st.session_state:
     st.session_state.processing = False
 
+if "session_id" not in st.session_state:
+    st.session_state.session_id = str(uuid4())
+
+if "feedback_given" not in st.session_state:
+    st.session_state.feedback_given = {}
+
 
 if "messages" not in st.session_state:
     st.session_state.messages = [{
@@ -205,8 +221,15 @@ if "messages" not in st.session_state:
         "intent": "greeting"
     }]
 
+# Find index of last non-greeting assistant message for feedback buttons
+last_assistant_idx = max(
+    (i for i, m in enumerate(st.session_state.messages)
+     if m["role"] == "assistant" and m.get("intent") != "greeting"),
+    default=-1
+)
+
 # Display chat history
-for message in st.session_state.messages:
+for msg_idx, message in enumerate(st.session_state.messages):
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
         if message.get("sources"):
@@ -252,6 +275,41 @@ for message in st.session_state.messages:
                         st.info(text + ("..." if len(chunk.get("text","")) > 500 else ""))
                         if i < len(message.get("chunks",[])) - 1:
                             st.divider()
+
+        # Feedback buttons — only on last assistant message, not greeting
+        if (msg_idx == last_assistant_idx
+                and not st.session_state.processing
+                and message.get("message_id")):
+            msg_id = message["message_id"]
+            if msg_id not in st.session_state.feedback_given:
+                st.caption("Was this helpful?")
+                col1, col2, _ = st.columns([1, 1, 8])
+                with col1:
+                    if st.button("👍", key=f"fb_up_{msg_id}"):
+                        st.session_state.feedback_given[msg_id] = "positive"
+                        get_analytics().log_feedback_async(
+                            feedback="positive",
+                            intent=message.get("intent", "policy"),
+                            question_category=message.get("question_category", "general"),
+                            employee_email=employee.get("email", ""),
+                            session_id=st.session_state.session_id,
+                        )
+                        st.rerun()
+                with col2:
+                    if st.button("👎", key=f"fb_down_{msg_id}"):
+                        st.session_state.feedback_given[msg_id] = "negative"
+                        get_analytics().log_feedback_async(
+                            feedback="negative",
+                            intent=message.get("intent", "policy"),
+                            question_category=message.get("question_category", "general"),
+                            employee_email=employee.get("email", ""),
+                            session_id=st.session_state.session_id,
+                        )
+                        st.rerun()
+            else:
+                fb = st.session_state.feedback_given[msg_id]
+                icon = "👍" if fb == "positive" else "👎"
+                st.caption(f"{icon} Thanks for your feedback!")
 
 # Handle pending query
 if st.session_state.processing:
@@ -364,9 +422,12 @@ if query:
         st.caption(intent_colors.get(intent_label, "📋 Policy Query"))
 
     st.session_state.processing = False
+    from analytics_logger import categorize_question
     st.session_state.messages.append({
         "role": "assistant",
         "content": answer,
         "sources": sources,
-        "intent": intent_label
+        "intent": intent_label,
+        "message_id": str(uuid4()),
+        "question_category": categorize_question(query),
     })
