@@ -6,6 +6,7 @@ import streamlit as st
 from datetime import timedelta
 import os
 import sys
+import time
 import logging
 
 # Add paths
@@ -14,8 +15,12 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../retrieval"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../ingestion"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../database"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../auth"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../monitoring"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../analytics"))
 
-logging.basicConfig(level=logging.WARNING)
+from structured_logger import setup_logging, get_logger
+setup_logging(level=logging.INFO)
+logger = get_logger(__name__)
 
 st.set_page_config(
     page_title="ChandraAILabs HR Assistant",
@@ -111,6 +116,14 @@ def get_personal_rag():
         st.warning(f"Personal RAG not available: {e}")
         return None
 
+@st.cache_resource(show_spinner=False)
+def get_analytics():
+    from analytics_logger import AnalyticsLogger
+    return AnalyticsLogger(
+        project_id=os.environ.get("PROJECT_ID", "hr-rag-dev"),
+        environment=os.environ.get("ENVIRONMENT", "dev"),
+    )
+
 # ── Show Login if not authenticated ───────────────────────
 if not is_authenticated():
     db = get_db_client()
@@ -191,6 +204,10 @@ with st.sidebar:
 # ── Chat Interface ─────────────────────────────────────────
 if "processing" not in st.session_state:
     st.session_state.processing = False
+
+if "session_id" not in st.session_state:
+    import uuid
+    st.session_state.session_id = str(uuid.uuid4())
 
 if "messages" not in st.session_state:
     st.session_state.messages = [{
@@ -281,7 +298,10 @@ if query:
         sources = []
         intent_label = intent
         answer = ""
+        chunks_retrieved = 0
+        success = True
 
+        t0 = time.time()
         try:
             if intent in ["personal", "hybrid"]:
                 personal_rag = get_personal_rag()
@@ -295,6 +315,7 @@ if query:
                     answer = result.get("answer", "")
                     sources = result.get("sources", [])
                     intent_label = result.get("intent", "personal")
+                    chunks_retrieved = len(result.get("chunks", []))
                     st.markdown(answer)
                 else:
                     engine = get_rag_engine()
@@ -321,7 +342,31 @@ if query:
             answer = "Sorry, I encountered an error. Please try again."
             sources = []
             intent_label = "error"
+            success = False
+            logger.error("Query failed", extra={"query_intent": intent, "error": str(e)})
             st.markdown(answer)
+
+        latency_ms = int((time.time() - t0) * 1000)
+        logger.info(
+            "Query processed",
+            extra={
+                "intent": intent_label,
+                "latency_ms": latency_ms,
+                "chunks_retrieved": chunks_retrieved,
+                "success": success,
+                "department": employee.get("department", ""),
+            },
+        )
+        get_analytics().log_query_async(
+            question=query,
+            intent=intent_label,
+            employee_email=employee.get("email", ""),
+            department=employee.get("department", ""),
+            chunks_retrieved=chunks_retrieved,
+            latency_ms=latency_ms,
+            success=success,
+            session_id=st.session_state.get("session_id"),
+        )
 
         if sources:
             for source in sources:
