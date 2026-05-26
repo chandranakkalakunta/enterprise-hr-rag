@@ -45,6 +45,8 @@ log_step "Building Docker image"
 gcloud builds submit \
     --project="${PROJECT_ID}" \
     --region="${REGION}" \
+    --gcs-log-dir="gs://${PROJECT_ID}_cloudbuild/logs" \
+    --gcs-source-staging-dir="gs://${PROJECT_ID}_cloudbuild/source" \
     --tag="${IMAGE_NAME}:latest" \
     "${SCRIPT_DIR}/.." 2>&1 | tail -5
 
