@@ -106,7 +106,7 @@ BigQuery NEVER stores:
 | Dense Retrieval | Vertex AI Vector Search (STREAM_UPDATE) |
 | Sparse Retrieval | BM25 (rank-bm25) |
 | Hybrid Fusion | Reciprocal Rank Fusion (RRF) |
-| Response Cache | In-memory TTL cache (30 min) |
+| Response Cache | L1 in-memory (30 min) + L2 Firestore (24 h) |
 | Personal Data | Cloud SQL PostgreSQL |
 | Metadata Store | Google Firestore |
 | Analytics | BigQuery (anonymized) |
@@ -152,14 +152,47 @@ Run monitoring setup:
 
 ## Response Caching
 
-Policy queries are cached in-memory per Cloud Run instance (TTL: 30 minutes):
+Policy queries use a two-level cache hierarchy. Personal and hybrid queries are never cached (per-employee data must not be shared).
 
-- **Cache miss** — full retrieval + Gemini generation; result stored in cache
-- **Cache hit** — answer returned instantly; BigQuery logs `latency_ms=0`, `model_used=cache`
-- **Cache size** — capped at 100 entries (LRU eviction)
-- **Invalidation** — automatic on TTL expiry or container restart; manual via `engine.invalidate_cache()`
+| Level | Store | TTL | Scope |
+|-------|-------|-----|-------|
+| L1 | In-memory dict (per instance) | 30 min | Single Cloud Run instance |
+| L2 | Firestore `rag_cache` collection | 24 h | Shared across all instances |
 
-Personal and hybrid queries are not cached (data changes per employee).
+- **Cache miss** — full retrieval + Gemini generation; result written to L1 and L2
+- **L1 hit** — instant; BQ logs `model_used=cache_l1`, `latency_ms=0`
+- **L2 hit** — Firestore read (< 50 ms); warms L1; BQ logs `model_used=cache_l2`
+- **Cache size** — L1 capped at 100 entries (LRU eviction); L2 grows until TTL expiry
+- **Non-blocking writes** — L2 writes happen on a daemon thread; never delays the response
+- **Invalidation** — `engine.invalidate_cache()` clears both levels
+
+---
+
+## User Feedback
+
+Every assistant response shows 👍 / 👎 feedback buttons. Feedback is logged to BigQuery's `feedback_logs` table — no PII stored.
+
+| Field | Value |
+|-------|-------|
+| feedback_id | UUID per feedback event |
+| timestamp | UTC (partition key) |
+| session_id | Per browser session |
+| hashed_user_id | SHA-256 (irreversible) |
+| intent | personal / policy / hybrid |
+| question_category | leave / wfh / performance / … |
+| feedback | positive / negative |
+| environment | dev / prod |
+
+Query feedback analytics:
+```sql
+SELECT question_category, intent,
+       COUNTIF(feedback='positive') AS thumbs_up,
+       COUNTIF(feedback='negative') AS thumbs_down,
+       ROUND(COUNTIF(feedback='positive') * 100.0 / COUNT(*), 1) AS satisfaction_pct
+FROM `hr-rag-dev.hr_rag_metrics.feedback_logs`
+GROUP BY 1, 2
+ORDER BY thumbs_up DESC
+```
 
 ---
 
@@ -295,7 +328,9 @@ enterprise-hr-rag/
 - Phase 2 — Personal RAG + Auth: **COMPLETE**
 - Phase 3 — MLOps:
   - Operational monitoring (dashboards, alerts, structured logging): **COMPLETE**
-  - Response caching with BigQuery telemetry: **COMPLETE**
+  - Response caching L1+L2 with BigQuery telemetry: **COMPLETE**
+  - User feedback (👍/👎) with BigQuery logging: **COMPLETE**
+  - Query router intent fix (word-boundary matching): **COMPLETE**
   - Vertex AI Experiments tracking: planned
   - A/B testing framework: planned
   - Automated model retraining: planned
