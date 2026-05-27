@@ -245,7 +245,8 @@ class DocumentProcessor:
         """Create document metadata object."""
         import hashlib
         content_hash = hashlib.md5(
-            f"{document_id}{version}{char_count}".encode()
+            f"{document_id}{version}{char_count}".encode(),
+            usedforsecurity=False
         ).hexdigest()
 
         now = datetime.now(timezone.utc).isoformat()

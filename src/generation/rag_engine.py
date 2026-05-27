@@ -192,7 +192,7 @@ ANSWER:"""
     def query(self, question: str) -> dict:
         import time, hashlib
         start_time = time.time()
-        cache_key = hashlib.md5(question.lower().strip().encode()).hexdigest()
+        cache_key = hashlib.md5(question.lower().strip().encode(), usedforsecurity=False).hexdigest()
 
         # L1 check
         if cache_key in self._cache:
@@ -255,7 +255,7 @@ ANSWER:"""
     def query_stream(self, question: str):
         import time as _time, hashlib
         _start = _time.time()
-        cache_key = hashlib.md5(question.lower().strip().encode()).hexdigest()
+        cache_key = hashlib.md5(question.lower().strip().encode(), usedforsecurity=False).hexdigest()
 
         # L1 check
         if cache_key in self._cache:

@@ -1,0 +1,8 @@
+[bandit]
+# Exclude non-production paths
+exclude_dirs = venv,tests,data,.git
+
+# Skip low-severity rules that are not applicable:
+#   B101: assert usage (fine in non-prod helper code)
+#   B108: /tmp usage (BM25 cache — not a security boundary)
+skips = B101,B108
