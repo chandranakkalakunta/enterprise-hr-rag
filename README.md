@@ -198,12 +198,12 @@ ORDER BY thumbs_up DESC
 
 ## Evaluation Results
 
-| Metric | BM25 Only | Hybrid RAG | Latest (2026-05-26) |
+| Metric | BM25 Only | Hybrid RAG | Latest (2026-05-27) |
 |--------|-----------|------------|---------------------|
-| Avg Relevancy | 0.635 | 0.674 | **0.863** |
+| Avg Relevancy | 0.635 | 0.674 | **0.857** |
 | Source Accuracy | 1.000 | 1.000 | **0.967** |
-| Easy Questions | 0.706 | 0.740 | **0.850** |
-| Medium Questions | 0.611 | 0.630 | **0.910** |
+| Easy Questions | 0.706 | 0.740 | **0.860** |
+| Medium Questions | 0.611 | 0.630 | **0.880** |
 | Hard Questions | 0.377 | 0.522 | **0.830** |
 
 60 questions · Model: gemini-2.5-flash · chunk_size: 1024 · alpha: 0.5

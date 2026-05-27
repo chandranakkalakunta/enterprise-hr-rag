@@ -1,16 +1,16 @@
 {
-  "timestamp": "2026-05-26T16:30:06.032911+00:00",
+  "timestamp": "2026-05-26T18:59:02.663741+00:00",
   "evaluation_type": "llm_judge",
   "model": "gemini-2.5-flash",
   "chunk_size": "1024",
-  "alpha": "0.2",
+  "alpha": "0.5",
   "summary": {
-    "avg_relevancy": 0.863,
+    "avg_relevancy": 0.857,
     "source_accuracy": 0.967,
     "avg_chunks": 3.0,
     "by_difficulty": {
-      "easy": 0.85,
-      "medium": 0.91,
+      "easy": 0.86,
+      "medium": 0.88,
       "hard": 0.83
     }
   },
@@ -18,7 +18,7 @@
     {
       "question": "How many annual leave days do employees get?",
       "expected": "Employees are entitled to 21 days of annual leave per year.",
-      "actual": "According to the Employee Leave Policy (Source 1), permanent employees at ChandraAILabs are entitled to 21 working days of Annual Leave per calendar year. This leave accrues on a pro-rata basis, typically at 1.75 days per month, starting from the employee's date of joining or confirmation. Employees are eligible to avail Annual Leave only upon completion of their probation period and confirmation of employment.",
+      "actual": "According to the `01_leave_policy`, permanent employees at ChandraAILabs are entitled to 21 working days of Annual Leave per calendar year. This leave accrues on a pro-rata basis and can generally be availed upon completion of the probation period.",
       "sources": [
         "01_leave_policy",
         "06_compensation_benefits"
@@ -31,10 +31,10 @@
     {
       "question": "How many sick leave days are provided?",
       "expected": "Employees get 10 days of sick leave per year.",
-      "actual": "According to the Employee Leave Policy (Source 2) and the Extended Leave Policy (Source 3), permanent employees at ChandraAILabs are entitled to 10 working days of Sick Leave per calendar year. Sick Leave is credited at the beginning of the calendar year or on a pro-rata basis for employees joining mid-year. It cannot be carried forward to the next year and cannot be encashed, with any unused days lapsing at the end of the calendar year.",
+      "actual": "According to the Employee Leave Policy (Source 2) and the Extended Leave Policy (Source 3), ChandraAILabs provides employees with 10 working days of Sick Leave per calendar year. Sick Leave is credited at the beginning of the calendar year or on a pro-rata basis for employees joining mid-year. These days cannot be carried forward to the next year and cannot be encashed.",
       "sources": [
-        "01_leave_policy",
-        "12_extended_leave_policy"
+        "12_extended_leave_policy",
+        "01_leave_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -44,10 +44,10 @@
     {
       "question": "What is the maternity leave entitlement?",
       "expected": "Female employees are entitled to 26 weeks of paid maternity leave.",
-      "actual": "According to the Employee Leave Policy (Source 2) and the Extended Leave Policy (Source 3), maternity leave entitlement at ChandraAILabs is 26 weeks (182 calendar days). This entitlement is applicable for up to two surviving children, as per the Maternity Benefit Act, 1961 (as amended). Eligibility requires female employees to have worked for ChandraAILabs for at least 80 days in the 12 months immediately preceding the expected delivery date (Source 2).",
+      "actual": "According to the Employee Leave Policy (Source 2) and the Extended Leave Policy (Source 3), permanent female employees at ChandraAILabs are entitled to 26 weeks (182 calendar days) of Maternity Leave for up to two surviving children. Eligibility requires working for ChandraAILabs for at least 80 days in the 12 months immediately preceding the expected delivery date (Source 2). Up to 8 weeks of this leave can be taken before the expected date of delivery, with the remaining taken after delivery (Source 2). Maternity Leave cannot be carried forward or encashed (Source 1, Source 3).",
       "sources": [
-        "01_leave_policy",
-        "12_extended_leave_policy"
+        "12_extended_leave_policy",
+        "01_leave_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -57,10 +57,10 @@
     {
       "question": "How many days of paternity leave do employees get?",
       "expected": "Employees get 5 days of paternity leave.",
-      "actual": "According to the Employee Leave Policy (Source 1: 01_leave_policy) and the Extended Leave Policy (Source 2: 12_extended_leave_policy), permanent male employees are entitled to 5 working days of Paternity Leave per calendar year. This leave can be availed within 30 days before or up to 60 days after the date of childbirth or adoption. Paternity Leave cannot be carried forward to the next year and cannot be encashed.",
+      "actual": "According to the Employee Leave Policy (Source 1: 01_leave_policy) and the Extended Leave Policy (Source 2: 12_extended_leave_policy), all permanent male employees at ChandraAILabs are entitled to 5 working days of Paternity Leave per calendar year.\n\nThis leave is provided to enable fathers to support their partners during childbirth or adoption and to bond with the child. Paternity Leave cannot be carried forward to the next year or encashed; any unused days will lapse at the end of the calendar year (Source 3: 01_leave_policy).",
       "sources": [
-        "01_leave_policy",
-        "12_extended_leave_policy"
+        "12_extended_leave_policy",
+        "01_leave_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -70,10 +70,10 @@
     {
       "question": "How many casual leave days are allowed per year?",
       "expected": "Employees are allowed 7 days of casual leave per year.",
-      "actual": "According to the Employee Leave Policy (Source 1: 01_leave_policy) and the Extended Leave Policy (Source 3: 12_extended_leave_policy), permanent employees are entitled to 7 working days of Casual Leave per calendar year. Casual Leave cannot be carried forward to the next year or encashed, and any unused days will lapse at the end of the calendar year.",
+      "actual": "According to the Employee Leave Policy (01_leave_policy), permanent employees at ChandraAILabs are entitled to 7 working days of Casual Leave per calendar year. This leave is intended for unforeseen personal matters or urgent family commitments. Casual Leave cannot be carried forward to the next year and cannot be encashed.",
       "sources": [
-        "01_leave_policy",
-        "12_extended_leave_policy"
+        "12_extended_leave_policy",
+        "01_leave_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -83,10 +83,10 @@
     {
       "question": "How many days can employees work from home per week?",
       "expected": "Employees can work from home up to 2 days per week with manager approval.",
-      "actual": "According to the 04_remote_work_policy, ChandraAILabs primarily operates on a hybrid model for most teams. Employees under this model are required to work from the office for a minimum of 2 days per week and can work remotely for up to 3 days per week. For eligible employees within AI/ML Engineering, AI Research, and Data Science teams, a full remote work model is available.",
+      "actual": "According to the Remote Work Policy (Source 1), most employees under the hybrid work model can work remotely for up to 3 days per week, with a minimum of 2 days required in the office. However, employees within AI/ML Engineering, AI Research, and Data Science teams are eligible for a full remote work model, allowing them to work entirely from a remote location.",
       "sources": [
-        "04_remote_work_policy",
-        "01_leave_policy"
+        "01_leave_policy",
+        "04_remote_work_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 0.4,
@@ -96,10 +96,10 @@
     {
       "question": "What are the core working hours for remote work?",
       "expected": "Core working hours are 10am to 4pm IST for remote workers.",
-      "actual": "According to the ChandraAILabs Remote Work Policy (04_remote_work_policy), all employees, whether hybrid or full remote, are expected to be available and responsive during Core Hours. These core hours are from 10:00 AM to 4:00 PM IST (Indian Standard Time), Monday to Friday.",
+      "actual": "According to 04_remote_work_policy, all employees, including those on hybrid or full remote models, are expected to be available and responsive during Core Hours. These Core Hours are designated as 10:00 AM to 4:00 PM IST (Indian Standard Time), Monday to Friday.",
       "sources": [
-        "04_remote_work_policy",
-        "05_performance_management"
+        "05_performance_management",
+        "04_remote_work_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -109,10 +109,10 @@
     {
       "question": "What is the annual training budget per employee?",
       "expected": "Each employee receives an annual training budget of INR 50,000.",
-      "actual": "According to the ChandraAILabs Training and Development Policy, an annual budget of INR 75,000 is allocated per eligible full-time employee for external training and certifications. This budget covers course enrollment fees, certification exam fees, required study materials, and a portion of conference registration fees. Expenses must be pre-approved, and employees are typically reimbursed upon successful completion of the training (Source 1: 08_training_development).",
+      "actual": "According to the ChandraAILabs Training and Development Policy (Source 1: 08_training_development), an annual budget of INR 75,000 is allocated per eligible full-time employee for external training and certifications. This budget covers course enrollment fees, certification exam fees, required study materials, and a portion of conference registration fees. The budget is allocated per calendar year and does not roll over.",
       "sources": [
-        "08_training_development",
-        "05_performance_management"
+        "05_performance_management",
+        "08_training_development"
       ],
       "chunks_used": 3,
       "relevancy_score": 0.4,
@@ -122,11 +122,11 @@
     {
       "question": "How many study leave days are provided per year?",
       "expected": "Employees get 5 days of study leave per year for certifications.",
-      "actual": "According to the '08_training_development' and '12_extended_leave_policy' documents, each full-time employee at ChandraAILabs is entitled to 5 working days of paid study leave per calendar year. This leave is specifically for focused self-study, exam preparation, or attendance at intensive, short-duration courses. Study leave cannot be carried over to the next calendar year.",
+      "actual": "According to the 08_training_development and 12_extended_leave_policy documents, each full-time employee is entitled to 5 working days of paid study leave per calendar year. This leave is specifically for focused self-study, exam preparation, or attendance at intensive, short-duration courses. Study leave cannot be carried over to the next calendar year and will be granted only once per approved certification exam or intensive course within a calendar year.",
       "sources": [
-        "01_leave_policy",
+        "12_extended_leave_policy",
         "08_training_development",
-        "12_extended_leave_policy"
+        "01_leave_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -136,10 +136,10 @@
     {
       "question": "Within how many days must travel expenses be submitted?",
       "expected": "Travel expenses must be submitted within 7 calendar days of travel.",
-      "actual": "According to the ChandraAILabs Travel and Expense Policy (Source 2), expense reports must be submitted within 7 calendar days of the completion of the travel or the date the expense was incurred. Ensure all required documentation accompanies your submission to avoid delays.",
+      "actual": "According to the ChandraAILabs Travel and Expense Policy (07_travel_expense_policy), expense reports must be submitted within 7 calendar days of the completion of the travel or the date the expense was incurred. This ensures timely processing and adherence to the company's reimbursement procedures.",
       "sources": [
-        "07_travel_expense_policy",
-        "08_training_development"
+        "08_training_development",
+        "07_travel_expense_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -149,7 +149,7 @@
     {
       "question": "How long does grievance resolution take?",
       "expected": "Grievances must be resolved within 30 days of formal complaint.",
-      "actual": "According to the Grievance Redressal Policy, informal resolution is encouraged to be completed within 5 working days. For formal grievances, the entire process, from submission to the final decision, aims to be completed within 30 calendar days. This timeline may be extended in complex cases, with the reasons communicated to the complainant.",
+      "actual": "According to the Grievance Redressal Policy (09_grievance_policy), for minor concerns, employees are encouraged to attempt informal resolution within 5 working days. For a formal grievance, the entire process, from submission to the final decision, aims to be completed within 30 calendar days. In complex cases, this timeline may be extended, and the complainant will be informed of the reasons for the extension.",
       "sources": [
         "09_grievance_policy",
         "05_performance_management"
@@ -162,7 +162,7 @@
     {
       "question": "What is the probation period for new employees?",
       "expected": "New employees have a probation period of 6 months.",
-      "actual": "According to the ChandraAILabs Onboarding Policy (Source 1), all new employees undergo a six (6) months probation period. This period allows both the employee and the company to assess suitability for the role and the company culture. During probation, there are regular check-ins and formal reviews, including a mid-probation review at month three and a final review at the end of the six months.",
+      "actual": "According to the Onboarding Policy, all new employees at ChandraAILabs undergo a six (6) months probation period. This period allows both the employee and the company to assess suitability for the role and company culture. If additional time is needed to assess performance, the probation period may be extended for a maximum of 3 months. (Source: 02_onboarding_policy)",
       "sources": [
         "01_leave_policy",
         "02_onboarding_policy"
@@ -175,32 +175,32 @@
     {
       "question": "What happens if performance rating is below expectations?",
       "expected": "Employees with below expectation ratings are placed on a Performance Improvement Plan for 90 days.",
-      "actual": "According to 05_performance_management, a performance rating of '1' (Does Not Meet Expectations) or '2' (Needs Improvement / Partially Meets Expectations) during the Annual Review can trigger a formal Performance Improvement Plan (PIP). Employees with these ratings may receive no or a reduced annual salary increment, and are not eligible for the annual bonus program. Persistent performance deficiencies, especially those rated '1', may lead to further disciplinary action up to and including termination.",
+      "actual": "According to the 05_performance_management policy, a performance rating of '1' (Does Not Meet Expectations) or '2' (Needs Improvement / Partially Meets Expectations) can trigger a formal Performance Improvement Plan (PIP). Employees with these ratings may also receive no or a reduced annual salary increment and would not be eligible for the annual bonus program. Persistent performance deficiencies, especially if not improved after a PIP, could lead to further disciplinary action, up to and including termination.",
       "sources": [
         "05_performance_management"
       ],
       "chunks_used": 3,
-      "relevancy_score": 1.0,
+      "relevancy_score": 0.8,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "What is the password policy for IT security?",
       "expected": "Passwords must be complex with minimum 8 characters and changed every 90 days.",
-      "actual": "According to the ChandraAILabs IT Security Policy, passwords must be at least 12 characters long, including a mix of uppercase letters, lowercase letters, numbers, and special characters, and must not be reused across different systems. Multi-Factor Authentication (MFA) is required for all critical systems. Passwords must never be shared and should be stored securely, preferably in an approved password manager. While not strictly enforced for strong, unique passwords with MFA, resets will be triggered upon suspicion of compromise, and systems will lock accounts after failed login attempts. (Source 1: 10_it_security_policy)",
+      "actual": "According to the ChandraAILabs IT Security Policy, passwords must be at least 12 characters long, include a mix of uppercase and lowercase letters, numbers, and special characters, and must not be reused across different systems. Multi-Factor Authentication (MFA) is mandatory for all critical systems. Passwords must never be written down, shared, or communicated, and should be stored securely in an approved password manager if necessary. Account lockouts are implemented after a specified number of failed login attempts, and password resets are triggered immediately upon suspicion of compromise.",
       "sources": [
         "04_remote_work_policy",
         "10_it_security_policy"
       ],
       "chunks_used": 3,
-      "relevancy_score": 1.0,
+      "relevancy_score": 0.6,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "Can employees take leave during probation period?",
       "expected": "During probation, employees can only take emergency leave. Annual leave accrual begins after probation.",
-      "actual": "According to the Employee Leave Policy (Source 1 & 3), employees are generally not eligible for paid Annual Leave during their probation period. However, they may be granted paid Sick Leave and Casual Leave on a pro-rata basis, subject to management approval, for genuine reasons. Any leave taken during probation that is unpaid will extend the probation period accordingly.",
+      "actual": "According to the Employee Leave Policy (Source 1: 01_leave_policy and Source 3: 01_leave_policy), employees are generally not eligible for paid Annual Leave during their probation period. However, they may be granted paid Sick Leave and Casual Leave on a pro-rata basis for genuine reasons, subject to management approval. Any unpaid leave taken during probation will extend the probation period accordingly. Annual Leave accrued during probation can only be utilized after successful confirmation of employment.",
       "sources": [
         "01_leave_policy",
         "02_onboarding_policy"
@@ -213,7 +213,7 @@
     {
       "question": "What certifications does the company support financially?",
       "expected": "The company supports GCP, AWS, and Azure certifications through the training budget.",
-      "actual": "According to the ChandraAILabs Training and Development Policy, the company financially supports external training and certifications relevant to its operations. This includes cloud platform certifications (GCP, AWS, Azure), AI/ML-specific certifications and courses from platforms like Coursera and DeepLearning.AI, and other relevant training like conferences and niche technologies. An annual budget of INR 75,000 is allocated per eligible full-time employee to cover course enrollment fees, certification exam fees, required study materials, and a portion of conference registration fees. (Source: 08_training_development)",
+      "actual": "According to the ChandraAILabs Training and Development Policy (Source 1, Source 2), the company financially supports external training and certifications. This includes Cloud Platform Certifications from providers like Google Cloud Platform (GCP), Amazon Web Services (AWS), and Microsoft Azure, as well as AI/ML Specific Certifications and courses from platforms such as Coursera, DeepLearning.AI, Udacity, and edX. An annual budget of INR 75,000 per eligible full-time employee covers course enrollment fees, certification exam fees, and required study materials.",
       "sources": [
         "08_training_development",
         "06_compensation_benefits"
@@ -226,10 +226,10 @@
     {
       "question": "What is the reimbursement timeline for travel expenses?",
       "expected": "Travel expense reimbursements are processed within 15 days of submission.",
-      "actual": "According to the ChandraAILabs Travel and Expense Policy (07_travel_expense_policy), approved expense reports will be processed for reimbursement within 15 working days from the date of final approval by the Finance Department. Reimbursements are made via bank transfer to the employee's registered bank account.",
+      "actual": "According to the ChandraAILabs Travel and Expense Policy, approved expense reports for travel will be processed for reimbursement within 15 working days from the date of final approval by the Finance Department. Reimbursements are made via bank transfer to the employee's registered bank account. If an expense report is incomplete or non-compliant, it will be returned for correction, which will delay the reimbursement process.\n\n(Source: 07_travel_expense_policy)",
       "sources": [
-        "07_travel_expense_policy",
-        "08_training_development"
+        "08_training_development",
+        "07_travel_expense_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -239,19 +239,19 @@
     {
       "question": "What are the data classification levels?",
       "expected": "Data is classified as Public, Internal, Confidential, and Secret.",
-      "actual": "According to the ChandraAILabs IT Security Policy, there are four data classification levels: Public Data, Internal Data, Confidential Data, and Restricted Data (Highly Confidential). Public Data is intended for general release, while Internal Data is for all employees but not external parties. Confidential Data requires access controls and encryption, as its disclosure could cause moderate to significant harm. Restricted Data (Highly Confidential) involves the strictest controls, as its unauthorized disclosure would cause severe harm, including to proprietary AI models and source code. (Source 2: 10_it_security_policy, Section 8)",
+      "actual": "According to the ChandraAILabs IT Security Policy, there are four data classification levels. These are Public Data, which is for general public release; Internal Data, not for public release but generally not highly sensitive; Confidential Data, whose disclosure could cause moderate harm; and Restricted Data (Highly Confidential), which includes intellectual property and sensitive customer data, requiring the strictest controls. (Source 2: 10_it_security_policy, Section 8)",
       "sources": [
         "10_it_security_policy"
       ],
       "chunks_used": 3,
-      "relevancy_score": 1.0,
+      "relevancy_score": 0.8,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "What is the POSH committee?",
       "expected": "POSH stands for Prevention of Sexual Harassment. The committee handles harassment complaints and investigations.",
-      "actual": "According to the Grievance Redressal Policy (09_grievance_policy), the POSH committee is referred to as the Internal Complaints Committee (ICC). This committee is established under the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013, specifically to address complaints of sexual harassment. The ICC operates independently of the Grievance Redressal Committee (GRC) and follows specific procedures and timelines prescribed by the POSH Act and ChandraAILabs' POSH Policy.",
+      "actual": "According to the Grievance Redressal Policy, the \"POSH committee\" refers to the Internal Complaints Committee (ICC). This committee is specifically established under the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013, to address complaints of sexual harassment. The ICC operates independently of the Grievance Redressal Committee (GRC) and follows specific procedures and timelines mandated by the POSH Act and ChandraAILabs' specific POSH Policy.",
       "sources": [
         "09_grievance_policy",
         "10_it_security_policy"
@@ -264,7 +264,7 @@
     {
       "question": "How is the performance rating calculated?",
       "expected": "Performance rating is based on goal achievement, competency assessment, and manager evaluation on a 1-5 scale.",
-      "actual": "According to the ChandraAILabs Performance Management Policy, your performance rating is assigned during the Annual Performance Review, which typically occurs in January-February, using a 5-point scale. This rating is based on a comprehensive evaluation of your performance over the entire calendar year, encompassing OKR achievement, contribution to team and company goals, demonstration of core competencies, and adherence to company values. Your manager's assessment, considering your self-assessment and other relevant data, is calibrated with leadership and HR to ensure consistency and fairness.",
+      "actual": "According to the ChandraAILabs Performance Management Policy (Source 1), performance ratings are assigned during the Annual Performance Review, which occurs in January-February. This comprehensive evaluation is based on your OKR achievement, contribution to team and company goals, demonstration of core competencies, and adherence to company values. ChandraAILabs utilizes a 5-point rating scale (1-5) for this assessment. Manager assessments are reviewed and calibrated in meetings to ensure consistency and fairness across departments (Source 2).",
       "sources": [
         "05_performance_management"
       ],
@@ -276,10 +276,10 @@
     {
       "question": "What is the notice period for annual leave?",
       "expected": "Employees must provide 15-30 days notice for annual leave.",
-      "actual": "According to the Employee Leave Policy (Source 2: 01_leave_policy), a minimum of 15-30 days prior notice is required for Annual Leave requests. This allows for proper work planning and handover within the team.",
+      "actual": "According to the Employee Leave Policy (Source 2), a minimum of 15-30 days prior notice is required for Annual Leave requests. This allows for proper work planning and handover of duties.",
       "sources": [
-        "01_leave_policy",
-        "05_performance_management"
+        "05_performance_management",
+        "01_leave_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -289,10 +289,10 @@
     {
       "question": "How many days can annual leave be carried forward?",
       "expected": "A maximum of 30 days of unused Annual Leave can be carried forward.",
-      "actual": "According to the `01_leave_policy` and `12_extended_leave_policy` documents, a maximum of 30 days of unused Annual Leave can be carried forward to the next calendar year. Any Annual Leave exceeding this 30-day limit at the end of the year will lapse.",
+      "actual": "According to the 01_leave_policy and the 12_extended_leave_policy, a maximum of 30 days of unused Annual Leave can be carried forward to the next calendar year. Any Annual Leave exceeding this limit at the end of the year will lapse.",
       "sources": [
-        "01_leave_policy",
-        "12_extended_leave_policy"
+        "12_extended_leave_policy",
+        "01_leave_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -302,20 +302,20 @@
     {
       "question": "What is the minimum consecutive annual leave allowed?",
       "expected": "A minimum of 1 day and maximum of 15 consecutive days can be taken at one time.",
-      "actual": "According to the Employee Leave Policy (Source 1), a minimum of 1 day of Annual Leave can generally be taken at one time. Any request for a longer duration (exceeding 15 consecutive days) requires special approval from HR and the reporting manager.",
+      "actual": "According to the Employee Leave Policy (Source 1), the minimum consecutive Annual Leave that can generally be taken at one time is 1 day.",
       "sources": [
-        "01_leave_policy",
-        "12_extended_leave_policy"
+        "12_extended_leave_policy",
+        "01_leave_policy"
       ],
       "chunks_used": 3,
-      "relevancy_score": 1.0,
+      "relevancy_score": 0.6,
       "source_correct": true,
       "difficulty": "easy"
     },
     {
       "question": "What is the probation period duration?",
       "expected": "The standard probation period is typically 3-6 months.",
-      "actual": "According to the ChandraAILabs Employee Onboarding Policy (02_onboarding_policy), all new employees undergo a six (6) months probation period. This period allows both the employee and the company to assess suitability for the role and company culture. Towards the end of the 6-month period, a comprehensive review will be conducted.",
+      "actual": "According to the ChandraAILabs Employee Onboarding Policy (Source 1), all new employees undergo a six (6) months probation period. This period allows both the employee and the company to assess suitability for the role and the company culture. A final performance review is conducted at the end of the 6 months, which can lead to confirmation of employment, extension of probation, or separation of employment.",
       "sources": [
         "01_leave_policy",
         "02_onboarding_policy"
@@ -328,33 +328,33 @@
     {
       "question": "How many days notice required for resignation?",
       "expected": "Employees must provide notice as per their employment contract, typically 30-90 days.",
-      "actual": "I don't have information about this in our HR policies.",
+      "actual": "I don't have information about this in our HR policies. The provided documents discuss leave policies and compensation/benefits but do not specify the notice period required for resignation.",
       "sources": [
         "01_leave_policy",
         "06_compensation_benefits"
       ],
       "chunks_used": 3,
-      "relevancy_score": 0.0,
+      "relevancy_score": 0.2,
       "source_correct": false,
       "difficulty": "easy"
     },
     {
       "question": "What is the maximum reimbursement for hotel stay?",
       "expected": "Hotel reimbursement limits are defined in the travel expense policy based on city tier.",
-      "actual": "I don't have information about the specific maximum reimbursement limits for hotel stays in our HR policies. The policy states that employees are expected to use company-preferred hotels or hotels of a similar standard within \"specified limits,\" but these limits are not detailed in the provided documents.\n\nAccording to `07_travel_expense_policy`, if you stay with friends or relatives, a fixed incidental allowance of INR 500 per night can be claimed for a maximum of 3 nights per trip, in lieu of hotel expenses.",
+      "actual": "I don't have information about this in our HR policies. The \"ChandraAILabs Travel and Expense Policy\" (Source 1) mentions that employees are expected to stay within \"specified limits\" for accommodation but does not detail the maximum reimbursement amounts for hotel stays per night for different employee grades.",
       "sources": [
-        "07_travel_expense_policy",
-        "08_training_development"
+        "08_training_development",
+        "07_travel_expense_policy"
       ],
       "chunks_used": 3,
-      "relevancy_score": 0.2,
+      "relevancy_score": 0.6,
       "source_correct": true,
       "difficulty": "easy"
     },
     {
       "question": "What is the company dress code policy?",
       "expected": "ChandraAILabs follows a business casual dress code with formal attire for client meetings.",
-      "actual": "According to the 03_code_of_conduct, ChandraAILabs maintains a professional yet comfortable work environment. Employees are expected to dress neatly, cleanly, and appropriately for a professional business setting. For day-to-day office work, smart casual attire like clean jeans, casual shirts, or traditional Indian wear is acceptable, while client meetings or external events require business formal or business casual attire. Footwear should be clean, comfortable, and professional, avoiding overly casual options. Additionally, overly revealing, dirty, torn, or offensive clothing, as well as excessively casual wear, is considered unacceptable.",
+      "actual": "According to the 03_code_of_conduct, ChandraAILabs expects employees to maintain a professional yet comfortable work environment by dressing neatly, cleanly, and appropriately. For client meetings or external events, business formal or business casual attire is expected, while smart casual is generally acceptable for day-to-day office work. Unacceptable attire includes anything overly revealing, dirty, torn, or containing offensive messages, as well as excessively casual clothing. All employees are also expected to maintain good personal hygiene.",
       "sources": [
         "03_code_of_conduct",
         "10_it_security_policy"
@@ -367,7 +367,7 @@
     {
       "question": "How many performance ratings levels exist?",
       "expected": "Performance ratings have multiple levels including Exceeds Expectations, Meets Expectations, Below Expectations.",
-      "actual": "According to the ChandraAILabs Performance Management Policy, ChandraAILabs uses a 5-point rating scale to evaluate employee performance during the Annual Performance Review. These ratings range from 1 to 5, with '5' being \"Outstanding / Exceeds All Expectations\". (Source 1: 05_performance_management)",
+      "actual": "According to the ChandraAILabs Performance Management Policy, a 5-point rating scale is used to evaluate employee performance during the Annual Performance Review. These ratings range from '1' to '5', with '5' indicating \"Outstanding / Exceeds All Expectations\". Eligibility for the annual bonus program requires a minimum performance rating of '3' or above.\n\nSource: 05_performance_management",
       "sources": [
         "05_performance_management",
         "06_compensation_benefits"
@@ -380,7 +380,7 @@
     {
       "question": "What is the IT password minimum length?",
       "expected": "Passwords must be at least 12 characters long.",
-      "actual": "According to the ChandraAILabs IT Security Policy, passwords must be at least 12 characters long. They must also include a mix of uppercase letters, lowercase letters, numbers, and special characters to meet complexity requirements. (Source 1: 10_it_security_policy)",
+      "actual": "According to the ChandraAILabs IT Security Policy, passwords must be at least 12 characters long. They must also include a mix of uppercase letters, lowercase letters, numbers, and special characters. (Source 1: 10_it_security_policy)",
       "sources": [
         "04_remote_work_policy",
         "10_it_security_policy"
@@ -393,7 +393,7 @@
     {
       "question": "How often are performance reviews conducted?",
       "expected": "Performance reviews are conducted annually with mid-year check-ins.",
-      "actual": "ChandraAILabs conducts a structured performance review process twice a year for all full-time employees: a Mid-Year Performance Review in July and an Annual Performance Review in January-February. Additionally, new employees undergo a Mid-Probation Review at month 3 and a Final Probation Review at the end of their six-month probation period.\n\nAccording to the \"05_performance_management\" and \"02_onboarding_policy\" documents.",
+      "actual": "According to the ChandraAILabs Performance Management Policy (Source 1) and Onboarding Policy (Source 3), performance reviews are conducted as follows:\n\nFor all full-time employees, a Mid-Year Performance Review is conducted in July, and an Annual Performance Review takes place in January-February. Additionally, new employees undergo formal performance reviews during their six-month probation period, including a Mid-Probation Review in Month 3 and a Final Probation Review at the end of Month 6.",
       "sources": [
         "05_performance_management",
         "02_onboarding_policy"
@@ -406,10 +406,10 @@
     {
       "question": "What happens to sick leave at end of year?",
       "expected": "Unused sick leave cannot be carried forward and lapses at end of calendar year.",
-      "actual": "According to the ChandraAILabs Leave Policy (Source 1 and Source 2), any unused Sick Leave at the end of the calendar year cannot be carried forward to the next year and cannot be encashed. Instead, it will lapse.",
+      "actual": "According to the ChandraAILabs Leave Policy, Sick Leave cannot be carried forward to the next calendar year. It also cannot be encashed. Any unused Sick Leave will lapse at the end of the calendar year. (Source 1: 01_leave_policy, Source 2: 01_leave_policy, Source 3: 12_extended_leave_policy)",
       "sources": [
-        "01_leave_policy",
-        "12_extended_leave_policy"
+        "12_extended_leave_policy",
+        "01_leave_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -419,7 +419,7 @@
     {
       "question": "Can annual leave be encashed during employment?",
       "expected": "Annual leave encashment is generally not permitted during employment, only at separation.",
-      "actual": "According to the 01_leave_policy document, encashment of Annual Leave is generally not permitted during employment. However, accumulated Annual Leave will be encashed at the time of resignation, superannuation, or termination, provided the employee has completed the required service period.",
+      "actual": "According to the 01_leave_policy, encashment of Annual Leave is generally not permitted during employment at ChandraAILabs. Accumulated Annual Leave will only be encashed at the time of resignation, superannuation, or termination, provided the employee has completed the required service period.",
       "sources": [
         "01_leave_policy",
         "06_compensation_benefits"
@@ -432,7 +432,7 @@
     {
       "question": "What is the process for raising a grievance?",
       "expected": "Employees must submit a formal grievance to HR in writing with details of the issue.",
-      "actual": "According to the ChandraAILabs Grievance Redressal Policy, employees are first encouraged to attempt an informal resolution by addressing the issue directly with the person concerned or their immediate supervisor within 5 working days. If informal resolution is unsuccessful or unsuitable, a formal grievance can be submitted. To do this, the employee must submit a written grievance to the HR Department or any member of the Grievance Redressal Committee (GRC), detailing the concern, individuals involved, and desired outcome. The GRC/HR will acknowledge receipt of the formal grievance within 2 working days.",
+      "actual": "According to the Grievance Redressal Policy, employees are encouraged to first attempt an informal resolution by addressing the issue directly with the person concerned or their immediate supervisor within 5 working days. If informal resolution is not suitable or fails, a formal grievance can be initiated by submitting a written grievance to the HR Department or any member of the Grievance Redressal Committee (GRC). This written grievance should include a clear description of the issue, involved individuals, supporting documentation, and the desired outcome. The GRC/HR will acknowledge receipt of the formal grievance within 2 working days.",
       "sources": [
         "09_grievance_policy",
         "02_onboarding_policy"
@@ -445,23 +445,23 @@
     {
       "question": "What qualifies as a data breach?",
       "expected": "Unauthorized access, disclosure, or loss of confidential company or customer data.",
-      "actual": "According to the IT Security Policy for ChandraAILabs, a data breach qualifies as any suspected or actual security breach. This includes events such as unauthorized access, data leakage, or malware infection. Furthermore, an \"Incident\" is defined as any event that could lead to a compromise of data. All such incidents must be reported immediately upon discovery. (Source: 10_it_security_policy)",
+      "actual": "According to the ChandraAILabs IT Security Policy, a data breach qualifies as any suspected or actual security breach. This includes events such as unauthorized access, data leakage, or the loss or theft of company devices. More broadly, any event that could lead to the compromise of data is considered an incident that must be reported.",
       "sources": [
         "10_it_security_policy"
       ],
       "chunks_used": 3,
-      "relevancy_score": 0.8,
+      "relevancy_score": 1.0,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "What is the WFH eligibility criteria?",
       "expected": "WFH eligibility is based on role suitability, performance, tenure, suitable home environment and manager approval.",
-      "actual": "According to the Remote Work Policy (04_remote_work_policy), eligibility for remote work depends on several factors. Your role must be suitable for remote work, and you must have completed your probationary period with consistent strong performance. Additionally, you need a suitable and safe home work environment with reliable internet. All remote work arrangements require explicit approval from your direct manager and department head.",
+      "actual": "According to the 04_remote_work_policy, eligibility for remote work (WFH) is based on several criteria. Your role and responsibilities must be suitable for remote work, and you must be in good standing with consistent strong performance. Additionally, you need to have successfully completed your probationary period and possess a suitable home work environment with reliable internet. All remote work arrangements also require explicit approval from your direct manager and department head.",
       "sources": [
-        "04_remote_work_policy",
+        "05_performance_management",
         "01_leave_policy",
-        "05_performance_management"
+        "04_remote_work_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -471,10 +471,10 @@
     {
       "question": "What expenses are not reimbursable?",
       "expected": "Personal expenses, alcohol, entertainment without business purpose are not reimbursable.",
-      "actual": "According to the ChandraAILabs Travel and Expense Policy, generally non-reimbursable expenses include alcoholic beverages, tobacco products, and personal entertainment such as movies, mini-bar items, or personal shopping. Other non-reimbursable items are traffic fines, expenses for accompanying family members, personal toiletries, and unapproved upgrades. Additionally, any expense without a legitimate business purpose or without original, valid receipts will not be reimbursed.",
+      "actual": "According to the **ChandraAILabs Travel and Expense Policy [Source 2]**, non-reimbursable expenses generally include alcoholic beverages, personal entertainment, traffic fines, expenses for accompanying family members, and personal toiletries. Additionally, any unapproved upgrades or expenses incurred without a legitimate business purpose or valid original receipts will not be reimbursed. Furthermore, under the **ChandraAILabs Remote Work Policy [Source 3]**, employees are responsible for expenses related to their remote work setup, such as furniture or personal internet plans exceeding the allowance, unless otherwise agreed upon.",
       "sources": [
-        "07_travel_expense_policy",
-        "04_remote_work_policy"
+        "04_remote_work_policy",
+        "07_travel_expense_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -484,10 +484,10 @@
     {
       "question": "What is the PIP process?",
       "expected": "PIP or Performance Improvement Plan is a structured plan with specific goals and timeline for employees rated below expectations.",
-      "actual": "According to 05_performance_management, a Performance Improvement Plan (PIP) is a formal process designed to address significant performance deficiencies. It begins with the manager identifying a performance gap, followed by an initial discussion and warning with the employee. HR, the manager, and the employee then collaborate to create a written PIP, outlining specific areas for improvement, measurable goals, an action plan, support, a timeline, and consequences of non-improvement. The plan is implemented with regular check-ins, and at the end of the period, a final review determines if performance has improved to a satisfactory level.",
+      "actual": "According to the ChandraAILabs Performance Management Policy (Source 1: 05_performance_management), the Performance Improvement Plan (PIP) process starts with the manager identifying a performance gap, followed by an initial discussion and warning with the employee. Next, HR, the manager, and the employee collaborate to create a written PIP outlining specific areas for improvement, measurable goals, an action plan, support, a timeline, and consequences of non-improvement. The plan is then implemented with regular monitoring, concluding with a final review to assess performance improvement and determine outcomes, which may include further disciplinary action or termination if performance does not meet standards.",
       "sources": [
-        "05_performance_management",
-        "02_onboarding_policy"
+        "02_onboarding_policy",
+        "05_performance_management"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -497,20 +497,20 @@
     {
       "question": "How long does POSH investigation take?",
       "expected": "POSH investigations must be completed within 90 days of the complaint.",
-      "actual": "According to the Grievance Redressal Policy (CHAIL/HR/GRP/V1.0), complaints related to sexual harassment are handled by ChandraAILabs' Internal Complaints Committee (ICC), not the Grievance Redressal Committee. The ICC follows procedures and timelines prescribed by the POSH Act, 2013, which includes a timeline of **90 days for investigation**. For full details, employees are encouraged to familiarize themselves with ChandraAILabs' specific POSH Policy.",
+      "actual": "According to the Grievance Redressal Policy (CHAIL/HR/GRP/V1.0), complaints of sexual harassment are handled by ChandraAILabs' Internal Complaints Committee (ICC). The ICC follows the specific procedures and timelines prescribed by the POSH Act and ChandraAILabs' specific POSH Policy. The timeline for a POSH investigation is typically 90 days.",
       "sources": [
         "09_grievance_policy",
         "10_it_security_policy"
       ],
       "chunks_used": 3,
-      "relevancy_score": 1.0,
+      "relevancy_score": 0.8,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "What training is mandatory for all employees?",
       "expected": "Mandatory training includes security awareness, code of conduct, and POSH training annually.",
-      "actual": "According to the IT Security Policy, all personnel will undergo mandatory security awareness training upon joining ChandraAILabs and annually thereafter. This training covers the principles outlined in the policy and best practices for information security.",
+      "actual": "According to the IT Security Policy (Source 1: 10_it_security_policy), all personnel must undergo mandatory security awareness training. This training is required upon joining ChandraAILabs and annually thereafter, covering principles outlined in the policy and best practices for information security.",
       "sources": [
         "08_training_development",
         "10_it_security_policy"
@@ -523,47 +523,47 @@
     {
       "question": "What is the overtime policy?",
       "expected": "Overtime must be pre-approved by manager and is compensated as per company policy.",
-      "actual": "I don't have information about a general overtime policy in our HR policies.\n\nHowever, according to Source 2: 01_leave_policy, if an employee is required to work on a declared Public Holiday, compensatory off (COFF) or additional remuneration will be provided as per company policy and applicable labor laws.",
+      "actual": "I don't have information about a general overtime policy in our HR policies. However, according to the \"01_leave_policy\" document, in exceptional cases where an employee is required to work on a declared Public Holiday, compensatory off (COFF) or additional remuneration will be provided as per company policy and applicable labor laws.",
       "sources": [
-        "01_leave_policy",
         "05_performance_management",
+        "01_leave_policy",
         "06_compensation_benefits"
       ],
       "chunks_used": 3,
-      "relevancy_score": 0.2,
+      "relevancy_score": 0.4,
       "source_correct": false,
       "difficulty": "medium"
     },
     {
       "question": "What devices are allowed for remote work?",
       "expected": "Company-issued devices are preferred. Personal devices require IT security approval and MDM enrollment.",
-      "actual": "According to the ChandraAILabs IT Security Policy and Remote Work Policy, only company-issued and approved devices (laptops, desktops, and mobile phones) may be used for company work. ChandraAILabs provides necessary primary work equipment like a laptop, external monitor, keyboard, and mouse. While the use of personal devices is generally discouraged due to security and compliance risks, exceptions may be made with explicit IT approval and adherence to specific security protocols.",
+      "actual": "According to the ChandraAILabs Remote Work Policy and the IT Security Policy, only company-issued and approved devices may be used for company work. ChandraAILabs provides necessary primary equipment, including a laptop, external monitor, keyboard, and mouse. While personal devices are generally discouraged for company work due to security concerns, exceptions may be made with explicit IT approval and adherence to specific security protocols.",
       "sources": [
         "04_remote_work_policy",
         "10_it_security_policy"
       ],
       "chunks_used": 3,
-      "relevancy_score": 0.8,
+      "relevancy_score": 1.0,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "How are travel expenses approved?",
       "expected": "Travel expenses require pre-approval from manager before booking and submission within 30 days of travel.",
-      "actual": "According to ChandraAILabs Travel and Expense Policy, all domestic business travel requires prior approval. Employees must submit a Travel Request Form, which is first reviewed by their Direct Manager, then by the Department Head/Functional Lead for final approval, and finally by HR/Finance for policy compliance and budget availability. After travel, the submitted expense report is reviewed by the employee's Manager for business purpose and policy compliance, and then by the Finance Department for final approval before reimbursement.",
+      "actual": "According to the ChandraAILabs Travel and Expense Policy, all domestic business travel requires prior approval. Employees must complete a \"Travel Request Form\" outlining the purpose, destination, dates, and estimated costs. The approval hierarchy involves the employee's Direct Manager for initial review, the Department Head/Functional Lead for final approval of the plan and budget, and the HR/Finance Department for policy compliance and budget verification. These requests should be submitted at least 7 working days before travel.",
       "sources": [
-        "07_travel_expense_policy",
-        "06_compensation_benefits"
+        "06_compensation_benefits",
+        "07_travel_expense_policy"
       ],
       "chunks_used": 3,
-      "relevancy_score": 0.8,
+      "relevancy_score": 0.6,
       "source_correct": true,
       "difficulty": "medium"
     },
     {
       "question": "If an employee joins in July, how many annual leaves are they entitled to in the first year?",
       "expected": "Employees joining mid-year get pro-rata annual leave. Joining in July gives approximately 10-11 days for the remainder of the year at 1.75 days per month.",
-      "actual": "According to the Employee Leave Policy (Source 2), Annual Leave accrues on a pro-rata basis at 1.75 days per month. If an employee joins in July, they would accrue 1.75 days for each of the remaining six months of the calendar year (July to December). This amounts to 10.5 days of Annual Leave in their first year of joining. Employees are eligible to avail Annual Leave only upon completion of their probation period and confirmation of employment.",
+      "actual": "According to the Employee Leave Policy - ChandraAILabs, Annual Leave accrues on a pro-rata basis at 1.75 days per month, starting from the employee's date of joining. For an employee joining in July, they would accrue 10.5 days (6 months x 1.75 days/month) of Annual Leave in their first calendar year. Employees are eligible to avail Annual Leave only upon completion of their probation period and confirmation of employment, though leave accrued during probation may be utilized after confirmation.\n\nSource: Employee Leave Policy - ChandraAILabs (Source 2: 01_leave_policy)",
       "sources": [
         "01_leave_policy",
         "06_compensation_benefits"
@@ -576,11 +576,11 @@
     {
       "question": "Can an employee on probation work from home?",
       "expected": "WFH requires tenure as one of the eligibility criteria. Employees on probation are generally not eligible for WFH until confirmed.",
-      "actual": "According to the Remote Work Policy (04_remote_work_policy), employees must have successfully completed their probationary period to be eligible for remote work arrangements. This means an employee on probation is generally not eligible to work from home. Eligibility for remote work is determined based on several criteria, including tenure, which specifies the completion of the probationary period (typically 3-6 months).",
+      "actual": "According to the `04_remote_work_policy`, employees must successfully complete their probationary period (typically 3-6 months) to be eligible for remote work. This is a key criterion for determining eligibility. Therefore, an employee on probation is generally not eligible to work from home.",
       "sources": [
-        "04_remote_work_policy",
         "01_leave_policy",
-        "02_onboarding_policy"
+        "02_onboarding_policy",
+        "04_remote_work_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -590,10 +590,10 @@
     {
       "question": "What happens if an employee exhausts all leaves and falls sick?",
       "expected": "Employee can apply for Leave Without Pay (LWP) after exhausting all paid leaves, with manager and HR approval.",
-      "actual": "According to the `01_leave_policy`, if an employee exhausts all available paid leave and then falls sick, they may request Leave Without Pay (LWP). This request must be submitted in advance with a valid reason and requires approval from both the reporting manager and HR. Please be aware that LWP may impact an employee's service benefits as per company policy and statutory regulations.",
+      "actual": "According to the Employee Leave Policy (01_leave_policy), if an employee exhausts all available paid leave and falls sick, they may request Leave Without Pay (LWP). This request must be submitted in advance with a valid reason and requires approval from both the reporting manager and HR. Please note that LWP may impact an employee's service benefits.",
       "sources": [
-        "01_leave_policy",
-        "12_extended_leave_policy"
+        "12_extended_leave_policy",
+        "01_leave_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -603,10 +603,10 @@
     {
       "question": "How does performance rating affect WFH eligibility?",
       "expected": "WFH eligibility includes performance as a criteria. Below expectations rating may disqualify an employee from WFH privileges.",
-      "actual": "According to the Remote Work Policy (CIL-HR-003), eligibility for remote work requires an employee to be in good standing with the company and demonstrate consistent strong performance. The Performance Management Policy (05_performance_management) defines specific performance ratings, where '1 - Does Not Meet Expectations' and '2 - Needs Improvement / Partially Meets Expectations' indicate performance deficiencies. Therefore, while a specific minimum performance rating is not explicitly stated in the remote work policy, consistent strong performance, as reflected in higher performance ratings, is a key factor for WFH eligibility.",
+      "actual": "According to the Remote Work Policy (CIL-HR-003), eligibility for remote work is determined by several criteria, including performance. The policy states that an employee must be in good standing with the company, demonstrating consistent strong performance and adherence to company policies. While a specific numerical performance rating (1-5) is not explicitly detailed as affecting WFH eligibility, consistent strong performance is a general requirement for all remote work arrangements.",
       "sources": [
-        "04_remote_work_policy",
-        "05_performance_management"
+        "05_performance_management",
+        "04_remote_work_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -616,20 +616,20 @@
     {
       "question": "Can an employee claim travel expenses for WFH setup?",
       "expected": "WFH setup expenses are separate from travel policy. Travel policy covers business travel only, not home office setup.",
-      "actual": "I don't have information about this in our HR policies. The `ChandraAILabs Travel and Expense Policy` outlines guidelines for business-related travel, and the `ChandraAILabs Remote Work Policy` details company-provided equipment and internet reimbursement for remote work. Neither policy mentions the ability to claim travel expenses specifically for setting up a Work From Home (WFH) environment.",
+      "actual": "I don't have information about this in our HR policies. The provided policies outline what equipment ChandraAILabs provides for remote work (laptop, monitor, keyboard, mouse) and a monthly internet allowance, but do not mention travel expenses specifically for setting up a Work From Home (WFH) environment.",
       "sources": [
-        "07_travel_expense_policy",
-        "04_remote_work_policy"
+        "04_remote_work_policy",
+        "07_travel_expense_policy"
       ],
       "chunks_used": 3,
-      "relevancy_score": 1.0,
+      "relevancy_score": 0.6,
       "source_correct": true,
       "difficulty": "hard"
     },
     {
       "question": "What is the difference between grievance and POSH complaint process?",
       "expected": "Grievance covers general workplace issues resolved in 30 days. POSH is specifically for sexual harassment with mandatory 90-day investigation and ICC committee.",
-      "actual": "According to the Grievance Redressal Policy, a grievance addresses general workplace concerns such as bullying, non-sexual discrimination, HR policy application, or disputes with colleagues. These are handled by the Grievance Redressal Committee (GRC).\n\nIn contrast, complaints related to sexual harassment are exclusively handled by the Internal Complaints Committee (ICC), as mandated by the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013. The POSH process operates independently of the GRC and follows specific procedures and timelines prescribed by the POSH Act and ChandraAILabs' POSH Policy.",
+      "actual": "According to the Grievance Redressal Policy (Source 1), a grievance is any workplace dissatisfaction or concern **excluding** matters covered under the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013 (POSH Act). Grievances are handled by the Grievance Redressal Committee (GRC) and cover non-sexual issues like bullying or policy application.\n\nConversely, POSH complaints specifically address instances of sexual harassment and are exclusively handled by the Internal Complaints Committee (ICC), which operates independently of the GRC (Source 1, Source 2). The process and timelines for POSH complaints are governed by the POSH Act and ChandraAILabs' specific POSH Policy, with investigations aiming for 90 days (Source 2).",
       "sources": [
         "09_grievance_policy",
         "02_onboarding_policy"
@@ -642,7 +642,7 @@
     {
       "question": "If an employee is on PIP, are they eligible for promotion?",
       "expected": "Employees on PIP are typically not eligible for promotion as they are below expected performance levels.",
-      "actual": "According to the 05_performance_management policy, employees are eligible for promotion if they demonstrate sustained high performance, consistently achieving a rating of '4' or '5' in Annual Reviews over the past 1-2 years. A Performance Improvement Plan (PIP) is triggered by a formal performance rating of '1' or '2', indicating performance deficiencies. Therefore, an employee on a PIP would not be eligible for promotion as they do not meet the sustained high-performance criteria.",
+      "actual": "According to the '05_performance_management' policy, an employee on a Performance Improvement Plan (PIP) is not eligible for promotion. A PIP is initiated for performance ratings of '1' or '2', indicating significant deficiencies, while promotion eligibility requires consistently achieving a rating of '4' or '5' in Annual Reviews over the past 1-2 years and demonstrating readiness for increased responsibility.",
       "sources": [
         "05_performance_management",
         "06_compensation_benefits"
@@ -655,23 +655,23 @@
     {
       "question": "How does taking unpaid leave affect gratuity calculation?",
       "expected": "Unpaid leave may impact service benefits including gratuity, provident fund contributions and appraisal cycles.",
-      "actual": "According to the 01_leave_policy, Leave Without Pay (LWP) may impact an employee's service benefits, such as gratuity. The 06_compensation_benefits policy specifies that gratuity is calculated based on completing 5 continuous years of service and at 15 days of last drawn Basic Salary for every completed year of service. While LWP is stated to potentially impact gratuity, the exact method of this impact on the calculation or service period is not detailed in the provided policies.",
+      "actual": "According to the Leave Policy, taking Leave Without Pay (LWP) may impact an employee's service benefits, such as gratuity, as per company policy and statutory regulations (Source 1: 01_leave_policy). Gratuity eligibility requires completing 5 continuous years of service with ChandraAILabs (Source 2: 06_compensation_benefits). It is calculated at 15 days of last drawn Basic Salary for every completed year of service (Source 2: 06_compensation_benefits). However, the specific details on how LWP impacts this calculation are not further elaborated in the provided HR policies.",
       "sources": [
         "01_leave_policy",
         "06_compensation_benefits"
       ],
       "chunks_used": 3,
-      "relevancy_score": 1.0,
+      "relevancy_score": 0.8,
       "source_correct": true,
       "difficulty": "hard"
     },
     {
       "question": "Can an employee carry forward both annual and casual leave?",
       "expected": "Only annual leave can be carried forward up to 30 days. Casual leave cannot be carried forward and lapses at year end.",
-      "actual": "According to the Leave Carry Forward and Encashment Rules in `01_leave_policy` and `12_extended_leave_policy`, an employee can carry forward a maximum of 30 days of unused Annual Leave to the next calendar year. However, Casual Leave cannot be carried forward to the next calendar year; any unused Casual Leave will lapse at the end of the year, as stated in `01_leave_policy` and `12_extended_leave_policy`.",
+      "actual": "According to the ChandraAILabs leave policy, an employee can carry forward Annual Leave. A maximum of 30 days of unused Annual Leave can be carried forward to the next calendar year. However, Casual Leave cannot be carried forward to the next calendar year and any unused Casual Leave will lapse at the end of the year. (Source 1: 01_leave_policy, Source 2: 01_leave_policy, Source 3: 12_extended_leave_policy)",
       "sources": [
-        "01_leave_policy",
-        "12_extended_leave_policy"
+        "12_extended_leave_policy",
+        "01_leave_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -681,7 +681,7 @@
     {
       "question": "What recourse does an employee have if grievance is not resolved?",
       "expected": "If grievance is not resolved at manager level, it escalates to HR, then senior management, and finally can be taken to external labor authorities.",
-      "actual": "According to the Grievance Redressal Policy (Source 2), if an employee is dissatisfied with the Grievance Redressal Committee's (GRC) final decision, they have the right to appeal. The employee must submit a written appeal to the CEO/Managing Director within 7 working days of receiving the GRC's decision, clearly stating the reasons for dissatisfaction. The CEO/Managing Director will then review the grievance, the GRC's report, and the appeal, and their decision will be final and binding, communicated within 10 working days of receiving the appeal.",
+      "actual": "According to ChandraAILabs' Grievance Redressal Policy, if an employee is dissatisfied with the Grievance Redressal Committee's (GRC) final decision, they have the right to appeal. The employee must submit a written appeal to the CEO/Managing Director within 7 working days of receiving the GRC's decision, clearly stating the reasons for their dissatisfaction. The CEO/Managing Director will review the original grievance, the GRC's report, and the appeal, and their decision will be final and binding, communicated within 10 working days of receiving the appeal.",
       "sources": [
         "09_grievance_policy",
         "05_performance_management"
@@ -694,11 +694,11 @@
     {
       "question": "How does study leave interact with annual leave?",
       "expected": "Study leave is separate from annual leave. Both can be utilized independently. Study leave is specifically for approved courses and cannot substitute annual leave.",
-      "actual": "According to the 08_training_development and 12_extended_leave_policy documents, study leave and annual leave are distinct entitlements with separate provisions. Employees are entitled to 5 working days of paid study leave per calendar year, which cannot be carried over to the next year and is specifically for focused self-study or intensive courses. Annual leave is a separate entitlement of 21 days per year, with a maximum of 30 unused days permitted to be carried forward, as stated in the 01_leave_policy. There is no information in our HR policies indicating an interaction or dependency between study leave and annual leave.",
+      "actual": "According to the 08_training_development and 12_extended_leave_policy documents, study leave is a distinct entitlement of 5 paid working days per calendar year, specifically for focused self-study or intensive courses. Unlike annual leave, study leave cannot be carried over to the next calendar year or encashed. Annual leave, as detailed in the 12_extended_leave_policy and 01_leave_policy documents, is 21 days per year, can be carried forward up to a maximum of 30 days, and is encashable upon separation. Both leave types require an approval process.",
       "sources": [
-        "01_leave_policy",
+        "12_extended_leave_policy",
         "08_training_development",
-        "12_extended_leave_policy"
+        "01_leave_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -708,7 +708,7 @@
     {
       "question": "What security measures are required for employees working remotely?",
       "expected": "Remote workers need VPN, company-approved devices or MDM-enrolled personal devices, secure home network, and must follow all IT security policies.",
-      "actual": "According to the ChandraAILabs IT Security Policy, employees working remotely are required to use an approved Virtual Private Network (VPN) for internal networks and sensitive cloud resources. They must use secure, password-protected Wi-Fi networks and avoid public Wi-Fi for sensitive work. All sensitive company data must be stored exclusively on approved company storage solutions. Additionally, company-issued devices must have mandatory security software, full disk encryption, be kept updated, and be physically secured, with any loss or theft reported immediately.",
+      "actual": "According to the ChandraAILabs IT Security Policy, employees working remotely are required to connect to internal networks and sensitive cloud resources via an approved Virtual Private Network (VPN). They must use secure, password-protected Wi-Fi networks and avoid public Wi-Fi for sensitive work. Sensitive company data should only be stored on approved company storage solutions, not personal cloud storage or local machine drives without proper encryption. Additionally, company-issued devices must have mandatory security software, full disk encryption, and be kept physically secure at all times.",
       "sources": [
         "04_remote_work_policy",
         "10_it_security_policy"
@@ -734,33 +734,33 @@
     {
       "question": "Can an employee use study leave for online courses?",
       "expected": "Study leave is for approved external courses and intensive programs. Online courses may qualify if formally approved by manager and HR beforehand.",
-      "actual": "Yes, an employee can use study leave for online courses, provided they are enrolled in an approved external course or certification program requiring significant study. According to the Training and Development Policy (Source 1: 08_training_development), study leave is specifically for focused self-study, exam preparation, or attendance at intensive, short-duration courses. ChandraAILabs supports external training and certifications from platforms like Coursera, DeepLearning.AI, and Udacity (Source 2: 08_training_development), which would typically fall under approved programs.",
+      "actual": "Yes, employees can use study leave for online courses. According to the \"08_training_development\" policy, study leave is specifically for focused self-study, exam preparation, or attendance at intensive, short-duration courses. Employees must be enrolled in an approved external course or certification program requiring significant study to be eligible. Online platforms such as Coursera, DeepLearning.AI, and Udacity are explicitly mentioned as supported platforms for external training and certifications.",
       "sources": [
-        "08_training_development",
-        "12_extended_leave_policy"
+        "12_extended_leave_policy",
+        "08_training_development"
       ],
       "chunks_used": 3,
-      "relevancy_score": 0.8,
+      "relevancy_score": 1.0,
       "source_correct": true,
       "difficulty": "hard"
     },
     {
       "question": "What is the combined maximum training investment per employee annually?",
       "expected": "Training budget covers certification costs plus study leave (5 days). Total investment includes course fees up to approved budget plus paid study leave days.",
-      "actual": "According to the ChandraAILabs Training and Development Policy, an annual budget of INR 75,000 is allocated per eligible full-time employee for external training and certifications. This budget covers course enrollment fees, certification exam fees, required study materials, and a portion of conference registration fees. Any requests exceeding this annual limit require special approval from the Department Head and Senior Management (Source 1: 08_training_development).",
+      "actual": "According to the ChandraAILabs Training and Development Policy [Source 1: 08_training_development], an annual budget of INR 75,000 is allocated per eligible full-time employee for external training and certifications. This budget covers course enrollment fees, certification exam fees, required study materials, and a portion of conference registration fees. Additionally, each full-time employee is entitled to 5 working days of paid study leave per calendar year for focused self-study or exam preparation.",
       "sources": [
         "08_training_development",
         "02_onboarding_policy"
       ],
       "chunks_used": 3,
-      "relevancy_score": 0.6,
+      "relevancy_score": 1.0,
       "source_correct": true,
       "difficulty": "hard"
     },
     {
       "question": "How are data classification levels applied to HR documents?",
       "expected": "HR documents containing personal data (CTC, performance, leave) are classified as Confidential. Policy documents are Internal. Public announcements are Public.",
-      "actual": "According to the ChandraAILabs IT Security Policy, HR documents are classified based on their sensitivity. HR records (non-medical) are classified as **Confidential Data**, requiring access controls, encryption, and secure storage. Employee medical records, due to their highly sensitive nature, are classified as **Restricted Data (Highly Confidential)**, which mandates the strictest controls including strict access control, mandatory encryption, and regular auditing of access attempts.",
+      "actual": "According to the 10_it_security_policy, HR records are classified based on their content. Non-medical HR records are classified as Confidential Data. Employee medical records, however, are considered Restricted Data (Highly Confidential) due to their sensitive nature, requiring the strictest controls.",
       "sources": [
         "10_it_security_policy"
       ],
@@ -772,10 +772,10 @@
     {
       "question": "What happens to accrued leaves when an employee resigns?",
       "expected": "Annual leave balance is encashed at full and final settlement. Sick leave and casual leave lapse on last working day and are not encashed.",
-      "actual": "According to the Employee Leave Policy (Source 1), when an employee resigns:\nAny balance of accrued and unutilized Annual Leave (AL)/Earned Leave (EL) will be encashed at the time of full and final settlement, subject to company policy and labor laws, and provided the employee has completed the required service period. However, Sick Leave (SL), Casual Leave (CL), and Paternity Leave (PL) will not be encashed and will lapse upon the last working day. Employees serving notice are expected to utilize remaining Annual Leave only with prior manager and HR approval.",
+      "actual": "According to the ChandraAILabs Leave Policy (Source 1), any balance of accrued and unutilized Annual Leave will be encashed at the time of full and final settlement, subject to company policy and labor laws, provided the employee has completed the required service period. Employees serving their notice period are expected to utilize any remaining accrued Annual Leave only with prior approval from their manager and HR. However, Sick Leave and Casual Leave will not be encashed and will lapse upon the last working day. Paternity Leave also cannot be encashed and will lapse.",
       "sources": [
-        "03_code_of_conduct",
-        "01_leave_policy"
+        "01_leave_policy",
+        "03_code_of_conduct"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,
@@ -785,10 +785,10 @@
     {
       "question": "Can a manager deny WFH to an employee who meets all criteria?",
       "expected": "Yes, WFH is granted at management discretion considering business needs, team requirements and workload even if employee meets eligibility criteria.",
-      "actual": "According to the Remote Work Policy (Source 2), all remote work arrangements require explicit approval from the employee's direct manager and department head, even if other eligibility criteria are met. For employees in eligible AI teams, while full remote is the default, managers retain the discretion to require occasional in-office presence for specific activities. Therefore, a manager can deny WFH or require in-office presence at their discretion.",
+      "actual": "According to the Remote Work Policy (Source 2), all remote work arrangements require explicit approval from the employee's direct manager and department head, even if other eligibility criteria are met. For eligible AI teams where full remote is the default, managers still retain discretion to require occasional in-office presence for critical project milestones, intensive collaboration, or team-building activities with reasonable notice (Source 2). Therefore, a manager can deny WFH based on their discretion.",
       "sources": [
-        "04_remote_work_policy",
-        "05_performance_management"
+        "05_performance_management",
+        "04_remote_work_policy"
       ],
       "chunks_used": 3,
       "relevancy_score": 1.0,

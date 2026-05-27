@@ -423,10 +423,10 @@ def slide_hybrid_rag(prs):
                  font_size=14, bold=True, color=NAVY)
     rows = [
         ["Metric", "BM25 Only", "Hybrid RAG", "Latest"],
-        ["Avg Relevancy", "0.635", "0.674", "0.863"],
+        ["Avg Relevancy", "0.635", "0.674", "0.857"],
         ["Source Accuracy", "1.000", "1.000", "0.967"],
-        ["Easy Questions", "0.706", "0.740", "0.850"],
-        ["Medium Questions", "0.611", "0.630", "0.910"],
+        ["Easy Questions", "0.706", "0.740", "0.860"],
+        ["Medium Questions", "0.611", "0.630", "0.880"],
         ["Hard Questions", "0.377", "0.522", "0.830"],
     ]
     kv_table(slide, rows, Inches(6.95), Inches(4.5), Inches(5.8),
