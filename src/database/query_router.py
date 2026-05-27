@@ -23,8 +23,8 @@ class QueryRouter:
         r"\bmy\b.*(manager|reporting|boss|lead)",
         r"\bmy\b.*(team|reportees|subordinates)",
         r"\bmy\b.*(notice period|joining date|anniversary)",
-        r"how many.*(leave|leaves|days).*(i|me|my)",
-        r"(i|me|my).*(have|got|get).*(leave|leaves|days)",
+        r"how many.*(leave|leaves|days).*\b(i|me|my)\b",
+        r"\b(i|me|my)\b.*(have|got|get).*(leave|leaves|days)",
         r"when.*my.*(review|appraisal|increment)",
         r"what.*my.*(designation|role|title|department)",
         r"(do i|am i).*(eligible|entitled|qualified)",
@@ -33,7 +33,7 @@ class QueryRouter:
 
     HYBRID_PATTERNS = [
         r"(am i|am i eligible).*(wfh|work from home|remote)",
-        r"(can i|can i take).*(leave|wfh|remote)",
+        r"(can i|can i take).*(leave|wfh|work from home|remote)",
         r"(when|how).*(get promoted|promotion|next level)",
         r"\b(my|i)\b.*(pip|performance improvement)",
         r"(am i|will i).*(bonus|increment|hike)",

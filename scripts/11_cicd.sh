@@ -1,8 +1,8 @@
 #!/bin/bash
 # ============================================================
 # Script: 11_cicd.sh
-# Purpose: Setup Cloud Build CI/CD pipeline
-# Usage: ./scripts/11_cicd.sh --env=dev
+# Purpose: Grant Cloud Build permissions and create trigger
+# Usage: ./scripts/11_cicd.sh --env=dev --repo=chandranakkalakunta/enterprise-hr-rag
 # ============================================================
 set -uo pipefail
 
@@ -14,8 +14,8 @@ GITHUB_REPO=""
 
 for arg in "$@"; do
     case $arg in
-        --env=*)    ENVIRONMENT="${arg#*=}" ;;
-        --repo=*)   GITHUB_REPO="${arg#*=}" ;;
+        --env=*)  ENVIRONMENT="${arg#*=}" ;;
+        --repo=*) GITHUB_REPO="${arg#*=}" ;;
     esac
 done
 
@@ -29,93 +29,11 @@ source "${SCRIPT_DIR}/../config/${ENVIRONMENT}.env"
 echo "=================================================="
 echo " Enterprise HR RAG Platform - CI/CD Setup"
 echo " Environment: ${ENVIRONMENT}"
-echo " Project: ${PROJECT_ID}"
+echo " Project:     ${PROJECT_ID}"
 echo "=================================================="
 
-# ── Create Cloud Build config ──────────────────────────────
-log_step "Creating Cloud Build configuration"
-
-cat > "${SCRIPT_DIR}/../cloudbuild.yaml" << 'CBEOF'
-steps:
-  # Step 1: Run tests
-  - name: 'python:3.11'
-    id: 'test'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        pip install -r requirements.txt --quiet
-        python -m pytest tests/ -v 2>/dev/null || echo "No tests found"
-
-  # Step 2: Build Docker image
-  - name: 'gcr.io/cloud-builders/docker'
-    id: 'build'
-    args:
-      - 'buildx'
-      - 'build'
-      - '--platform=linux/amd64'
-      - '-t'
-      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REGISTRY}/hr-rag-engine:${SHORT_SHA}'
-      - '-t'
-      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REGISTRY}/hr-rag-engine:latest'
-      - '--push'
-      - '.'
-
-  # Step 3: Sign image with Binary Authorization
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    id: 'sign'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        DIGEST=$(gcloud container images describe \
-          ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REGISTRY}/hr-rag-engine:${SHORT_SHA} \
-          --format='get(image_summary.digest)')
-        gcloud beta container binauthz attestations sign-and-create \
-          --artifact-url="${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REGISTRY}/hr-rag-engine@$$DIGEST" \
-          --attestor=${_ATTESTOR} \
-          --attestor-project=${PROJECT_ID} \
-          --keyversion-project=${PROJECT_ID} \
-          --keyversion-location=${_REGION} \
-          --keyversion-keyring=${_KEYRING} \
-          --keyversion-key=${_SIGN_KEY} \
-          --keyversion=1 \
-          --project=${PROJECT_ID}
-
-  # Step 4: Deploy to Cloud Run
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    id: 'deploy'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        DIGEST=$(gcloud container images describe \
-          ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REGISTRY}/hr-rag-engine:${SHORT_SHA} \
-          --format='get(image_summary.digest)')
-        gcloud run deploy hr-rag-engine \
-          --image="${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REGISTRY}/hr-rag-engine@$$DIGEST" \
-          --platform=managed \
-          --region=${_REGION} \
-          --project=${PROJECT_ID} \
-          --binary-authorization=default \
-          --quiet
-
-substitutions:
-  _REGION: asia-south1
-  _REGISTRY: hr-rag-repo
-  _ATTESTOR: hr-rag-attestor
-  _KEYRING: hr-rag-keyring
-  _SIGN_KEY: hr-rag-signing-key
-
-options:
-  logging: CLOUD_LOGGING_ONLY
-  machineType: E2_HIGHCPU_8
-CBEOF
-
-log_success "cloudbuild.yaml created"
-
-# ── Grant Cloud Build permissions ──────────────────────────
-log_step "Granting Cloud Build permissions"
+# ── Grant Cloud Build service account permissions ──────────
+log_step "Granting Cloud Build SA permissions"
 
 PROJECT_NUMBER=$(gcloud projects describe "${PROJECT_ID}" \
     --format="value(projectNumber)")
@@ -125,25 +43,64 @@ for role in \
     "roles/run.admin" \
     "roles/iam.serviceAccountUser" \
     "roles/artifactregistry.writer" \
-    "roles/binaryauthorization.attestorsVerifier"; do
+    "roles/binaryauthorization.attestorsVerifier" \
+    "roles/cloudkms.signerVerifier" \
+    "roles/containeranalysis.notes.attacher"; do
     gcloud projects add-iam-policy-binding "${PROJECT_ID}" \
         --member="serviceAccount:${CB_SA}" \
         --role="${role}" \
         --quiet --format="none" 2>/dev/null && \
-        log_success "Granted ${role} to Cloud Build SA" || \
+        log_success "Granted ${role}" || \
         log_warn "Could not grant ${role}"
 done
+
+# ── Create Cloud Build trigger ─────────────────────────────
+if [ -n "${GITHUB_REPO}" ]; then
+    log_step "Creating Cloud Build trigger for ${GITHUB_REPO}"
+
+    gcloud builds triggers create github \
+        --project="${PROJECT_ID}" \
+        --region="${REGION}" \
+        --repo-name="$(echo "${GITHUB_REPO}" | cut -d'/' -f2)" \
+        --repo-owner="$(echo "${GITHUB_REPO}" | cut -d'/' -f1)" \
+        --branch-pattern="^main$" \
+        --build-config="cloudbuild.yaml" \
+        --name="hr-rag-main-deploy-${ENVIRONMENT}" \
+        --substitutions="\
+_ENVIRONMENT=${ENVIRONMENT},\
+_REGION=${REGION},\
+_REGISTRY=${REGISTRY_NAME},\
+_RRF_ALPHA=${RRF_ALPHA},\
+_MEMORY=${MEMORY},\
+_CPU=${CPU},\
+_MIN_INSTANCES=${MIN_INSTANCES},\
+_MAX_INSTANCES=${MAX_INSTANCES},\
+_DOCS_BUCKET=${DOCS_BUCKET},\
+_DB_INSTANCE_NAME=${DB_INSTANCE_NAME},\
+_DB_NAME=${DB_NAME},\
+_DB_USER=${DB_USER},\
+_RAG_SA=${RAG_SA},\
+_RAGAS_RELEVANCY_THRESHOLD=${RAGAS_RELEVANCY_THRESHOLD},\
+_RAGAS_PRECISION_THRESHOLD=${RAGAS_PRECISION_THRESHOLD}" \
+        --quiet 2>/dev/null && \
+        log_success "Trigger created: hr-rag-main-deploy-${ENVIRONMENT}" || \
+        log_warn "Trigger may already exist — skipping"
+else
+    log_warn "--repo not provided, skipping trigger creation"
+    log_info "To create trigger later:"
+    log_info "  ./scripts/11_cicd.sh --env=${ENVIRONMENT} --repo=<owner>/<repo>"
+fi
 
 echo ""
 echo "=================================================="
 log_success "CI/CD setup complete!"
 echo ""
-echo "  Cloud Build config: cloudbuild.yaml"
+echo "  Cloud Build config: cloudbuild.yaml (in repo root)"
 echo ""
-echo "To trigger manually:"
-echo "  gcloud builds submit --config=cloudbuild.yaml --project=${PROJECT_ID}"
+echo "Trigger manually:"
+echo "  gcloud builds submit --config=cloudbuild.yaml \\"
+echo "    --project=${PROJECT_ID} --region=${REGION}"
 echo ""
-echo "To connect GitHub (manual step required):"
-echo "  https://console.cloud.google.com/cloud-build/triggers?project=${PROJECT_ID}"
-echo ""
+echo "View builds:"
+echo "  https://console.cloud.google.com/cloud-build/builds?project=${PROJECT_ID}"
 echo "=================================================="
