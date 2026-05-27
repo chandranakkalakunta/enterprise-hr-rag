@@ -143,7 +143,7 @@ steps:
     waitFor: ['sign']
 
   # ── Step 7: Post-Deploy Smoke Test ───────────────────────
-  - name: 'python:3.11-slim'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     id: 'smoke-test'
     entrypoint: 'bash'
     args:
@@ -155,8 +155,7 @@ steps:
           --project="${PROJECT_ID}" \
           --format="value(status.url)" 2>/dev/null)
         echo "Testing: $$SERVICE_URL"
-        pip install --quiet urllib3
-        python tests/smoke_test.py "$$SERVICE_URL"
+        python3 tests/smoke_test.py "$$SERVICE_URL"
     waitFor: ['deploy']
 
 # ── Substitution defaults (overridden by trigger) ────────────
