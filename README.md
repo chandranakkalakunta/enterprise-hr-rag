@@ -58,6 +58,29 @@ HR DB       Vector      Combined
 
 ---
 
+## Design Decisions
+
+- **Hybrid search over pure vector search** — Vector-only retrieval misses keyword-specific HR terms (policy codes, leave types, benefit names). BM25 anchors recall on exact terminology while dense search handles semantic paraphrase, giving complementary coverage that neither method achieves alone.
+- **Reciprocal Rank Fusion (RRF) for result fusion** — RRF is rank-based, not score-based, making it robust to score distribution differences between BM25 and vector similarity. No calibration needed when swapping models, and it empirically outperformed simple score averaging in evaluation (0.674 → 0.857 avg relevancy).
+- **BM25 + Vertex AI Vector Search** — BM25 (rank-bm25) runs in-process with zero additional latency, while Vertex AI Vector Search provides managed, low-latency ANN at scale without the operational overhead of self-hosting FAISS or Weaviate. The combination eliminates a separate search service while keeping cost proportional to usage.
+- **Anonymised BigQuery analytics over direct logging** — HR data carries high regulatory exposure (India DPDP Act 2023, GDPR). Logging irreversible SHA-256 hashed user IDs and category metadata instead of raw queries makes compliance straightforward, removes the data-retention risk of storing employee question text, and still yields actionable usage signals.
+
+---
+
+## Evaluation Results
+
+| Metric | BM25 Only | Hybrid RAG | Latest (2026-05-27) |
+|--------|-----------|------------|---------------------|
+| Avg Relevancy | 0.635 | 0.674 | **0.857** |
+| Source Accuracy | 1.000 | 1.000 | **0.967** |
+| Easy Questions | 0.706 | 0.740 | **0.860** |
+| Medium Questions | 0.611 | 0.630 | **0.880** |
+| Hard Questions | 0.377 | 0.522 | **0.830** |
+
+60 questions · Model: gemini-2.5-flash · chunk_size: 1024 · alpha: 0.5
+
+---
+
 ## Security Architecture
 
 | Layer | Implementation |
@@ -117,6 +140,10 @@ BigQuery NEVER stores:
 | Security | Binary Authorization + KMS |
 | Monitoring | Cloud Monitoring + Cloud Logging (structured JSON) |
 | IaC | 14 Shell Scripts + Makefile |
+| CI/CD | Cloud Build (GitHub trigger) |
+| SAST | Bandit (HIGH severity gate) |
+| Dependency Audit | pip-audit (CVE scan) |
+| Secret Scan | detect-secrets |
 
 ---
 
@@ -146,6 +173,41 @@ https://console.cloud.google.com/monitoring/alerting?project=hr-rag-dev
 Run monitoring setup:
 ```bash
 ./scripts/09_monitoring.sh --env=dev --email=you@example.com
+```
+
+---
+
+## CI/CD Pipeline
+
+Every push to `main` triggers a fully automated 10-step Cloud Build pipeline.
+
+```
+git push → GitHub webhook → Cloud Build
+```
+
+| Step | Tool | Gate |
+|------|------|------|
+| Unit tests | pytest (29 tests) | Blocks on failure |
+| RAGAS regression gate | LLM judge | Blocks if avg_relevancy < 0.80 |
+| Dependency CVE audit | pip-audit | Warns on transitive CVEs |
+| SAST | bandit | Blocks on HIGH severity code issues |
+| Secret scan | detect-secrets | Warns on potential credentials |
+| Build & push image | Docker → Artifact Registry | — |
+| Container vuln scan | Artifact Registry scanning | Blocks on CRITICAL CVEs |
+| KMS sign | Binary Authorization | Blocks if unsigned |
+| Deploy | Cloud Run (rolling) | Blocks if deploy fails |
+| Smoke test | HTTP health check | Blocks if service unhealthy |
+
+Steps 1–5 run in **parallel** before the build — fast fail on any quality or security issue.
+
+Set up trigger:
+```bash
+./scripts/11_cicd.sh --env=dev --repo=chandranakkalakunta/enterprise-hr-rag
+```
+
+View builds:
+```
+https://console.cloud.google.com/cloud-build/builds?project=hr-rag-dev
 ```
 
 ---
@@ -193,20 +255,6 @@ FROM `hr-rag-dev.hr_rag_metrics.feedback_logs`
 GROUP BY 1, 2
 ORDER BY thumbs_up DESC
 ```
-
----
-
-## Evaluation Results
-
-| Metric | BM25 Only | Hybrid RAG | Latest (2026-05-27) |
-|--------|-----------|------------|---------------------|
-| Avg Relevancy | 0.635 | 0.674 | **0.857** |
-| Source Accuracy | 1.000 | 1.000 | **0.967** |
-| Easy Questions | 0.706 | 0.740 | **0.860** |
-| Medium Questions | 0.611 | 0.630 | **0.880** |
-| Hard Questions | 0.377 | 0.522 | **0.830** |
-
-60 questions · Model: gemini-2.5-flash · chunk_size: 1024 · alpha: 0.5
 
 ---
 
@@ -271,8 +319,14 @@ enterprise-hr-rag/
 ├── Makefile                  # Developer commands
 ├── requirements.txt          # Python dependencies
 ├── Dockerfile                # Container definition
+├── cloudbuild.yaml           # CI/CD pipeline (10 steps)
+├── .bandit                   # SAST config (HIGH severity gate)
 ├── config/                   # Environment configs (dev/prod)
 ├── monitoring/               # Cloud Monitoring dashboard JSON
+├── tests/                    # CI/CD test suite
+│   ├── test_query_router.py  # 29 unit tests
+│   ├── ragas_regression_gate.py  # Quality gate
+│   └── smoke_test.py         # Post-deploy health check
 ├── scripts/                  # IaC scripts 00-14
 │   ├── 00_prerequisites.sh
 │   ├── 01_org_setup.sh
@@ -326,19 +380,15 @@ enterprise-hr-rag/
 
 - Phase 1 — Infrastructure: **COMPLETE**
 - Phase 2 — Personal RAG + Auth: **COMPLETE**
-- Phase 3 — MLOps:
+- Phase 3 — MLOps: **COMPLETE** *(2026-05-28)*
   - Operational monitoring (dashboards, alerts, structured logging): **COMPLETE**
   - Response caching L1+L2 with BigQuery telemetry: **COMPLETE**
   - User feedback (👍/👎) with BigQuery logging: **COMPLETE**
   - Query router intent fix (word-boundary matching): **COMPLETE**
-  - Vertex AI Experiments tracking: planned
-  - A/B testing framework: planned
-  - Automated model retraining: planned
-  - Drift monitoring: planned
-- Phase 4 — Advanced (planned):
-  - Multi-tenancy support
-  - Slack/Teams bot integration
-  - Mobile app
+  - CI/CD pipeline (Cloud Build + GitHub trigger): **COMPLETE**
+  - Automated tests in CI/CD (pytest, RAGAS gate, smoke test): **COMPLETE**
+  - Security scanning in CI/CD (SAST, dep-audit, secret scan): **COMPLETE**
+- Phase 4 — Future enhancements tracked separately
 
 ---
 
